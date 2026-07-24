@@ -13,6 +13,7 @@ export class App {
   private readonly destroyRef = inject(DestroyRef);
   private lastScrollY = 0;
   private fabOpen = false;
+  private megaOpen = false;
 
   @HostListener('window:scroll')
   onScroll() {
@@ -34,6 +35,8 @@ export class App {
     afterNextRender(() => {
       this.initReveals();
       this.initFab();
+      this.initMega();
+      this.initParallax();
     });
   }
 
@@ -46,15 +49,130 @@ export class App {
       this.fabOpen = !this.fabOpen;
       fab.classList.toggle('fab-open', this.fabOpen);
       const icon = document.getElementById('fab-icon');
-      if (icon) icon.className = this.fabOpen ? 'ph ph-x text-xl' : 'ph ph-chat-circle-dots text-xl';
+      if (icon) {
+        icon.className = this.fabOpen ? 'ph ph-x text-xl' : 'ph ph-chat-circle-dots text-xl';
+        icon.style.color = '#194669';
+      }
+    });
+  }
+
+  private initParallax() {
+    const mockup = document.getElementById('app-mockup');
+    if (!mockup) return;
+
+    // Use the card container as parent for bounds (it has actual height)
+    const container = mockup.closest('.card-dark') as HTMLElement || mockup;
+    const cards = container.querySelectorAll('.floating-ui') as NodeListOf<HTMLElement>;
+
+    container.addEventListener('mousemove', (e) => {
+      const rect = container.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+      cards.forEach((card) => {
+        const speed = parseFloat(card.dataset['speed'] || '0.05');
+        const moveX = x * speed * 40;
+        const moveY = y * speed * 40;
+        card.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        card.style.transition = 'transform 0.2s ease-out';
+      });
     });
 
+    container.addEventListener('mouseleave', () => {
+      cards.forEach((card) => {
+        card.style.transform = 'translate(0, 0)';
+      });
+    });
+
+    // ✏️ Edit mode: click pencil button to toggle draggable UI cards
+    let editMode = false;
+    let dragTarget: HTMLElement | null = null;
+    let startX = 0, startY = 0, startLeft = 0, startTop = 0;
+
+    const toggleBtn = document.getElementById('edit-toggle');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        editMode = !editMode;
+        cards.forEach((card) => {
+          card.style.outline = editMode ? '2px dashed var(--color-signal)' : '';
+          card.style.cursor = editMode ? 'grab' : '';
+        });
+        toggleBtn.style.color = editMode ? 'var(--color-signal)' : '';
+        toggleBtn.style.borderColor = editMode ? 'var(--color-signal)' : '';
+        console.log(editMode ? '✏️ Edit mode ON — drag cards to reposition' : '✏️ Edit mode OFF');
+      });
+    }
+
+    container.addEventListener('mousedown', (e) => {
+      if (!editMode) return;
+      const target = (e.target as HTMLElement).closest('.floating-ui') as HTMLElement;
+      if (!target) return;
+      e.preventDefault();
+      dragTarget = target;
+      startX = e.clientX;
+      startY = e.clientY;
+      // Read initial position based on which property the element uses
+      if (target.style.left) {
+        startLeft = parseFloat(target.style.left) || 0;
+      } else {
+        startLeft = -(parseFloat(target.style.right) || 0);
+      }
+      startTop = parseFloat(target.style.top) || 0;
+      target.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!editMode || !dragTarget) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      const rect = container.getBoundingClientRect();
+      
+      // If element uses 'left', move left. If 'right', move inversely.
+      if (dragTarget.style.left) {
+        const newLeft = Math.max(-5, Math.min(95, startLeft + dx / rect.width * 100));
+        dragTarget.style.left = newLeft + '%';
+        dragTarget.style.right = '';
+      } else {
+        const newRight = Math.max(-5, Math.min(95, -startLeft - dx / rect.width * 100));
+        dragTarget.style.right = newRight + '%';
+        dragTarget.style.left = '';
+      }
+      const newTop = Math.max(-5, Math.min(95, startTop + dy / rect.height * 100));
+      dragTarget.style.top = newTop + '%';
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (dragTarget) {
+        dragTarget.style.cursor = 'grab';
+        const xProp = dragTarget.style.left ? `left: ${dragTarget.style.left}` : `right: ${dragTarget.style.right}`;
+        console.log(`📍 Position: ${xProp}; top: ${dragTarget.style.top};`);
+        dragTarget = null;
+      }
+    });
+  }
+
+  private initMega() {
+    const trigger = document.getElementById('mega-link');
+    const panel = document.querySelector('.mega-panel') as HTMLElement;
+    const backdrop = document.getElementById('mega-backdrop');
+    if (!trigger || !panel || !backdrop) return;
+
+    const toggleMega = (open: boolean) => {
+      this.megaOpen = open;
+      panel.classList.toggle('mega-open', open);
+      backdrop.classList.toggle('hidden', !open);
+    };
+
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleMega(!this.megaOpen);
+    });
+
+    backdrop.addEventListener('click', () => toggleMega(false));
     document.addEventListener('click', (e) => {
-      if (this.fabOpen && !fab.contains(e.target as Node)) {
-        this.fabOpen = false;
-        fab.classList.remove('fab-open');
-        const icon = document.getElementById('fab-icon');
-        if (icon) icon.className = 'ph ph-chat-circle-dots text-xl';
+      if (this.megaOpen && !trigger.parentElement!.contains(e.target as Node) && !panel.contains(e.target as Node)) {
+        toggleMega(false);
       }
     });
   }

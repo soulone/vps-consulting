@@ -19,7 +19,6 @@
   /* Tipografía — Poppins geométrico + JetBrains Mono industrial */
   --font-display: 'Poppins', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
 
   /* Escala tipográfica Andercore */
   --text-caption: 12px;
@@ -219,10 +218,11 @@ h4 { font-size: var(--text-body); }
   align-items: center;
   white-space: nowrap;
   font-size: var(--text-body-sm);
-  font-weight: 500;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  color: #111111;
+  letter-spacing: 0.06em;
   flex-shrink: 0;
+  text-transform: uppercase;
 }
 @keyframes marquee-scroll {
   0%   { transform: translateX(0); }
@@ -305,6 +305,16 @@ h4 { font-size: var(--text-body); }
     linear-gradient(135deg, var(--color-blue), var(--color-signal)) border-box;
 }
 
+/* 3D card hover — sutil lift industrial */
+.card-hover-3d {
+  transition: transform 350ms cubic-bezier(0.16,1,0.3,1),
+              border-color 350ms ease;
+}
+.card-hover-3d:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-signal);
+}
+
 /* ═══ Inputs ═══ */
 .input-field {
   width: 100%;
@@ -324,7 +334,6 @@ h4 { font-size: var(--text-body); }
 /* ═══ Badge — industrial mono tag ═══ */
 .badge {
   display: inline-flex;
-  font-family: var(--font-mono);
   font-size: var(--text-caption);
   font-weight: 500;
   color: var(--color-ink);
@@ -470,45 +479,95 @@ h4 { font-size: var(--text-body); }
 
 /* ═══ WhatsApp FAB — Aurora glass ═══ */
 .fab-aurora {
-  background: radial-gradient(ellipse at 50% 50%, rgba(0,120,255,0.25) 0%, rgba(8,27,44,0.7) 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #e8eef4 100%);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(0,120,255,0.2);
-  border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  border: 1px solid rgba(25,70,105,0.2);
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   cursor: pointer;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+.fab-aurora:hover {
+  border-color: rgba(25,70,105,0.4);
+  box-shadow: 0 2px 16px rgba(25,70,105,0.1);
 }
 
-.fab-aurora:hover {
-  border-color: rgba(0,120,255,0.4);
-  box-shadow: 0 2px 16px rgba(0,120,255,0.1);
+/* Chat bubbles — solid white + blue accent */
+.fab-bubble {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(25,70,105,0.18);
+  border-radius: 14px 14px 4px 14px;
+  padding: 11px 16px;
+  color: rgba(17,17,17,0.85);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  max-width: 260px;
+  cursor: pointer;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+.fab-bubble:hover {
+  border-color: rgba(25,70,105,0.4);
+  transform: translateX(-4px);
+}
+.fab-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  right: 18px;
+  width: 12px;
+  height: 12px;
+  background: #ffffff;
+  border: solid rgba(25,70,105,0.18);
+  border-width: 0 1px 1px 0;
+  transform: rotate(45deg);
+}
+@keyframes bubble-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 /* Menu visible */
-.fab-open .fab-menu {
+.fab-open .fab-bubble,
+.fab-open .fab-close-btn {
   opacity: 1 !important;
-  visibility: visible !important;
-  transform: translateY(0) !important;
   pointer-events: auto !important;
 }
 
 /* FAB hide on mobile scroll */
 .fab-hidden {
-  transform: translateY(120px);
-  opacity: 0;
-  pointer-events: none;
+  transform: translateY(120px) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
-/* ═══ Project card ═══ */
+/* Mega menu — overflow fix for island */
+#main-nav.is-scrolled .nav-inner { overflow: visible; }
+
+/* Mega backdrop */
+.mega-backdrop {
+  background: rgba(0,0,0,0.25);
+}
+
+/* Mega panel — hover por CSS en vez de group-hover para evitar conflictos */
+.mega-trigger:hover .mega-panel {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* ═══ Auroras ═══ */
 .project-card {
   position: relative;
   overflow: hidden;
   min-height: 320px;
 }
 .project-card img {
-  transition: transform 700ms cubic-bezier(0.16,1,0.3,1);
+  transition: transform 0s;
 }
-.project-card:hover img { transform: scale(1.04); }
 
 /* ─── Card border variants ─── */
 /* Aurora divider — gradiente animado entre secciones */
@@ -530,4 +589,9 @@ h4 { font-size: var(--text-body); }
   50%  { transform: translate(10vw, 2vh) scale(0.98); }
   75%  { transform: translate(-3vw, 8vh) scale(1.03); }
   100% { transform: translate(-5vw, 0) scale(1); }
+}
+
+/* ═══ Floating UI parallax ═══ */
+.floating-ui {
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
 }
