@@ -21,4 +21,8 @@ export const routes: Routes = [
     path: 'servicios/planeamiento',
     loadComponent: () => import('./servicios/planeamiento/planeamiento.component').then(m => m.PlaneamientoComponent),
   },
+  {
+    path: 'contratistas',
+    loadComponent: () => import('./servicios/contratistas/contratistas.component').then(m => m.ContratistasComponent),
+  },
 ];
