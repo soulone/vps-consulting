@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VPS Consulting | Ingeniería y Consultoría Minera en Perú</title>
+<meta name="description" content="Consultoría especializada en ventilación minera, sistemas de bombeo, drenaje y planeamiento subterráneo. Más de 20 años respaldando las principales unidades mineras del Perú."/>
+<meta name="keywords" content="ventilación minera, bombeo minero, planeamiento minero, consultoría minera, ingeniería subterránea, Perú"/>
+<!-- Phosphor Icons -->
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary":      "#194669",
+          "primary-deep": "#0f2d44",
+          "secondary":    "#EFB24A",
+          "gold-dark":    "#B38F20",
+          "surface":      "#F5F6F8",
+          "surface-dark": "#191C21",
+          "ink":          "#0d1f30",
+          "text-body":    "#43454C",
+          "steel":        "#8DA4BE"
+        },
+        fontFamily: {
+          "sans":    ["Inter", "sans-serif"],
+          "poppins": ["Poppins", "sans-serif"]
+        },
+        borderRadius: {
+          "DEFAULT": "0.125rem",
+          "sm":      "0.125rem",
+          "md":      "0.25rem",
+          "lg":      "0.25rem",
+          "xl":      "0.375rem",
+          "2xl":     "0.5rem",
+          "full":    "9999px"
+        }
+      }
+    }
+  }
+</script>
+<style>
+  /* ── Base Reset ── */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+  /* ── Scroll Progress ── */
+  #scroll-progress {
+    position: fixed; top: 0; left: 0; height: 2px;
+    background: #EFB24A; width: 0%; z-index: 9999;
+    transition: width 0.1s linear;
+  }
+
+  /* ── Ken Burns ── */
+  @keyframes kenburns {
+    0%   { transform: scale(1); }
+    100% { transform: scale(1.12); }
+  }
+  .ken-burns { animation: kenburns 14s ease-out forwards; }
+
+  /* ── Scroll indicator line ── */
+  @keyframes scroll-line {
+    0%   { height: 0; opacity: 1; }
+    80%  { height: 36px; opacity: 1; }
+    100% { height: 36px; opacity: 0; }
+  }
+  .scroll-line-anim { animation: scroll-line 1.8s ease-in-out infinite; }
+
+  /* ── Fade In Up ── */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── Section label (eyebrow) ── */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #EFB24A;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: #EFB24A;
+    flex-shrink: 0;
+  }
+
+  /* ── Service row list ── */
+  .service-row {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: grid;
+    grid-template-columns: 52px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 24px 16px;
+    cursor: pointer;
+    transition: background 0.2s ease, padding 0.2s ease;
+  }
+  .service-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .service-row:hover { background: rgba(239,178,74,0.06); padding-inline: 24px; }
+  .service-row-expand {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+    overflow: hidden;
+  }
+  .service-row-expand.open { grid-template-rows: 1fr; }
+  .service-row-expand-inner { min-height: 0; }
+  .service-row.active-row { background: rgba(239,178,74,0.08); }
+
+  /* ── Timeline ── */
+  .timeline-connector {
+    position: absolute;
+    top: 50%;
+    left: 0; right: 0;
+    height: 1px;
+    background: rgba(25,70,105,0.15);
+    transform: translateY(-50%);
+  }
+  .timeline-fill {
+    position: absolute;
+    top: 50%; left: 0;
+    height: 1px;
+    background: #EFB24A;
+    width: 0%;
+    transform: translateY(-50%);
+    transition: width 1s ease;
+  }
+  .timeline-fill.animated { width: 100%; }
+
+  /* ── Marquee ── */
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    animation: marquee 32s linear infinite;
+    will-change: transform;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+
+  /* ── FAB ── */
+  @keyframes fab-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(239,178,74,0.5); }
+    70%  { box-shadow: 0 0 0 14px rgba(239,178,74,0); }
+    100% { box-shadow: 0 0 0 0 rgba(239,178,74,0); }
+  }
+  .fab-main { animation: fab-pulse 2.8s ease-out infinite; }
+  .fab-mini {
+    opacity: 0;
+    transform: translateY(8px) scale(0.9);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    pointer-events: none;
+  }
+  .fab-mini.fab-open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .fab-mini:nth-child(1) { transition-delay: 0.04s; }
+  .fab-mini:nth-child(2) { transition-delay: 0.08s; }
+  .fab-mini:nth-child(3) { transition-delay: 0.12s; }
+
+  /* ── Header ── */
+  #main-header.scrolled {
+    background: rgba(255,255,255,0.97) !important;
+    backdrop-filter: blur(16px);
+    border-bottom-color: rgba(25,70,105,0.08) !important;
+  }
+  #main-header.scrolled .nav-link { color: #194669; }
+  #main-header.scrolled .nav-link:hover { color: #EFB24A; }
+
+  /* ── Counter ── */
+  .stat-num { font-variant-numeric: tabular-nums; }
+
+  /* ── Stagger delays ── */
+  .stagger-1 { transition-delay: 0.08s; }
+  .stagger-2 { transition-delay: 0.16s; }
+  .stagger-3 { transition-delay: 0.24s; }
+  .stagger-4 { transition-delay: 0.32s; }
+
+  /* ── Project card hover ── */
+  .project-card .project-overlay {
+    background: linear-gradient(to top, rgba(25,70,105,0.95) 0%, rgba(25,70,105,0.3) 60%, transparent 100%);
+    transition: background 0.3s ease;
+  }
+  .project-card:hover .project-overlay {
+    background: linear-gradient(to top, rgba(239,178,74,0.92) 0%, rgba(239,178,74,0.4) 60%, transparent 100%);
+  }
+  .project-card:hover .project-title { color: #194669; }
+  .project-card:hover .project-cat   { color: #194669; }
+  .project-card img { transition: transform 0.6s ease; }
+  .project-card:hover img { transform: scale(1.04); }
+
+  /* ── Pilar horizontal item ── */
+  .pilar-item {
+    padding: 20px 24px;
+    border-right: 1px solid rgba(0,0,0,0.08);
+    transition: background 0.2s ease;
+  }
+  .pilar-item:last-child { border-right: none; }
+  .pilar-item:hover { background: rgba(25,70,105,0.03); }
+
+  /* ── ISO badge flat ── */
+  .iso-badge {
+    border: 1px solid rgba(239,178,74,0.25);
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .iso-badge:hover {
+    border-color: rgba(239,178,74,0.6);
+    background: rgba(239,178,74,0.04) !important;
+  }
+
+  /* ── Vision card ── */
+  .vision-panel {
+    background: linear-gradient(135deg, #194669 0%, #0d2e42 100%);
+    position: relative; overflow: hidden;
+  }
+  .vision-panel::after {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 160px; height: 160px;
+    background: rgba(239,178,74,0.06);
+    border-radius: 50%;
+  }
+
+  /* ── Form inputs ── */
+  .form-field {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    padding: 12px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #43454C;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .form-field:focus { border-bottom-color: #194669; }
+  .form-field::placeholder { color: #c0c4cc; }
+  .form-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #8DA4BE;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in-up { transition: none; opacity: 1; transform: none; }
+    .ken-burns  { animation: none; }
+    .marquee-track { animation: none; }
+  }
+</style>
+</head>
+<body class="bg-surface text-text-body overflow-x-hidden">
+
+<!-- ████ SCROLL PROGRESS ████ -->
+<div id="scroll-progress"></div>
+
+<!-- ████ TOP BAR ████ -->
+<div class="bg-primary w-full z-50 relative" style="height:34px">
+  <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+    <div class="flex items-center gap-5 text-white/60 text-xs font-inter">
+      <a href="mailto:frank.mariluz@vpsconsulting.com.pe" class="flex items-center gap-1.5 hover:text-secondary transition-colors" aria-label="Email">
+        <i class="ph ph-envelope text-secondary" style="font-size:13px"></i>
+        <span class="hidden sm:inline">frank.mariluz@vpsconsulting.com.pe</span>
+      </a>
+      <a href="tel:+51987278625" class="flex items-center gap-1.5 hover:text-secondary transition-colors" aria-label="Teléfono">
+        <i class="ph ph-phone text-secondary" style="font-size:13px"></i>
+        <span>+51 987 278 625</span>
+      </a>
+    </div>
+    <div class="flex items-center gap-1">
+      <a href="https://pe.linkedin.com/company/vps-consulting" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-7 h-7 flex items-center justify-center hover:text-secondary transition-colors text-white/50">
+        <i class="ph-fill ph-linkedin-logo" style="font-size:15px"></i>
+      </a>
+      <a href="https://www.instagram.com/vps_consulting/" target="_blank" rel="noopener" aria-label="Instagram" class="w-7 h-7 flex items-center justify-center hover:text-secondary transition-colors text-white/50">
+        <i class="ph-fill ph-instagram-logo" style="font-size:15px"></i>
+      </a>
+      <a href="https://www.tiktok.com/@vpsconsulting" target="_blank" rel="noopener" aria-label="TikTok" class="w-7 h-7 flex items-center justify-center hover:text-secondary transition-colors text-white/50">
+        <i class="ph-fill ph-tiktok-logo" style="font-size:15px"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ████ HEADER ████ -->
+<header id="main-header" class="fixed left-0 right-0 w-full z-50 border-b border-transparent transition-all duration-300 bg-white/0 md:bg-transparent" style="top:34px">
+  <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
+    <!-- Logo -->
+    <div class="flex items-center gap-2.5">
+      <img class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8cipKHwl6l_BFaZmW2fKs2kxokdjgnmXOBcpk1bGz8bMXakEdGIeEtybmAjzd8h0vzKdWhTQ260mQ-VEG77ZVuVaV1Mu3CE1ifRNuGExrQilrEOR023sbElJIVTz-0bKpmIKksp4MBRE3-KGJ-gTu2D2kq0x-zj0LyOGS9uqj7Bl025m2WjjfBzXdg-T6nOlZPAbzZ32yhuWgH8bMFfRj1cexQdjZsAgdHnyg9yGNSkMtw_Y2mR7RNhejLyD7xyUU4KY3LxFBRnnc" alt="Logo VPS Consulting"/>
+      <span class="font-poppins font-bold text-primary text-lg hidden sm:block">VPS Consulting</span>
+    </div>
+    <!-- Nav desktop -->
+    <nav class="hidden md:flex items-center gap-7">
+      <a class="nav-link text-sm font-medium text-white hover:text-secondary transition-colors tracking-wide" href="#inicio">Inicio</a>
+      <a class="nav-link text-sm font-medium text-white hover:text-secondary transition-colors tracking-wide" href="#nosotros">Quiénes Somos</a>
+      <a class="nav-link text-sm font-medium text-white hover:text-secondary transition-colors tracking-wide" href="#servicios">Servicios</a>
+      <a class="nav-link text-sm font-medium text-white hover:text-secondary transition-colors tracking-wide" href="#proyectos">Proyectos</a>
+      <a class="px-5 py-2.5 bg-secondary text-primary text-sm font-poppins font-bold rounded hover:bg-gold-dark transition-colors tracking-wide" href="#contacto">COTIZAR →</a>
+    </nav>
+    <!-- Mobile btn -->
+    <button id="mobile-menu-btn" class="md:hidden text-white p-2 focus:outline-none" aria-label="Menú">
+      <i class="ph ph-list" style="font-size:24px"></i>
+    </button>
+  </div>
+  <!-- Mobile drawer -->
+  <div id="mobile-drawer" class="hidden bg-primary border-t border-white/10 flex-col md:hidden">
+    <div class="flex flex-col gap-1 p-6">
+      <a class="drawer-nav py-3 px-4 text-white font-medium hover:text-secondary hover:bg-white/5 transition-all rounded" href="#inicio">Inicio</a>
+      <a class="drawer-nav py-3 px-4 text-white font-medium hover:text-secondary hover:bg-white/5 transition-all rounded" href="#nosotros">Quiénes Somos</a>
+      <a class="drawer-nav py-3 px-4 text-white font-medium hover:text-secondary hover:bg-white/5 transition-all rounded" href="#servicios">Servicios</a>
+      <a class="drawer-nav py-3 px-4 text-white font-medium hover:text-secondary hover:bg-white/5 transition-all rounded" href="#proyectos">Proyectos</a>
+      <a class="drawer-nav mt-3 py-3 px-4 bg-secondary text-primary text-center font-poppins font-bold rounded hover:bg-gold-dark transition-colors" href="#contacto">COTIZAR AHORA →</a>
+    </div>
+  </div>
+</header>
+
+<!-- ████ HERO ████ -->
+<section class="relative w-full bg-primary" id="inicio" style="min-height:100vh; padding-top:106px">
+  <!-- Photo background -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute inset-0 ken-burns bg-cover bg-center" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDe2HPD-vDE61wU0b3Au7GotEn7uVqzMXOE8viPtAS8uXxcENfZsDqdtAnsCKMvAotK7CDrUKIL4ou1JGn2jAWTmHoxCg4HdJHvmdQRwuQv00kfkiOW1hLaK2OydKKvgJ5IiMBzwkR7A0djbzlTv_txt02A3L3P72lKHhKF6_TlirnoGUYx41g0AeMhptKBIND5KANB-Qqaisjf1Bzh3gGryeL9DI7vtB5wMiUWFgnbar_k9E5mvnUcXjnt9h-oYckwSgcKW3TQJNOo'); filter:contrast(1.05) saturate(0.85)"></div>
+    <!-- Directional overlay - NOT flat opacity -->
+    <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(15,45,68,0.45) 0%, rgba(15,45,68,0.72) 55%, rgba(15,45,68,0.94) 100%)"></div>
+  </div>
+
+  <!-- Hero content -->
+  <div class="relative z-10 max-w-6xl mx-auto px-6 sm:px-12 lg:px-6 flex flex-col justify-between" style="min-height:calc(100vh - 106px)">
+    <!-- Main content -->
+    <div class="flex-1 flex items-center py-16">
+      <div class="max-w-2xl">
+        <!-- Technical tag -->
+        <div class="fade-in-up mb-6">
+          <span class="section-label">CONSULTORÍA MINERA ESPECIALIZADA · LIMA, PERÚ</span>
+        </div>
+
+        <h1 class="fade-in-up stagger-1 font-poppins font-bold text-white leading-none mb-6" style="font-size:clamp(40px,6.5vw,72px); letter-spacing:-0.02em">
+          Optimizamos la seguridad<br class="hidden md:block"/> y eficiencia de tu mina.
+        </h1>
+
+        <p class="fade-in-up stagger-2 text-white/70 text-lg leading-relaxed mb-10 max-w-xl">
+          Consultoría especializada en ventilación, bombeo y planeamiento minero.<br/>
+          <strong class="text-secondary font-semibold">+20 años</strong> respaldando las principales unidades mineras del Perú.
+        </p>
+
+        <div class="fade-in-up stagger-3 flex flex-wrap gap-4">
+          <a class="inline-flex items-center gap-2 px-7 py-3.5 bg-secondary text-primary font-poppins font-bold text-sm rounded hover:bg-gold-dark transition-colors tracking-wide" href="#contacto">
+            SOLICITAR ASESORÍA <i class="ph ph-arrow-right" style="font-size:16px"></i>
+          </a>
+          <a class="inline-flex items-center gap-2 px-7 py-3.5 border border-white/30 text-white font-poppins font-semibold text-sm rounded hover:border-secondary hover:text-secondary transition-all tracking-wide" href="#servicios">
+            VER SERVICIOS
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats strip — integrado en hero, NO flotante -->
+    <div class="fade-in-up stagger-4">
+      <div style="border-top:1px solid rgba(255,255,255,0.12)" class="grid grid-cols-1 sm:grid-cols-3 py-6 gap-6 sm:gap-0">
+        <div class="flex items-baseline gap-3 sm:pr-8">
+          <span class="font-poppins font-bold text-secondary stat-num" style="font-size:clamp(32px,4vw,48px)">+<span class="counter" data-target="20">0</span></span>
+          <div>
+            <div class="font-poppins font-semibold text-white text-sm tracking-wide">AÑOS</div>
+            <div class="text-white/40 text-xs font-medium">de Experiencia</div>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-3 sm:px-8 sm:border-x" style="border-color:rgba(255,255,255,0.1)">
+          <span class="font-poppins font-bold text-secondary stat-num" style="font-size:clamp(32px,4vw,48px)">+<span class="counter" data-target="320">0</span></span>
+          <div>
+            <div class="font-poppins font-semibold text-white text-sm tracking-wide">CLIENTES</div>
+            <div class="text-white/40 text-xs font-medium">Satisfechos</div>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-3 sm:pl-8">
+          <span class="font-poppins font-bold text-secondary stat-num" style="font-size:clamp(32px,4vw,48px)">+<span class="counter" data-target="450">0</span></span>
+          <div>
+            <div class="font-poppins font-semibold text-white text-sm tracking-wide">PROYECTOS</div>
+            <div class="text-white/40 text-xs font-medium">Ejecutados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator line -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1">
+    <span class="text-white/30 text-[9px] font-poppins font-semibold uppercase tracking-[0.2em]">scroll</span>
+    <div style="width:1px; height:36px; background:rgba(255,255,255,0.2); position:relative; overflow:hidden">
+      <div class="scroll-line-anim" style="position:absolute; top:0; left:0; width:100%; background:#EFB24A"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ QUIÉNES SOMOS ████ -->
+<section class="py-24 lg:py-32 px-6 bg-surface" id="nosotros">
+  <div class="max-w-6xl mx-auto">
+    <!-- Label -->
+    <div class="fade-in-up mb-4">
+      <span class="section-label" style="color:#194669">
+        <span style="background:#194669; width:28px; height:1px; display:inline-block"></span>
+        02 / QUIÉNES SOMOS
+      </span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mt-8">
+      <!-- Text -->
+      <div class="fade-in-up">
+        <h2 class="font-poppins text-3xl lg:text-4xl font-bold text-primary mb-6 leading-tight" style="letter-spacing:-0.01em">
+          Expertos en soluciones técnicas para la minería subterránea del Perú.
+        </h2>
+        <p class="text-text-body text-base leading-relaxed mb-8">
+          Con más de dos décadas de trayectoria en el sector minero peruano, VPS Consulting se ha consolidado como el socio estratégico ideal para las principales operaciones del país. Combinamos ingeniería de vanguardia con ejecución impecable para garantizar la eficiencia operativa y la seguridad en cada proyecto.
+        </p>
+        <a class="inline-flex items-center gap-2 text-primary font-poppins font-semibold text-sm hover:text-secondary transition-colors" href="#servicios">
+          Ver nuestros servicios <i class="ph ph-arrow-right" style="font-size:15px"></i>
+        </a>
+      </div>
+
+      <!-- Right column: foto + pilares -->
+      <div class="fade-in-up stagger-1">
+        <!-- Foto -->
+        <div class="overflow-hidden mb-0" style="border-radius:2px">
+          <img class="w-full object-cover" style="height:280px; filter:contrast(1.05) saturate(0.85)" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATzyPwjCjutFoaClVqaIsN3xYxQpOWbr9Ps8YoEwzrrSYHB4ZnR2ONWl5DpcdFRosEmSZqHnarIGjMXocRuAsDZVwTfS6b8JsLOPWItIVuGWY-9WR0rhrVT1DWAOpz9cR6SbFHYbxTuMZD-7g8PVIQ8_5jqDWvxCr8VXYfLZGM55ssvM9hlAfCTqab2J_BQ-fLA-FY7Kxp4ksJo3IUuCxnICfXKB0Wv6CsYm-GosrKSzDlI3yk8q4Mb-piW80qqxIvCYAQFiZI8BsJ" alt="Ingeniero VPS Consulting en trabajo de campo"/>
+        </div>
+        <!-- Pilares como fila con separadores -->
+        <div class="grid grid-cols-2 sm:grid-cols-4" style="border:1px solid rgba(0,0,0,0.07)">
+          <div class="pilar-item">
+            <i class="ph-fill ph-lightbulb text-secondary mb-2 block" style="font-size:20px"></i>
+            <p class="font-poppins font-semibold text-primary text-xs uppercase tracking-wide mb-0.5">Innovación</p>
+            <p class="text-text-body text-xs leading-snug">VNETPC + Ventsim</p>
+          </div>
+          <div class="pilar-item">
+            <i class="ph-fill ph-hard-hat text-secondary mb-2 block" style="font-size:20px"></i>
+            <p class="font-poppins font-semibold text-primary text-xs uppercase tracking-wide mb-0.5">Especialización</p>
+            <p class="text-text-body text-xs leading-snug">Entorno subterráneo</p>
+          </div>
+          <div class="pilar-item">
+            <i class="ph-fill ph-sliders-horizontal text-secondary mb-2 block" style="font-size:20px"></i>
+            <p class="font-poppins font-semibold text-primary text-xs uppercase tracking-wide mb-0.5">Personalización</p>
+            <p class="text-text-body text-xs leading-snug">Diseño a medida</p>
+          </div>
+          <div class="pilar-item">
+            <i class="ph-fill ph-leaf text-secondary mb-2 block" style="font-size:20px"></i>
+            <p class="font-poppins font-semibold text-primary text-xs uppercase tracking-wide mb-0.5">Sostenibilidad</p>
+            <p class="text-text-body text-xs leading-snug">Eficiencia energética</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ QUÉ HACEMOS ████ -->
+<section class="py-20 px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="fade-in-up mb-12">
+      <span class="section-label" style="color:#194669"><span style="background:#194669; width:28px; height:1px; display:inline-block"></span>SERVICIOS QUE OFRECEMOS</span>
+      <h2 class="font-poppins text-3xl font-bold text-primary mt-3">¿Qué hacemos por su operación?</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="flex gap-4 items-start p-6 fade-in-up" style="border:1px solid rgba(0,0,0,0.07)">
+        <i class="ph-fill ph-wind text-primary flex-shrink-0" style="font-size:24px; margin-top:2px"></i>
+        <div>
+          <h4 class="font-poppins font-bold text-primary mb-2">Ingeniería de Ventilación</h4>
+          <p class="text-text-body text-sm leading-relaxed">Diseño y simulación de redes de ventilación con VNETPC y Ventsim para optimizar el flujo de aire fresco, garantizando salud y seguridad.</p>
+        </div>
+      </div>
+      <div class="flex gap-4 items-start p-6 fade-in-up stagger-1" style="border:1px solid rgba(0,0,0,0.07)">
+        <i class="ph-fill ph-waves text-primary flex-shrink-0" style="font-size:24px; margin-top:2px"></i>
+        <div>
+          <h4 class="font-poppins font-bold text-primary mb-2">Sistemas de Bombeo</h4>
+          <p class="text-text-body text-sm leading-relaxed">Dimensionamiento de bombas sumergibles y estaciones de alto rendimiento. Gestión integral del drenaje minero subterráneo.</p>
+        </div>
+      </div>
+      <div class="flex gap-4 items-start p-6 fade-in-up stagger-2" style="border:1px solid rgba(0,0,0,0.07)">
+        <i class="ph-fill ph-compass-tool text-primary flex-shrink-0" style="font-size:24px; margin-top:2px"></i>
+        <div>
+          <h4 class="font-poppins font-bold text-primary mb-2">Planeamiento Estratégico</h4>
+          <p class="text-text-body text-sm leading-relaxed">Estudios de factibilidad y optimización de costos. LOM Planning, evaluación de proyectos e integración de tecnologías mineras.</p>
+        </div>
+      </div>
+      <div class="flex gap-4 items-start p-6 fade-in-up stagger-3" style="border:1px solid rgba(0,0,0,0.07)">
+        <i class="ph-fill ph-clipboard-check text-primary flex-shrink-0" style="font-size:24px; margin-top:2px"></i>
+        <div>
+          <h4 class="font-poppins font-bold text-primary mb-2">Supervisión en Campo</h4>
+          <p class="text-text-body text-sm leading-relaxed">Acompañamiento técnico directo para asegurar que la implementación cumpla los más altos estándares de seguridad y normativa vigente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ SERVICIOS — LISTA TÉCNICA ████ -->
+<section class="py-24 px-6" id="servicios" style="background:#194669">
+  <div class="max-w-6xl mx-auto">
+    <div class="fade-in-up mb-2">
+      <span class="section-label">03 / LO QUE HACEMOS MEJOR</span>
+    </div>
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+      <h2 class="font-poppins text-3xl lg:text-4xl font-bold text-white leading-tight mt-3" style="letter-spacing:-0.01em">Portafolio de Servicios</h2>
+      <p class="text-white/50 text-sm max-w-xs text-right hidden md:block">Haz clic en cada servicio para ver más detalles</p>
+    </div>
+
+    <!-- Lista técnica -->
+    <div id="services-list">
+
+      <!-- 01 Ventilación -->
+      <div class="service-row fade-in-up" data-service="0">
+        <span class="font-poppins font-semibold text-sm" style="color:rgba(239,178,74,0.45)">01</span>
+        <div class="flex items-center gap-3">
+          <i class="ph ph-wind text-secondary" style="font-size:20px"></i>
+          <span class="font-poppins font-bold text-white text-base md:text-lg tracking-wide">VENTILACIÓN MINERA</span>
+        </div>
+        <i class="ph ph-arrow-right text-secondary service-arrow" style="font-size:18px; transition:transform 0.2s ease"></i>
+      </div>
+      <div class="service-row-expand" id="svc-0">
+        <div class="service-row-expand-inner">
+          <div class="px-4 pb-6 pt-2" style="padding-left:72px">
+            <p class="text-white/65 text-sm mb-4">Diseñamos sistemas que optimizan la circulación del aire en ambientes subterráneos, garantizando salud, rendimiento y control de riesgos.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Diseño y planificación por tipo de mina</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Modelamiento y simulación por etapa</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Evaluación de riesgos: gases y partículas</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Monitoreo en tiempo real</div>
+            </div>
+            <a class="inline-flex items-center gap-2 px-5 py-2.5 bg-secondary text-primary font-poppins font-bold text-xs rounded hover:bg-gold-dark transition-colors tracking-wide" href="https://vpsconsulting.com.pe/asesorias-en-sistemas-de-ventilacion-subterranea/" target="_blank" rel="noopener">AGENDA UNA REUNIÓN →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 Bombeo -->
+      <div class="service-row fade-in-up stagger-1" data-service="1">
+        <span class="font-poppins font-semibold text-sm" style="color:rgba(239,178,74,0.45)">02</span>
+        <div class="flex items-center gap-3">
+          <i class="ph ph-waves text-secondary" style="font-size:20px"></i>
+          <span class="font-poppins font-bold text-white text-base md:text-lg tracking-wide">SISTEMAS DE BOMBEO Y DRENAJE</span>
+        </div>
+        <i class="ph ph-arrow-right text-secondary service-arrow" style="font-size:18px; transition:transform 0.2s ease"></i>
+      </div>
+      <div class="service-row-expand" id="svc-1">
+        <div class="service-row-expand-inner">
+          <div class="px-4 pb-6 pt-2" style="padding-left:72px">
+            <p class="text-white/65 text-sm mb-4">Transformamos operaciones mineras con sistemas de bombeo y drenaje que elevan la eficiencia y garantizan la seguridad en ambientes subterráneos.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Diseño y planificación por tipo de mina</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Modelamiento de escenarios hidráulicos</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Evaluación de riesgos hídricos</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Monitoreo en tiempo real</div>
+            </div>
+            <a class="inline-flex items-center gap-2 px-5 py-2.5 bg-secondary text-primary font-poppins font-bold text-xs rounded hover:bg-gold-dark transition-colors tracking-wide" href="https://vpsconsulting.com.pe/asesoria-en-sistema-de-bombeo-y-drenaje/" target="_blank" rel="noopener">AGENDA UNA REUNIÓN →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 Planeamiento -->
+      <div class="service-row fade-in-up stagger-2" data-service="2">
+        <span class="font-poppins font-semibold text-sm" style="color:rgba(239,178,74,0.45)">03</span>
+        <div class="flex items-center gap-3">
+          <i class="ph ph-compass-tool text-secondary" style="font-size:20px"></i>
+          <span class="font-poppins font-bold text-white text-base md:text-lg tracking-wide">PLANEAMIENTO MINERO</span>
+        </div>
+        <i class="ph ph-arrow-right text-secondary service-arrow" style="font-size:18px; transition:transform 0.2s ease"></i>
+      </div>
+      <div class="service-row-expand" id="svc-2">
+        <div class="service-row-expand-inner">
+          <div class="px-4 pb-6 pt-2" style="padding-left:72px">
+            <p class="text-white/65 text-sm mb-4">Asesoría estratégica en diseño y optimización de minas subterráneas — Capex y Opex optimizados para cada etapa de vida de la mina.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>LOM (Life of Mine) Planning</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Evaluación económica de proyectos</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Optimización de Capex y Opex</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Diseño de infraestructura subterránea</div>
+            </div>
+            <a class="inline-flex items-center gap-2 px-5 py-2.5 bg-secondary text-primary font-poppins font-bold text-xs rounded hover:bg-gold-dark transition-colors tracking-wide" href="#contacto">AGENDA UNA REUNIÓN →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 Capacitación -->
+      <div class="service-row fade-in-up stagger-3" data-service="3">
+        <span class="font-poppins font-semibold text-sm" style="color:rgba(239,178,74,0.45)">04</span>
+        <div class="flex items-center gap-3">
+          <i class="ph ph-graduation-cap text-secondary" style="font-size:20px"></i>
+          <span class="font-poppins font-bold text-white text-base md:text-lg tracking-wide">CAPACITACIÓN EN VENTILACIÓN</span>
+        </div>
+        <i class="ph ph-arrow-right text-secondary service-arrow" style="font-size:18px; transition:transform 0.2s ease"></i>
+      </div>
+      <div class="service-row-expand" id="svc-3">
+        <div class="service-row-expand-inner">
+          <div class="px-4 pb-6 pt-2" style="padding-left:72px">
+            <p class="text-white/65 text-sm mb-4">Formamos a los equipos de tu mina con conocimientos técnicos avanzados en ventilación subterránea y normativa de seguridad minera.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Cursos in-situ y modalidad online</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Entrenamiento en VNETPC y Ventsim</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Normativa DS-024</div>
+            </div>
+            <a class="inline-flex items-center gap-2 px-5 py-2.5 bg-secondary text-primary font-poppins font-bold text-xs rounded hover:bg-gold-dark transition-colors tracking-wide" href="#contacto">AGENDA UNA REUNIÓN →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 Software -->
+      <div class="service-row fade-in-up stagger-4" data-service="4">
+        <span class="font-poppins font-semibold text-sm" style="color:rgba(239,178,74,0.45)">05</span>
+        <div class="flex items-center gap-3">
+          <i class="ph ph-code text-secondary" style="font-size:20px"></i>
+          <span class="font-poppins font-bold text-white text-base md:text-lg tracking-wide">DESARROLLO DE SOFTWARE</span>
+        </div>
+        <i class="ph ph-arrow-right text-secondary service-arrow" style="font-size:18px; transition:transform 0.2s ease"></i>
+      </div>
+      <div class="service-row-expand" id="svc-4">
+        <div class="service-row-expand-inner">
+          <div class="px-4 pb-6 pt-2" style="padding-left:72px">
+            <p class="text-white/65 text-sm mb-4">Herramientas digitales especializadas para la gestión, simulación y monitoreo de sistemas mineros subterráneos.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Aplicativos de monitoreo en tiempo real</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Dashboards de gestión operativa</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Integración con sistemas existentes</div>
+            </div>
+            <a class="inline-flex items-center gap-2 px-5 py-2.5 bg-secondary text-primary font-poppins font-bold text-xs rounded hover:bg-gold-dark transition-colors tracking-wide" href="#contacto">AGENDA UNA REUNIÓN →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 Equipos -->
+      <div class="service-row fade-in-up" data-service="5">
+        <span class="font-poppins font-semibold text-sm" style="color:rgba(239,178,74,0.45)">06</span>
+        <div class="flex items-center gap-3">
+          <i class="ph ph-package text-secondary" style="font-size:20px"></i>
+          <span class="font-poppins font-bold text-white text-base md:text-lg tracking-wide">VENTA DE EQUIPOS</span>
+        </div>
+        <i class="ph ph-arrow-right text-secondary service-arrow" style="font-size:18px; transition:transform 0.2s ease"></i>
+      </div>
+      <div class="service-row-expand" id="svc-5">
+        <div class="service-row-expand-inner">
+          <div class="px-4 pb-6 pt-2" style="padding-left:72px">
+            <p class="text-white/65 text-sm mb-4">Equipamiento especializado para ventilación y bombeo, seleccionado y recomendado por nuestros ingenieros para cada tipo de operación.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Ventiladores principales y auxiliares</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Bombas sumergibles de alto rendimiento</div>
+              <div class="flex items-center gap-2 text-sm text-white/60"><i class="ph-fill ph-check-circle text-secondary" style="font-size:14px"></i>Equipos de monitoreo ambiental</div>
+            </div>
+            <a class="inline-flex items-center gap-2 px-5 py-2.5 bg-secondary text-primary font-poppins font-bold text-xs rounded hover:bg-gold-dark transition-colors tracking-wide" href="#contacto">AGENDA UNA REUNIÓN →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ████ METODOLOGÍA — TIMELINE ████ -->
+<section class="py-24 px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="fade-in-up text-center mb-16">
+      <span class="section-label justify-center" style="color:#194669"><span style="background:#194669; width:28px; height:1px; display:inline-block"></span>04 / METODOLOGÍA</span>
+      <h2 class="font-poppins text-3xl lg:text-4xl font-bold text-primary mt-4 mb-4" style="letter-spacing:-0.01em">Así trabajamos en tu proyecto</h2>
+      <p class="text-text-body max-w-xl mx-auto">Proceso riguroso y probado para garantizar resultados en cada etapa, desde el primer contacto hasta la entrega final.</p>
+    </div>
+
+    <!-- Timeline horizontal -->
+    <div class="relative fade-in-up">
+      <!-- Línea de fondo -->
+      <div class="hidden md:block" style="position:absolute; top:20px; left:10%; right:10%; height:1px; background:rgba(25,70,105,0.12)">
+        <div class="timeline-fill" id="timeline-fill"></div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 relative">
+        <!-- Paso 1 -->
+        <div class="text-center">
+          <div class="flex justify-center mb-5">
+            <div class="relative">
+              <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center relative z-10">
+                <i class="ph-fill ph-database text-primary" style="font-size:18px"></i>
+              </div>
+            </div>
+          </div>
+          <p class="font-poppins font-bold text-secondary text-xs tracking-widest mb-2">01</p>
+          <h5 class="font-poppins font-bold text-primary mb-2">Levantamiento de Datos</h5>
+          <p class="text-text-body text-sm leading-relaxed">Mediciones in situ en la unidad minera para construir un diagnóstico preciso.</p>
+        </div>
+        <!-- Paso 2 -->
+        <div class="text-center stagger-1">
+          <div class="flex justify-center mb-5">
+            <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
+              <i class="ph-fill ph-chart-bar text-primary" style="font-size:18px"></i>
+            </div>
+          </div>
+          <p class="font-poppins font-bold text-secondary text-xs tracking-widest mb-2">02</p>
+          <h5 class="font-poppins font-bold text-primary mb-2">Procesamiento de Info</h5>
+          <p class="text-text-body text-sm leading-relaxed">Análisis profundo de las condiciones reales y necesidades de cada operación.</p>
+        </div>
+        <!-- Paso 3 -->
+        <div class="text-center stagger-2">
+          <div class="flex justify-center mb-5">
+            <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
+              <i class="ph-fill ph-magnifying-glass text-primary" style="font-size:18px"></i>
+            </div>
+          </div>
+          <p class="font-poppins font-bold text-secondary text-xs tracking-widest mb-2">03</p>
+          <h5 class="font-poppins font-bold text-primary mb-2">Diagnóstico Inmediato</h5>
+          <p class="text-text-body text-sm leading-relaxed">Atención rápida y efectiva de los problemas críticos que no pueden esperar.</p>
+        </div>
+        <!-- Paso 4 -->
+        <div class="text-center stagger-3">
+          <div class="flex justify-center mb-5">
+            <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
+              <i class="ph-fill ph-map-trifold text-primary" style="font-size:18px"></i>
+            </div>
+          </div>
+          <p class="font-poppins font-bold text-secondary text-xs tracking-widest mb-2">04</p>
+          <h5 class="font-poppins font-bold text-primary mb-2">Plan de Acción C/M/L</h5>
+          <p class="text-text-body text-sm leading-relaxed">Recomendaciones personalizadas a corto, mediano y largo plazo con hoja de ruta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ VISIÓN & MISIÓN ████ -->
+<section class="py-20 px-6 bg-surface">
+  <div class="max-w-6xl mx-auto">
+    <div class="fade-in-up mb-2">
+      <span class="section-label" style="color:#194669"><span style="background:#194669; width:28px; height:1px; display:inline-block"></span>IDENTIDAD CORPORATIVA</span>
+    </div>
+    <h2 class="font-poppins text-3xl font-bold text-primary mt-3 mb-10">Visión y Misión</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Visión -->
+      <div class="vision-panel p-10 fade-in-up" style="border-radius:2px">
+        <div class="w-12 h-12 flex items-center justify-center mb-5" style="background:rgba(239,178,74,0.15)">
+          <i class="ph ph-eye text-secondary" style="font-size:22px"></i>
+        </div>
+        <p class="section-label mb-3 text-secondary">VISIÓN 2030</p>
+        <h4 class="font-poppins text-2xl font-bold text-white mb-4">Referentes en el Norte del Perú</h4>
+        <p class="text-white/65 leading-relaxed text-sm">Para el año 2030, ser la consultora de ingeniería minera de mayor referencia en el norte del Perú, reconocida por la innovación tecnológica, la excelencia técnica y el impacto positivo en la seguridad y sostenibilidad de las operaciones mineras del país.</p>
+      </div>
+      <!-- Misión -->
+      <div class="vision-panel p-10 fade-in-up stagger-1" style="border-radius:2px">
+        <div class="w-12 h-12 flex items-center justify-center mb-5" style="background:rgba(239,178,74,0.15)">
+          <i class="ph ph-target text-secondary" style="font-size:22px"></i>
+        </div>
+        <p class="section-label mb-3 text-secondary">NUESTRA MISIÓN</p>
+        <h4 class="font-poppins text-2xl font-bold text-white mb-4">Consultoría que Transforma</h4>
+        <p class="text-white/65 leading-relaxed text-sm">Brindar servicios de consultoría especializada en ingeniería minera con los más altos estándares de calidad, innovación y seguridad, acompañando a nuestros clientes desde el diagnóstico hasta la implementación con soluciones personalizadas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ PROYECTOS ████ -->
+<section class="py-24 px-6 bg-white" id="proyectos">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 fade-in-up">
+      <div>
+        <span class="section-label" style="color:#194669"><span style="background:#194669; width:28px; height:1px; display:inline-block"></span>PORTAFOLIO</span>
+        <h2 class="font-poppins text-3xl lg:text-4xl font-bold text-primary mt-3" style="letter-spacing:-0.01em">Proyectos de Ingeniería</h2>
+      </div>
+      <a class="inline-flex items-center gap-2 px-5 py-2.5 border border-primary text-primary font-poppins font-semibold text-sm rounded hover:bg-primary hover:text-white transition-all tracking-wide" href="#proyectos">VER TODOS →</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="project-card relative overflow-hidden fade-in-up" style="height:300px; border-radius:2px">
+        <img class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa19kgRkCQS0GbvoeYpJoXYhAsZjFnKvPWrRwJYUanbfQTZuWh-Y4zh9oCMqdl7yTrTw_gLHvUnLxAo-8pNwYB6YJKrx9WfHtwPbLpRlj9l24RUGgfvXN4iftGD0-2Edlii_JNKnyQDjE8ivTSUUoO7sB75Y_TslQpiRfptcVlA7X6O0ah-7PEpyUhq4iDDE4zlTGTRb_Q3ry9cvaqImtWIKO6R_i48J9XXkN1pj7tmMaVWyVDf568ORfoYiBD6BqsUwQ_3f0x9oeL" alt="UM Inmaculada"/>
+        <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
+          <span class="project-cat font-poppins font-bold text-secondary text-xs uppercase tracking-widest mb-1">Ventilación</span>
+          <h5 class="project-title font-poppins font-bold text-white text-lg">Unidad Minera Inmaculada</h5>
+        </div>
+      </div>
+      <div class="project-card relative overflow-hidden fade-in-up stagger-1" style="height:300px; border-radius:2px">
+        <img class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQhk3cPf4ja5t3Yp2m-qJIx48suHJ-i4UdmfLLN_usv5SJk_SZsMppAs4vWDo6RJcpWWN9aS-lcjlJCDjA6pehzKvSDDUtSxtbpmVZi-aIIYE8fCH9h840fY7Eg3AGSEsuSR0Yp0ZDjEVLU1_C0k9adkJpjvC4HdOMEKOBZR4DGI6LsiR6jf36F1P1RWa4xW72mGTynmVJDQN7qCpkZmg1r9FWxCZjQOLb6fGKyxXMzlouWqcwqNEfJVH7WdOVRIQM4Cb9pp0Z976z" alt="UM Pallancata"/>
+        <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
+          <span class="project-cat font-poppins font-bold text-secondary text-xs uppercase tracking-widest mb-1">Bombeo Crítico</span>
+          <h5 class="project-title font-poppins font-bold text-white text-lg">UM Pallancata</h5>
+        </div>
+      </div>
+      <div class="project-card relative overflow-hidden fade-in-up stagger-2" style="height:300px; border-radius:2px">
+        <img class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa6IrzHTwRdkg439tQ5mBKsaGoIGXrVq4z0gChDxPDiHMKdTlVKpfJgVN-avLzRtjlqWb-_9v-J72d8D6dnNgFsMVpgMgoOxavFz4fNvQ2sxIcpw1pwwVi3UndVfrFO_NTk4HozEOrQblb3AmzhqyyRSnDvRGsA4x_ts55DZzm6aWBKkYhPsfsr0YDvDF1lMIOw1wyDY5A-0dk4u6wbKMBqpe2h3VouUVi7z002IFS973U3J5XMChT8HfE516SnXxRIx3KkpPqPo2I" alt="Minera Bateas"/>
+        <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
+          <span class="project-cat font-poppins font-bold text-secondary text-xs uppercase tracking-widest mb-1">Infraestructura</span>
+          <h5 class="project-title font-poppins font-bold text-white text-lg">Minera Bateas</h5>
+        </div>
+      </div>
+      <div class="project-card relative overflow-hidden fade-in-up stagger-1" style="height:300px; border-radius:2px">
+        <img class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGvNvhbSLX86eMRCskgP-7MBOuOZI77udN9znPJFX-hmy5Ppn46KrdIAo5xBln6yMn9qKqXHlG3-fgKum-NLMgS56qn4KljZ9Ud-OVOLv33GV5Jg2GIThKPfdgGloWDfEJa-wFFLp2XMBuSpg7hm7saVMe7-hF0BNc3wMEpIlnyb3Juy3aWWmA9P1_SlIK86mklHxwRkIrZJHPrXEFrCnMwwxkn_K3mBGDAwe9pUpwIW-QSrFzBlVVR72cAbbIE27BMxljE8b7d-6r" alt="UM Colquisiri"/>
+        <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
+          <span class="project-cat font-poppins font-bold text-secondary text-xs uppercase tracking-widest mb-1">Planeamiento</span>
+          <h5 class="project-title font-poppins font-bold text-white text-lg">UM Colquisiri</h5>
+        </div>
+      </div>
+      <div class="project-card relative overflow-hidden fade-in-up stagger-2" style="height:300px; border-radius:2px">
+        <img class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDz0iUN9Dala_BZ9pFcIKCYvLiUJ-4MmztVwcv2_7p1LAUgR-w8TRVBp38RWz8lkscVI5aqZZK8Sfrr983iIfe61e7gnVjJ6aM00KTzri6Z6h6O8kKR1SMda5-Um7WztR1yKFzTOfmfx9VAjOfKP8gbjKyr3OOiR25U5XdQAFdFDaLs5FSeUn0aps7gl8eKzWzwCeMyjcVUxOpCTE_ZN2JMfWfge3uHtHYebKdI9pJNC3ChhBODvoIoWBggIq6XS66SXn9GunMkt0t" alt="UM Copemina"/>
+        <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
+          <span class="project-cat font-poppins font-bold text-secondary text-xs uppercase tracking-widest mb-1">Consultoría Técnica</span>
+          <h5 class="project-title font-poppins font-bold text-white text-lg">UM Copemina</h5>
+        </div>
+      </div>
+      <div class="project-card relative overflow-hidden fade-in-up stagger-3" style="height:300px; border-radius:2px">
+        <img class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4KUJG2cST_YrZ-XaflJ04D4N8BALCtk0QZLB4-hpelJc7SeEXK9JPjAbb5ANesC97QhjsRMTKKreiLOjk_NtPPJa559m7j6H3c7RjxbhT0cY5J-Z2eSNXeFzxDH39s75Q3IbMc2ziIGcJrwtxk5fuA2HZ2cmkyS7CuNmepz44VCnF--wDM9dKdrxIyj8R6PRQO27fwIwZTscF71V0eNHUX8HzpW7giUliFhIc3j5cj3THi8QwFAAZEdM97oQbXLB8XULlngE0QWcu" alt="UM Contonga"/>
+        <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
+          <span class="project-cat font-poppins font-bold text-secondary text-xs uppercase tracking-widest mb-1">Auditoría Operativa</span>
+          <h5 class="project-title font-poppins font-bold text-white text-lg">UM Contonga</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ CLIENTES MARQUEE ████ -->
+<section class="overflow-hidden py-14" style="background:#191C21; border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05)">
+  <div class="max-w-6xl mx-auto px-6 mb-8 fade-in-up">
+    <p class="font-poppins font-semibold text-xs tracking-[0.2em] uppercase" style="color:rgba(255,255,255,0.25)">Unidades mineras que confían en VPS Consulting</p>
+  </div>
+  <div class="overflow-hidden w-full">
+    <div class="marquee-track flex items-center gap-0 w-max">
+      <!-- Set 1 -->
+      <span class="font-poppins font-semibold px-8 text-sm" style="color:rgba(239,178,74,0.55); letter-spacing:0.06em">UM INMACULADA</span>
+      <span style="color:rgba(239,178,74,0.2); font-size:18px">·</span>
+      <span class="font-poppins font-semibold px-8 text-sm" style="color:rgba(239,178,74,0.55); letter-spacing:0.06em">UM PALLANCATA</span>
+      <span style="color:rgba(239,178,74,0.2); font-size:18px">·</span>
+      <span class="font-poppins font-semibold px-8 text-sm" style="color:rgba(239,178,74,0.55); letter-spacing:0.06em">MINERA BATEAS</span>
+      <span style="color:rgba(239,178,74,0.2); font-size:18px">·</span>
+      <span class="font-poppins font-semibold px-8 text-sm" style="color:rgba(239,178,74,0.55); letter-spacing:0.06em">UM COLQUISIRI</span>
+      <span style="color:rgba(239,178,74,0.2); font-size:18px">·</span>
+      <span class="font-poppins font-semibold px-8 text-sm" style="color:rgba(239,178,74,0.55); letter-spacing:0.06em">UM COPEMINA</span>
+      <span style="color:rgba(239,178,74,0.2); font-size:18px">·</span>
+      <span class="font-poppins font-semibold px-8 text-sm" style="color:rgba(239,178,74,0.55); letter-spacing:0.06em">UM CONTONGA</span>
+      <span style="color:rgba(239,178,74,0.2); font-size:18px">·</span>
+      <!-- Set 2 duplicate -->
+      <span class="font-poppins font-semibold px-8 text-sm" style="color:rgba(239,178,74,0.55); letter-spacing:0.06em">UM INMACULADA</span>
+      <span style="color:rgba(239,178,74,0.2); font-size:18px">·</span>
+      <span class="font-poppins font-semibold px-8 text-sm" style="color:rgba(239,178,74,0.55); letter-spacing:0.06em">UM PALLANCATA</span>
+      <span style="color:rgba(239,178,74,0.2); font-size:18px">·</span>
+      <span class="font-poppins font-semibold px-8 text-sm" style="color:rgba(239,178,74,0.55); letter-spacing:0.06em">MINERA BATEAS</span>
+      <span style="color:rgba(239,178,74,0.2); font-size:18px">·</span>
+      <span class="font-poppins font-semibold px-8 text-sm" style="color:rgba(239,178,74,0.55); letter-spacing:0.06em">UM COLQUISIRI</span>
+      <span style="color:rgba(239,178,74,0.2); font-size:18px">·</span>
+      <span class="font-poppins font-semibold px-8 text-sm" style="color:rgba(239,178,74,0.55); letter-spacing:0.06em">UM COPEMINA</span>
+      <span style="color:rgba(239,178,74,0.2); font-size:18px">·</span>
+      <span class="font-poppins font-semibold px-8 text-sm" style="color:rgba(239,178,74,0.55); letter-spacing:0.06em">UM CONTONGA</span>
+      <span style="color:rgba(239,178,74,0.2); font-size:18px">·</span>
+    </div>
+  </div>
+</section>
+
+<!-- ████ RESPALDO INSTITUCIONAL ████ -->
+<section class="py-20 px-6 bg-surface">
+  <div class="max-w-6xl mx-auto">
+    <div class="fade-in-up mb-10">
+      <span class="section-label" style="color:#194669"><span style="background:#194669; width:28px; height:1px; display:inline-block"></span>ACREDITACIONES</span>
+      <h2 class="font-poppins text-3xl font-bold text-primary mt-3">Respaldo Institucional</h2>
+    </div>
+    <!-- Flat badges horizontales -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 fade-in-up">
+      <!-- PromPerú -->
+      <div class="iso-badge bg-white p-6 flex flex-col gap-3" style="border-radius:2px">
+        <svg viewBox="0 0 180 50" class="h-10 w-auto" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="28" font-family="Arial,sans-serif" font-weight="900" font-size="22" fill="#E2001A">PROM</text>
+          <text x="60" y="28" font-family="Arial,sans-serif" font-weight="900" font-size="22" fill="#000">PERÚ</text>
+          <rect x="0" y="34" width="135" height="2" fill="#E2001A" rx="1"/>
+        </svg>
+        <div>
+          <p class="font-poppins font-bold text-primary text-xs uppercase tracking-wide mb-0.5">Empresa Registrada</p>
+          <p class="text-text-body text-xs">Exportación de Servicios</p>
+        </div>
+      </div>
+      <!-- ISO 9001 -->
+      <div class="iso-badge bg-white p-6 flex flex-col gap-3" style="border-radius:2px">
+        <div class="flex items-baseline gap-2">
+          <span class="font-poppins font-bold text-primary text-xl">ISO</span>
+          <span class="font-poppins font-bold text-secondary text-2xl">9001</span>
+        </div>
+        <div>
+          <p class="font-poppins font-bold text-secondary text-xs uppercase tracking-wide mb-0.5">✓ CERTIFICADO</p>
+          <p class="text-text-body text-xs">Sistema de Gestión<br/>de Calidad</p>
+        </div>
+      </div>
+      <!-- ISO 14001 -->
+      <div class="iso-badge bg-white p-6 flex flex-col gap-3" style="border-radius:2px">
+        <div class="flex items-baseline gap-2">
+          <span class="font-poppins font-bold text-primary text-xl">ISO</span>
+          <span class="font-poppins font-bold text-secondary text-2xl">14001</span>
+        </div>
+        <div>
+          <p class="font-poppins font-bold text-secondary text-xs uppercase tracking-wide mb-0.5">✓ CERTIFICADO</p>
+          <p class="text-text-body text-xs">Sistema de Gestión<br/>Ambiental</p>
+        </div>
+      </div>
+      <!-- ISO 45001 -->
+      <div class="iso-badge bg-white p-6 flex flex-col gap-3" style="border-radius:2px">
+        <div class="flex items-baseline gap-2">
+          <span class="font-poppins font-bold text-primary text-xl">ISO</span>
+          <span class="font-poppins font-bold text-secondary text-2xl">45001</span>
+        </div>
+        <div>
+          <p class="font-poppins font-bold text-secondary text-xs uppercase tracking-wide mb-0.5">✓ CERTIFICADO</p>
+          <p class="text-text-body text-xs">Seguridad y Salud<br/>en el Trabajo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ CONTACTO ████ -->
+<section class="flex flex-col lg:flex-row bg-white" id="contacto" style="min-height:580px">
+  <!-- Left: dark info panel -->
+  <div class="lg:w-1/2 relative flex items-center justify-center p-12 overflow-hidden" style="background:#194669">
+    <div class="absolute inset-0 opacity-15 bg-cover bg-center" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRh7HwCsrklRjPCjuIuSNZuzAMZxFd3k2NZgE07ZPkSgt-m5QpPTsgwsnRx5yZBlLizdmsAl_7th0Zh6OuyfciGfhmLgY9uC5Fc-3Hec2a4dsOnEccT5KDOXNSNZ3-36jLlZb-GpVDv6e4w3nDVhSBKq0VNJ9LdxbftEEcJgI84JzcGcKgLZO47-G8wkriYGgjBszPFMVweH8OVRBVRrvKCiPM-qUz8r-d6OVjw9dnLm_xcVUIG1Kg3vDfUxxdeRUDDhkUGyZPFq27')"></div>
+    <div class="relative z-10 max-w-md">
+      <span class="section-label mb-4 block">CONTACTO DIRECTO</span>
+      <h2 class="font-poppins text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight" style="letter-spacing:-0.01em">¿Quieres evaluar tu proyecto?<br/>Contáctanos ahora.</h2>
+      <p class="text-white/65 text-base mb-10 leading-relaxed">Desde el levantamiento de datos hasta la implementación, nuestro equipo te acompaña en cada etapa.</p>
+      <div class="space-y-5">
+        <a href="tel:+51987278625" class="flex items-center gap-4 text-white hover:text-secondary transition-colors">
+          <i class="ph-fill ph-phone text-secondary" style="font-size:20px; flex-shrink:0"></i>
+          <div>
+            <p class="font-poppins font-semibold text-xs uppercase tracking-widest text-white/50 mb-0.5">Llámenos</p>
+            <p class="font-bold">+51 987 278 625</p>
+          </div>
+        </a>
+        <a href="mailto:frank.mariluz@vpsconsulting.com.pe" class="flex items-center gap-4 text-white hover:text-secondary transition-colors">
+          <i class="ph-fill ph-envelope text-secondary" style="font-size:20px; flex-shrink:0"></i>
+          <div>
+            <p class="font-poppins font-semibold text-xs uppercase tracking-widest text-white/50 mb-0.5">Escríbanos</p>
+            <p class="font-bold break-all">frank.mariluz@vpsconsulting.com.pe</p>
+          </div>
+        </a>
+        <div class="flex items-center gap-4 text-white">
+          <i class="ph-fill ph-map-pin text-secondary" style="font-size:20px; flex-shrink:0"></i>
+          <div>
+            <p class="font-poppins font-semibold text-xs uppercase tracking-widest text-white/50 mb-0.5">Oficina</p>
+            <p class="font-bold">Los Olivos, Lima, Perú</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Right: form -->
+  <div class="lg:w-1/2 p-12 lg:p-20 bg-white flex items-center">
+    <form class="w-full max-w-lg space-y-7" id="contact-form">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div>
+          <label class="form-label" for="name">Nombre Completo</label>
+          <input id="name" class="form-field" placeholder="Ej. Juan Pérez" type="text"/>
+        </div>
+        <div>
+          <label class="form-label" for="company">Empresa / Mina</label>
+          <input id="company" class="form-field" placeholder="Nombre de su compañía" type="text"/>
+        </div>
+      </div>
+      <div>
+        <label class="form-label" for="email">Correo Electrónico</label>
+        <input id="email" class="form-field" placeholder="correo@empresa.com" type="email"/>
+      </div>
+      <div>
+        <label class="form-label" for="service">Servicio de Interés</label>
+        <select id="service" class="form-field">
+          <option value="">Selecciona un servicio</option>
+          <option>Ventilación Minera</option>
+          <option>Sistemas de Bombeo y Drenaje</option>
+          <option>Planeamiento Minero</option>
+          <option>Capacitación</option>
+          <option>Desarrollo de Software</option>
+          <option>Venta de Equipos</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label" for="message">Requerimiento</label>
+        <textarea id="message" class="form-field" placeholder="Describa brevemente su necesidad técnica..." rows="4" style="resize:none"></textarea>
+      </div>
+      <button class="w-full py-4 bg-primary text-white font-poppins font-bold text-sm rounded hover:bg-primary-deep transition-colors tracking-widest uppercase" type="submit">
+        SOLICITAR ASESORÍA GRATUITA →
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ████ RESULTADOS ████ -->
+<section class="py-24 px-6 bg-surface">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <div class="fade-in-up">
+      <span class="section-label mb-3 block" style="color:#194669"><span style="background:#194669; width:28px; height:1px; display:inline-block"></span>RESULTADOS COMPROBADOS</span>
+      <h3 class="font-poppins text-3xl font-bold text-primary mb-8">Lo que garantizamos en cada proyecto</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="flex items-center gap-3 p-3" style="border-bottom:1px solid rgba(0,0,0,0.06)">
+          <i class="ph-fill ph-check-circle text-secondary flex-shrink-0" style="font-size:18px"></i>
+          <span class="text-text-body text-sm font-medium">Reducción de costos operativos</span>
+        </div>
+        <div class="flex items-center gap-3 p-3" style="border-bottom:1px solid rgba(0,0,0,0.06)">
+          <i class="ph-fill ph-check-circle text-secondary flex-shrink-0" style="font-size:18px"></i>
+          <span class="text-text-body text-sm font-medium">Cumplimiento normativo 100%</span>
+        </div>
+        <div class="flex items-center gap-3 p-3" style="border-bottom:1px solid rgba(0,0,0,0.06)">
+          <i class="ph-fill ph-check-circle text-secondary flex-shrink-0" style="font-size:18px"></i>
+          <span class="text-text-body text-sm font-medium">Optimización de consumo energético</span>
+        </div>
+        <div class="flex items-center gap-3 p-3" style="border-bottom:1px solid rgba(0,0,0,0.06)">
+          <i class="ph-fill ph-check-circle text-secondary flex-shrink-0" style="font-size:18px"></i>
+          <span class="text-text-body text-sm font-medium">Soporte técnico especializado</span>
+        </div>
+        <div class="flex items-center gap-3 p-3" style="border-bottom:1px solid rgba(0,0,0,0.06)">
+          <i class="ph-fill ph-check-circle text-secondary flex-shrink-0" style="font-size:18px"></i>
+          <span class="text-text-body text-sm font-medium">Cero accidentes por diseño</span>
+        </div>
+        <div class="flex items-center gap-3 p-3" style="border-bottom:1px solid rgba(0,0,0,0.06)">
+          <i class="ph-fill ph-check-circle text-secondary flex-shrink-0" style="font-size:18px"></i>
+          <span class="text-text-body text-sm font-medium">Simulaciones de alta precisión</span>
+        </div>
+        <div class="flex items-center gap-3 p-3" style="border-bottom:1px solid rgba(0,0,0,0.06)">
+          <i class="ph-fill ph-check-circle text-secondary flex-shrink-0" style="font-size:18px"></i>
+          <span class="text-text-body text-sm font-medium">Garantía en equipamiento</span>
+        </div>
+        <div class="flex items-center gap-3 p-3" style="border-bottom:1px solid rgba(0,0,0,0.06)">
+          <i class="ph-fill ph-check-circle text-secondary flex-shrink-0" style="font-size:18px"></i>
+          <span class="text-text-body text-sm font-medium">Entrega en tiempos comprometidos</span>
+        </div>
+      </div>
+    </div>
+    <!-- Testimonial -->
+    <div class="vision-panel p-10 fade-in-up stagger-1" style="border-radius:2px">
+      <i class="ph-fill ph-quotes text-secondary opacity-50 mb-4 block" style="font-size:32px"></i>
+      <blockquote class="relative z-10">
+        <p class="text-white/80 font-medium italic mb-8 leading-relaxed">"VPS Consulting ha sido clave para nuestra expansión en Pallancata. Su diseño de bombeo crítico nos permitió trabajar en zonas antes inaccesibles, incrementando nuestra producción significativamente."</p>
+        <footer class="flex items-center gap-4">
+          <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:#EFB24A; border-radius:2px">
+            <span class="font-poppins font-bold text-primary text-lg">RM</span>
+          </div>
+          <div>
+            <p class="text-white font-poppins font-bold">Ing. Roberto Mendizábal</p>
+            <p class="text-white/50 text-sm">Gerente de Operaciones — UM Pallancata</p>
+          </div>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ████ CTA BAND ████ -->
+<section style="background:#EFB24A; padding:56px 24px">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+    <div>
+      <h2 class="font-poppins text-2xl md:text-3xl font-bold text-primary text-center md:text-left" style="letter-spacing:-0.01em">¿Tu mina necesita optimización?<br class="hidden md:block"/> Hablemos hoy.</h2>
+      <p class="text-primary/60 mt-2 text-center md:text-left text-sm font-medium">Respuesta garantizada en menos de 24 horas hábiles.</p>
+    </div>
+    <a class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-poppins font-bold text-sm rounded hover:bg-primary-deep transition-colors tracking-wide whitespace-nowrap" href="https://wa.me/51987278625?text=Hola%2C%20quiero%20evaluar%20mi%20proyecto%20minero" target="_blank" rel="noopener">
+      <i class="ph-fill ph-whatsapp-logo" style="font-size:18px"></i>
+      CONTACTAR CON UN ESPECIALISTA
+    </a>
+  </div>
+</section>
+
+<!-- ████ FOOTER ████ -->
+<footer style="background:#191C21; padding:80px 24px 40px; color:rgba(255,255,255,0.5)">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+    <!-- Col 1 -->
+    <div class="space-y-6">
+      <div class="flex items-center gap-2">
+        <img class="h-10 w-auto" style="filter:brightness(0) invert(1) opacity(0.8)" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGdsRZdb7aMdyFxiOEa5Xow3LjlAuKHqS2HSP68RCZzp_KdAd8mHbT3iUkFYyoJGgyhAFMa0i38Msi2-dL3dzk1hG4_wh_rsBhb_x6H7DeHWEJiF5G_RPNJH1uGbLDJjp-MBo437wIFUXkchUMxoTbm3tGpbBX7-3xYl9yVj_huiqAQfJ83q6rNIZIicXTGou99fLEBog4oDcwW7L1A4tgngFtVUJ-4tyEQoqAD8dwAGLNPia7mgnFGcqSyCucpISHV2pOb9t4uMPX" alt="Logo VPS Consulting"/>
+        <span class="font-poppins font-bold text-white text-lg">VPS Consulting</span>
+      </div>
+      <p class="text-sm leading-relaxed">Excelencia en consultoría minera. Transformamos desafíos operativos en soluciones de ingeniería eficientes y seguras para el Perú.</p>
+      <div class="flex gap-2">
+        <a href="https://pe.linkedin.com/company/vps-consulting" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-9 h-9 flex items-center justify-center hover:text-secondary transition-colors" style="border:1px solid rgba(255,255,255,0.1); border-radius:2px">
+          <i class="ph-fill ph-linkedin-logo" style="font-size:16px"></i>
+        </a>
+        <a href="https://www.instagram.com/vps_consulting/" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 flex items-center justify-center hover:text-secondary transition-colors" style="border:1px solid rgba(255,255,255,0.1); border-radius:2px">
+          <i class="ph-fill ph-instagram-logo" style="font-size:16px"></i>
+        </a>
+        <a href="https://www.tiktok.com/@vpsconsulting" target="_blank" rel="noopener" aria-label="TikTok" class="w-9 h-9 flex items-center justify-center hover:text-secondary transition-colors" style="border:1px solid rgba(255,255,255,0.1); border-radius:2px">
+          <i class="ph-fill ph-tiktok-logo" style="font-size:16px"></i>
+        </a>
+        <a href="https://wa.me/51987278625" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 flex items-center justify-center hover:text-secondary transition-colors" style="border:1px solid rgba(255,255,255,0.1); border-radius:2px">
+          <i class="ph-fill ph-whatsapp-logo" style="font-size:16px"></i>
+        </a>
+      </div>
+    </div>
+    <!-- Col 2 -->
+    <div>
+      <h6 class="font-poppins font-bold text-white mb-6 uppercase text-xs tracking-widest">ENLACES RÁPIDOS</h6>
+      <ul class="space-y-3 text-sm">
+        <li><a class="hover:text-secondary transition-colors" href="#inicio">Inicio</a></li>
+        <li><a class="hover:text-secondary transition-colors" href="#nosotros">Quiénes Somos</a></li>
+        <li><a class="hover:text-secondary transition-colors" href="#proyectos">Proyectos</a></li>
+        <li><a class="hover:text-secondary transition-colors" href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <!-- Col 3 -->
+    <div>
+      <h6 class="font-poppins font-bold text-white mb-6 uppercase text-xs tracking-widest">SERVICIOS</h6>
+      <ul class="space-y-3 text-sm">
+        <li><a class="hover:text-secondary transition-colors" href="https://vpsconsulting.com.pe/asesorias-en-sistemas-de-ventilacion-subterranea/" target="_blank" rel="noopener">Ventilación de Minas</a></li>
+        <li><a class="hover:text-secondary transition-colors" href="https://vpsconsulting.com.pe/asesoria-en-sistema-de-bombeo-y-drenaje/" target="_blank" rel="noopener">Sistemas de Bombeo</a></li>
+        <li><a class="hover:text-secondary transition-colors" href="#servicios">Planeamiento Minero</a></li>
+        <li><a class="hover:text-secondary transition-colors" href="#servicios">Capacitación</a></li>
+        <li><a class="hover:text-secondary transition-colors" href="#servicios">Supervisión Técnica</a></li>
+      </ul>
+    </div>
+    <!-- Col 4 -->
+    <div>
+      <h6 class="font-poppins font-bold text-white mb-6 uppercase text-xs tracking-widest">CONTACTO</h6>
+      <ul class="space-y-4 text-sm">
+        <li class="flex items-start gap-3">
+          <i class="ph-fill ph-map-pin text-secondary flex-shrink-0" style="font-size:16px; margin-top:1px"></i>
+          <span>Los Olivos, Lima, Perú</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <i class="ph-fill ph-phone text-secondary flex-shrink-0" style="font-size:16px"></i>
+          <a href="tel:+51987278625" class="hover:text-secondary transition-colors">+51 987 278 625</a>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="ph-fill ph-envelope text-secondary flex-shrink-0" style="font-size:16px; margin-top:1px"></i>
+          <a href="mailto:frank.mariluz@vpsconsulting.com.pe" class="hover:text-secondary transition-colors break-all">frank.mariluz@vpsconsulting.com.pe</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs" style="border-top:1px solid rgba(255,255,255,0.06)">
+    <p>© 2025 VPS Consulting SAC. Todos los derechos reservados.</p>
+    <div class="flex gap-8">
+      <a class="hover:text-white transition-colors" href="#">Política de Privacidad</a>
+      <a class="hover:text-white transition-colors" href="#">Términos de Servicio</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ████ FAB STACK ████ -->
+<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3" id="fab-container">
+  <!-- Mini stack -->
+  <div class="flex flex-col items-end gap-2.5" id="fab-stack">
+    <div class="fab-mini flex items-center gap-2">
+      <span class="text-xs font-poppins font-semibold text-white px-2.5 py-1 hidden sm:block" style="background:rgba(25,28,33,0.85); border-radius:2px">TikTok</span>
+      <a href="https://www.tiktok.com/@vpsconsulting" target="_blank" rel="noopener" aria-label="TikTok" class="w-11 h-11 flex items-center justify-center hover:scale-110 transition-all text-white" style="background:#191C21; border-radius:2px">
+        <i class="ph-fill ph-tiktok-logo" style="font-size:20px"></i>
+      </a>
+    </div>
+    <div class="fab-mini flex items-center gap-2">
+      <span class="text-xs font-poppins font-semibold text-white px-2.5 py-1 hidden sm:block" style="background:rgba(25,28,33,0.85); border-radius:2px">Instagram</span>
+      <a href="https://www.instagram.com/vps_consulting/" target="_blank" rel="noopener" aria-label="Instagram" class="w-11 h-11 flex items-center justify-center hover:scale-110 transition-all text-white" style="background:linear-gradient(135deg,#f09433,#dc2743,#bc1888); border-radius:2px">
+        <i class="ph-fill ph-instagram-logo" style="font-size:20px"></i>
+      </a>
+    </div>
+    <div class="fab-mini flex items-center gap-2">
+      <span class="text-xs font-poppins font-semibold text-white px-2.5 py-1 hidden sm:block" style="background:rgba(25,28,33,0.85); border-radius:2px">LinkedIn</span>
+      <a href="https://pe.linkedin.com/company/vps-consulting" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-11 h-11 flex items-center justify-center hover:scale-110 transition-all text-white" style="background:#0A66C2; border-radius:2px">
+        <i class="ph-fill ph-linkedin-logo" style="font-size:20px"></i>
+      </a>
+    </div>
+  </div>
+  <!-- Main FAB — WhatsApp -->
+  <button id="fab-wsp-btn" class="fab-main w-14 h-14 flex items-center justify-center hover:scale-105 transition-all text-primary font-poppins font-bold" aria-label="WhatsApp / Redes Sociales" style="background:#EFB24A; border-radius:2px">
+    <i class="ph-fill ph-whatsapp-logo" style="font-size:26px; color:#194669"></i>
+  </button>
+</div>
+
+<!-- ████ SCRIPTS ████ -->
+<script>
+  // ── Scroll Progress ──
+  const progressBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    const scrollTop  = window.scrollY;
+    const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (scrollTop / docHeight * 100) + '%';
+  }, { passive: true });
+
+  // ── Header behavior ──
+  const header = document.getElementById('main-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  // ── Intersection Observer — fade in ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+  // ── Counter Animation ──
+  function animateCounter(el, target, duration = 1800) {
+    let start = 0;
+    const step = (ts) => {
+      if (!start) start = ts;
+      const p = Math.min((ts - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(eased * target);
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    };
+    requestAnimationFrame(step);
+  }
+  let counted = false;
+  const heroSection = document.getElementById('inicio');
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !counted) {
+        counted = true;
+        document.querySelectorAll('.counter').forEach(c => {
+          animateCounter(c, parseInt(c.getAttribute('data-target')));
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  if (heroSection) heroObserver.observe(heroSection);
+
+  // ── Timeline fill on scroll ──
+  const timelineFill = document.getElementById('timeline-fill');
+  if (timelineFill) {
+    const timelineObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) timelineFill.classList.add('animated');
+      });
+    }, { threshold: 0.4 });
+    timelineObserver.observe(timelineFill.closest('section') || timelineFill);
+  }
+
+  // ── Service rows toggle ──
+  document.querySelectorAll('.service-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const idx    = row.getAttribute('data-service');
+      const expand = document.getElementById('svc-' + idx);
+      const arrow  = row.querySelector('.service-arrow');
+      const isOpen = expand.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.service-row-expand').forEach(e => e.classList.remove('open'));
+      document.querySelectorAll('.service-row').forEach(r => r.classList.remove('active-row'));
+      document.querySelectorAll('.service-arrow').forEach(a => { a.style.transform = 'rotate(0deg)'; });
+
+      if (!isOpen) {
+        expand.classList.add('open');
+        row.classList.add('active-row');
+        if (arrow) arrow.style.transform = 'rotate(90deg)';
+      }
+    });
+  });
+
+  // ── Mobile Menu ──
+  const mobileBtn    = document.getElementById('mobile-menu-btn');
+  const mobileDrawer = document.getElementById('mobile-drawer');
+  let menuOpen = false;
+  mobileBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileDrawer.style.display = menuOpen ? 'flex' : 'none';
+  });
+  document.querySelectorAll('.drawer-nav').forEach(link => {
+    link.addEventListener('click', () => {
+      menuOpen = false;
+      mobileDrawer.style.display = 'none';
+    });
+  });
+
+  // ── Smooth Scroll ──
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = this.getAttribute('href');
+      if (target === '#') return;
+      const el = document.querySelector(target);
+      if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // ── FAB Stack ──
+  const fabBtn   = document.getElementById('fab-wsp-btn');
+  const fabStack = document.getElementById('fab-stack');
+  let fabOpen = false;
+
+  fabBtn.addEventListener('click', () => {
+    fabOpen = !fabOpen;
+    fabStack.querySelectorAll('.fab-mini').forEach(m => m.classList.toggle('fab-open', fabOpen));
+  });
+
+  fabBtn.addEventListener('dblclick', () => {
+    window.open('https://wa.me/51987278625?text=Hola%2C%20quiero%20evaluar%20mi%20proyecto%20minero', '_blank');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!document.getElementById('fab-container').contains(e.target)) {
+      fabOpen = false;
+      fabStack.querySelectorAll('.fab-mini').forEach(m => m.classList.remove('fab-open'));
+    }
+  });
+</script>
+</body>
+</html>

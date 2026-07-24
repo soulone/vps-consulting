@@ -1,0 +1,425 @@
+@import 'tailwindcss';
+
+@theme {
+  /* ═══ Paleta — Andercore × VPS ═══ */
+  --color-canvas-light: #FBFBFA;
+  --color-canvas-dark: #0F2D44;
+  --color-card-dark: #081b2c;
+  --color-deeper: #04111c;
+  --color-border-dark: #1a3f5c;
+  --color-border-light: #E0E0DE;
+  --color-signal: #EFB24A;
+  --color-signal-hover: #d9a03e;
+  --color-slate: #787774;
+  --color-chalk: #FFFFFF;
+  --color-ink: #111111;
+  --color-blue: #194669;
+  --color-blue-light: #1e547a;
+
+  /* Tipografía — Poppins geométrico + JetBrains Mono industrial */
+  --font-display: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+
+  /* Escala tipográfica Andercore */
+  --text-caption: 12px;
+  --text-body-sm: 14px;
+  --text-body: 16px;
+  --text-subheading: 24px;
+  --text-heading: 40px;
+  --text-display: 56px;
+
+  /* Radius — 4px global Andercore */
+  --radius-global: 4px;
+}
+
+/* ═══ Base ═══ */
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-canvas-dark);
+  color: var(--color-chalk);
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* ═══ Headings — Poppins 500 ═══ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--color-chalk);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+h1 { font-size: var(--text-display); }
+h2 { font-size: var(--text-heading); }
+h3 { font-size: var(--text-subheading); }
+h4 { font-size: var(--text-body); }
+
+/* ═══ Selection ═══ */
+::selection {
+  background-color: var(--color-signal);
+  color: var(--color-ink);
+}
+
+/* ═══ Focus ═══ */
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 2px;
+}
+
+/* ═══ Scrollbar ═══ */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-card-dark); }
+::-webkit-scrollbar-thumb { background: var(--color-border-dark); border-radius: 2px; }
+
+/* ═══ Scroll Progress ═══ */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--color-signal);
+  z-index: 100;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: progress-grow linear;
+    animation-timeline: scroll(root);
+  }
+}
+
+@keyframes progress-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ═══ Buttons — Andercore industrial ═══ */
+
+/* Primary — Signal Gold filled */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--color-signal);
+  color: var(--color-ink);
+  font-weight: 500;
+  font-size: var(--text-body-sm);
+  letter-spacing: -0.02em;
+  border: none;
+  border-radius: var(--radius-global);
+  cursor: pointer;
+  transition: background 150ms ease;
+  white-space: nowrap;
+}
+.btn-primary:hover { background: var(--color-signal-hover); }
+.btn-primary:active { transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Ghost — dark fill + border */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 23px;
+  background: var(--color-canvas-dark);
+  color: var(--color-chalk);
+  font-weight: 500;
+  font-size: var(--text-body-sm);
+  letter-spacing: -0.02em;
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-global);
+  cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease;
+  white-space: nowrap;
+}
+.btn-ghost:hover { border-color: var(--color-signal); background: rgba(239,178,74,0.08); }
+.btn-ghost:active { transform: scale(0.98); }
+
+/* ═══ Cards — 1px border, no shadow ═══ */
+.card-dark {
+  background: var(--color-card-dark);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-global);
+  padding: 32px;
+  transition: border-color 150ms ease;
+}
+.card-dark:hover { border-color: var(--color-signal); }
+
+.card-light {
+  background: var(--color-chalk);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-global);
+  padding: 32px;
+  transition: border-color 150ms ease;
+}
+.card-light:hover { border-color: var(--color-border-dark); }
+
+/* ═══ Nav Island Transition ═══ */
+#main-nav {
+  /* Estado inicial: full-width transparente */
+  top: 0; left: 0; right: 0;
+  transition:
+    top 350ms cubic-bezier(0.16,1,0.3,1),
+    left 350ms cubic-bezier(0.16,1,0.3,1),
+    right 350ms cubic-bezier(0.16,1,0.3,1);
+}
+
+#main-nav .nav-inner {
+  transition:
+    background-color 350ms cubic-bezier(0.16,1,0.3,1),
+    backdrop-filter 350ms cubic-bezier(0.16,1,0.3,1),
+    border 350ms cubic-bezier(0.16,1,0.3,1),
+    border-radius 350ms cubic-bezier(0.16,1,0.3,1),
+    height 350ms cubic-bezier(0.16,1,0.3,1),
+    padding 350ms cubic-bezier(0.16,1,0.3,1);
+}
+
+/* Estado scrolled: isla compacta */
+#main-nav.is-scrolled {
+  top: 12px !important; left: 16px !important; right: 16px !important;
+}
+
+#main-nav.is-scrolled .nav-inner {
+  background-color: rgba(8, 27, 44, 0.96) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid var(--color-border-dark) !important;
+  border-radius: 6px !important;
+  height: 44px !important;
+  padding: 0 14px !important;
+}
+
+/* ─── Card border variants ─── */
+
+/* Corner accent — esquinas recortadas como plano técnico */
+.card-corner {
+  position: relative;
+}
+.card-corner::before,
+.card-corner::after {
+  content: '';
+  position: absolute;
+  width: 16px; height: 16px;
+  border-color: var(--color-border-dark);
+  border-style: solid;
+  transition: border-color 150ms ease;
+}
+.card-corner::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; border-radius: 1px 0 0 0; }
+.card-corner::after  { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; border-radius: 0 0 1px 0; }
+.card-corner:hover::before,
+.card-corner:hover::after { border-color: var(--color-signal); }
+
+/* Double line — doble borde tipo blueprint */
+.card-double {
+  outline: 1px solid rgba(26,63,92,0.3);
+  outline-offset: 3px;
+}
+.card-double:hover { outline-color: rgba(239,178,74,0.2); }
+
+/* Dashed — línea punteada industrial */
+.card-dashed {
+  border: 1px dashed rgba(26,63,92,0.4);
+}
+
+/* Gradient border — gradiente azul→gold usando background-clip */
+.card-gradient {
+  border: 1px solid transparent;
+  background: 
+    linear-gradient(var(--color-card-dark), var(--color-card-dark)) padding-box,
+    linear-gradient(135deg, var(--color-blue), var(--color-signal)) border-box;
+}
+
+/* ═══ Inputs ═══ */
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: var(--text-body-sm);
+  font-family: var(--font-sans);
+  color: var(--color-chalk);
+  background: var(--color-card-dark);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-global);
+  outline: none;
+  transition: border-color 150ms ease;
+}
+.input-field::placeholder { color: var(--color-slate); }
+.input-field:focus-visible { border-color: var(--color-signal); }
+
+/* ═══ Badge — industrial mono tag ═══ */
+.badge {
+  display: inline-flex;
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  font-weight: 500;
+  color: var(--color-ink);
+  background: var(--color-signal);
+  border-radius: var(--radius-global);
+  padding: 6px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge-active {
+  background: var(--color-signal);
+  color: var(--color-ink);
+}
+
+.badge-outline {
+  background: transparent;
+  color: var(--color-signal);
+  border: 1px solid var(--color-signal);
+}
+
+/* ═══ Connector line — entre cards ═══ */
+.connector {
+  height: 1px;
+  background: var(--color-border-dark);
+  position: relative;
+}
+.connector::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  width: 6px; height: 6px;
+  background: var(--color-signal);
+  border-radius: 1px;
+}
+
+/* ═══ Reveal animation ═══ */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 600ms cubic-bezier(0.16,1,0.3,1),
+              transform 600ms cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.is-in { opacity: 1; transform: translateY(0); }
+
+/* ═══ Reduced motion ═══ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   HERO — Tunnel system + glass overlay
+   ══════════════════════════════════════════════════════════ */
+
+.tunnel-canvas {
+  position: relative;
+  min-height: 100dvh;
+  background-color: var(--color-card-dark);
+  /* Grid dots inactivos de fondo */
+  background-image: radial-gradient(circle, rgba(26,63,92,0.5) 0.7px, transparent 0.7px);
+  background-size: 26px 26px;
+  overflow: hidden;
+}
+
+/* Dot individual — un punto de la red de túneles */
+.tunnel-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 1px;
+  background: rgba(26,63,92,0.5);
+  animation: flow 4s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+
+/* Aire azul — fresco, entrando */
+.tunnel-blue {
+  --dot-base: rgba(25,70,105,0.6);
+  --dot-peak: #1e547a;
+  --dot-glow: rgba(30,84,122,0.6);
+}
+
+/* Aire dorado — viciado, saliendo */
+.tunnel-gold {
+  --dot-base: rgba(239,178,74,0.45);
+  --dot-peak: #EFB24A;
+  --dot-glow: rgba(239,178,74,0.5);
+}
+
+/* Nodo de intersección (shaft ↔ túnel) — más grande */
+.tunnel-node {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  animation: node-breathe 3s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+
+/* Placas de soporte — líneas en los bordes de los ductos */
+.tunnel-plate {
+  position: absolute;
+  border: 1px solid rgba(26,63,92,0.2);
+  border-radius: 1px;
+  pointer-events: none;
+}
+.tunnel-plate-h { height: 100%; width: 0; }
+.tunnel-plate-v { width: 100%; height: 0; }
+
+/* ═══ Animaciones ═══ */
+
+@keyframes flow {
+  0%   { background: var(--dot-base, rgba(26,63,92,0.5)); box-shadow: 0 0 0 transparent; }
+  30%  { background: var(--dot-peak, #1e547a); box-shadow: 0 0 6px var(--dot-glow, rgba(30,84,122,0.5)); }
+  60%  { background: var(--dot-peak, #1e547a); box-shadow: 0 0 8px var(--dot-glow, rgba(30,84,122,0.6)); }
+  100% { background: var(--dot-base, rgba(26,63,92,0.5)); box-shadow: 0 0 0 transparent; }
+}
+
+@keyframes node-breathe {
+  0%, 100% { background: var(--color-signal); box-shadow: 0 0 6px rgba(239,178,74,0.4); }
+  50%      { background: #d9a03e; box-shadow: 0 0 12px rgba(239,178,74,0.6); }
+}
+
+/* ═══ Glass overlay — vidrio esmerilado ═══ */
+.glass-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  background: rgba(255,255,255,0.45);
+  pointer-events: none;
+}
+
+/* ═══ WhatsApp FAB ═══ */
+@keyframes fab-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.35); }
+  70%      { box-shadow: 0 0 0 12px rgba(37,211,102,0); }
+}
+
+/* ═══ Project card ═══ */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+}
+.project-card img {
+  transition: transform 700ms cubic-bezier(0.16,1,0.3,1);
+}
+.project-card:hover img { transform: scale(1.04); }
+
+/* ═══ Aurora drift — luces deslizándose por bordes ═══ */
+@keyframes aurora-drift {
+  0%   { transform: translate(-5vw, 0) scale(1); }
+  25%  { transform: translate(5vw, -8vh) scale(1.05); }
+  50%  { transform: translate(10vw, 2vh) scale(0.98); }
+  75%  { transform: translate(-3vw, 8vh) scale(1.03); }
+  100% { transform: translate(-5vw, 0) scale(1); }
+}
