@@ -186,6 +186,19 @@ h4 { font-size: var(--text-body); }
     radial-gradient(ellipse at 50% 60%, transparent 25%, rgba(8,27,44,0.5) 100%);
 }
 
+/* Grain sobre imagen del bento */
+.card-bg-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
 /* ═══ Marquee — cloud empresas ═══ */
 .marquee-track {
   overflow: hidden;
@@ -246,9 +259,9 @@ h4 { font-size: var(--text-body); }
   backdrop-filter: blur(16px) saturate(1.3) !important;
   -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
   border: none;
-  border-radius: 6px;
+  border-radius: 18px;
   height: 44px !important;
-  padding: 0 14px !important;
+  padding: 0 8px !important;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
@@ -453,6 +466,37 @@ h4 { font-size: var(--text-body); }
 @keyframes fab-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.35); }
   70%      { box-shadow: 0 0 0 12px rgba(37,211,102,0); }
+}
+
+/* ═══ WhatsApp FAB — Aurora glass ═══ */
+.fab-aurora {
+  background: radial-gradient(ellipse at 50% 50%, rgba(0,120,255,0.25) 0%, rgba(8,27,44,0.7) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(0,120,255,0.2);
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+.fab-aurora:hover {
+  border-color: rgba(0,120,255,0.4);
+  box-shadow: 0 2px 16px rgba(0,120,255,0.1);
+}
+
+/* Menu visible */
+.fab-open .fab-menu {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+/* FAB hide on mobile scroll */
+.fab-hidden {
+  transform: translateY(120px);
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ═══ Project card ═══ */
