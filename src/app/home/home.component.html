@@ -1,0 +1,447 @@
+<main>
+  <!-- ═══ Hero — Dark + aurora ═══ -->
+  <section id="inicio" class="relative w-full min-h-[100dvh] flex items-center justify-center overflow-hidden" style="background-color: #081b2c;">
+    
+    <!-- Foto base — blend con fondo -->
+    <img src="assets/hero-bg.jpg" alt="" class="absolute inset-0 w-full h-full object-cover z-0"
+         style="opacity: 0.4; mix-blend-mode: luminosity; filter: saturate(0.5) contrast(1.15);" fetchpriority="high" />
+    
+    <!-- Vignette — bordes oscuros, centro visible -->
+    <div class="absolute inset-0 z-[1] pointer-events-none" aria-hidden="true"
+         style="background: radial-gradient(ellipse at 50% 55%, transparent 20%, rgba(8,27,44,0.75) 65%, rgba(8,27,44,0.95) 100%);"></div>
+
+    <!-- Aurora: luces futuristas -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div style="position:absolute; width:80vw; height:60vh; top:-20%; left:5%;
+                  background: radial-gradient(ellipse at 40% 50%, rgba(0,120,255,0.6) 0%, rgba(25,70,105,0.4) 35%, transparent 70%);
+                  filter: blur(30px); animation: aurora-drift 10s ease-in-out infinite alternate;"></div>
+      <div style="position:absolute; width:55vw; height:50vh; top:30%; right:-15%;
+                  background: radial-gradient(ellipse at 30% 40%, rgba(239,178,74,0.4) 0%, transparent 70%);
+                  filter: blur(40px); animation: aurora-drift 12s ease-in-out infinite alternate-reverse;"></div>
+      <div style="position:absolute; width:45vw; height:40vh; bottom:-15%; left:20%;
+                  background: radial-gradient(ellipse at 50% 30%, rgba(64,150,255,0.5) 0%, rgba(0,180,255,0.3) 50%, transparent 75%);
+                  filter: blur(25px); animation: aurora-drift 8s ease-in-out infinite alternate;"></div>
+    </div>
+
+    <!-- Neblina: fog blobs flotando -->
+    <div class="absolute inset-0 pointer-events-none z-[2]" aria-hidden="true">
+      <div class="fog-blob" style="position:absolute; width:65vw; height:55vh; top:-15%; left:-5%;
+                  background: radial-gradient(ellipse at 35% 50%, rgba(190,215,255,0.14) 0%, rgba(160,195,240,0.06) 50%, transparent 75%);
+                  filter: blur(55px); mix-blend-mode: screen; animation: fog-float 20s ease-in-out infinite alternate;"></div>
+      <div class="fog-blob" style="position:absolute; width:55vw; height:45vh; bottom:-10%; right:-8%;
+                  background: radial-gradient(ellipse at 60% 40%, rgba(170,200,235,0.12) 0%, rgba(140,180,225,0.05) 50%, transparent 75%);
+                  filter: blur(65px); mix-blend-mode: screen; animation: fog-float 24s ease-in-out infinite alternate-reverse;"></div>
+    </div>
+
+    <!-- Fog texture: SVG feTurbulence fotorealista -->
+    <svg class="absolute inset-0 w-0 h-0" aria-hidden="true">
+      <filter id="fog-noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="5" seed="7">
+          <animate attributeName="baseFrequency" values="0.015;0.019;0.013;0.017;0.015" dur="30s" repeatCount="indefinite"/>
+        </feTurbulence>
+        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.1 0"/>
+      </filter>
+    </svg>
+    <div class="absolute inset-0 pointer-events-none z-[3]" aria-hidden="true"
+         style="filter: url(#fog-noise); mix-blend-mode: screen; opacity: 0.5;"></div>
+
+    <!-- Grain texture — sólido arriba, se desvanece abajo -->
+    <svg class="absolute inset-0 w-0 h-0" aria-hidden="true">
+      <filter id="grain">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+      </filter>
+    </svg>
+    <div class="absolute inset-0 pointer-events-none z-[5]" aria-hidden="true"
+         style="background: transparent; filter: url(#grain); opacity: 0.18;
+                mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0) 100%);
+                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0) 100%);">
+    </div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center py-24">
+      <h1 class="text-white leading-[0.92] tracking-[-0.06em] mb-4" style="font-size: clamp(2.5rem, 6vw, 3.75rem);">
+        Su mina no puede parar.
+      </h1>
+      <p class="text-white/45 text-base max-w-lg mx-auto mb-8 leading-relaxed">
+        Diseñamos sistemas de ventilación y bombeo para operaciones de gran escala. Ingeniería de precisión, ejecución en campo y software propio.
+      </p>
+      <div class="flex flex-wrap justify-center items-center gap-3 mb-5">
+        <a href="#contacto" class="bg-[var(--color-signal)] text-[var(--color-ink)] inline-flex items-center gap-2 px-6 py-3.5 text-sm font-medium rounded-full hover:bg-[var(--color-signal-hover)] transition-colors">
+          Solicitar evaluación
+          <i class="ph ph-arrow-right text-sm"></i>
+        </a>
+        <a href="#servicios" class="inline-flex items-center gap-2 px-5 py-3.5 text-sm font-medium rounded-full border border-white/12 text-white/50 hover:text-white hover:bg-white/5 transition-colors">
+          Ver servicios
+        </a>
+      </div>
+      <p class="text-white/20 text-xs">Sin compromiso. Respuesta en 24 horas.</p>
+
+      <!-- ISO badges -->
+      <div class="flex flex-wrap justify-center items-center gap-6 mt-10">
+        <div class="iso-badge flex items-center gap-3 transition-colors duration-300">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="flex-shrink-0">
+            <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/><path d="M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10"/>
+          </svg>
+          <div class="text-left">
+            <p class="text-[11px] font-medium tracking-[0.04em] uppercase text-current">ISO 9001</p>
+            <p class="text-[9px] text-current/50">Gestión de Calidad</p>
+          </div>
+        </div>
+        <span class="w-px h-8 bg-white/15 hidden sm:block"></span>
+        <div class="iso-badge flex items-center gap-3 transition-colors duration-300">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="flex-shrink-0">
+            <circle cx="12" cy="12" r="10"/><path d="M12 8v4l2.5 2.5"/><path d="M7 14c.5 2 2 3.5 4 4"/><path d="M17 10c-.5-2-2-3.5-4-4"/>
+          </svg>
+          <div class="text-left">
+            <p class="text-[11px] font-medium tracking-[0.04em] uppercase text-current">ISO 14001</p>
+            <p class="text-[9px] text-current/50">Gestión Ambiental</p>
+          </div>
+        </div>
+        <span class="w-px h-8 bg-white/15 hidden sm:block"></span>
+        <div class="iso-badge flex items-center gap-3 transition-colors duration-300">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="flex-shrink-0">
+            <circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/>
+          </svg>
+          <div class="text-left">
+            <p class="text-[11px] font-medium tracking-[0.04em] uppercase text-current">ISO 45001</p>
+            <p class="text-[9px] text-current/50">Seguridad y Salud</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══ 3 Marcas — Bento Grid ═══ -->
+  <section id="servicios" class="w-full bg-[#0F2D44] py-20 md:py-28 relative">
+    <div class="max-w-6xl mx-auto px-6 border-l border-r border-[var(--color-border-dark)] relative z-10">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-px">
+        <!-- VPS Consulting — tile grande 8 cols × 2 rows -->
+        <div class="md:col-span-8 md:row-span-2 card-dark card-corner card-bg-img card-hover-3d">
+          <img src="assets/mining-hero.jpg" alt="" loading="lazy" />
+          <div class="card-bg-overlay"></div>
+          <div class="relative z-10">
+          <span class="badge mb-6">01 CONSULTING</span>
+          <h3 class="!text-white mb-4">Ingeniería que se construye.</h3>
+          <p class="text-white/75 text-sm leading-relaxed mb-8 max-w-lg">
+            Diseñamos sistemas de ventilación y bombeo para las minas más exigentes del Perú. Simulaciones, diagnósticos y planos de ingeniería de precisión.
+          </p>
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            <div>
+              <p class="text-white text-xs font-medium mb-1">Ventilación Minera</p>
+              <p class="text-white/55 text-[11px] leading-relaxed">Modelado VNETPC/Ventsim, balance térmico, estudios de gases.</p>
+            </div>
+            <div>
+              <p class="text-white text-xs font-medium mb-1">Sistemas de Bombeo</p>
+              <p class="text-white/55 text-[11px] leading-relaxed">Dimensionamiento, control de aguas ácidas, mantenimiento predictivo.</p>
+            </div>
+          </div>
+          <a href="#contacto" class="text-[var(--color-signal)] text-sm font-medium hover:text-[var(--color-signal-hover)] transition-colors">
+            Conocer servicios <i class="ph ph-arrow-right text-xs align-middle"></i>
+          </a>
+          </div>
+        </div>
+
+        <!-- VPS Contratistas — tile 4 cols × 1 row -->
+        <div class="md:col-span-4 card-dark card-double card-hover-3d">
+          <span class="badge mb-6">02 CONTRATISTAS</span>
+          <h3 class="!text-white mb-3">Del plano a la mina.</h3>
+          <p class="text-white/75 text-sm leading-relaxed mb-6">
+            Ejecución directa en campo. Sin subcontratas. Instalamos, supervisamos y ponemos en marcha cada sistema.
+          </p>
+          <a href="#proyectos" class="text-[var(--color-signal)] text-sm font-medium hover:text-[var(--color-signal-hover)] transition-colors">
+            Ver obras <i class="ph ph-arrow-right text-xs align-middle"></i>
+          </a>
+        </div>
+
+        <!-- VPS App — tile 4 cols × 1 row -->
+        <div class="md:col-span-4 card-dark card-gradient card-hover-3d">
+          <span class="badge badge-active mb-6">03 VPS APP</span>
+          <h3 class="!text-white mb-3">Los datos mandan.</h3>
+          <p class="text-white/75 text-sm leading-relaxed mb-6">
+            Software propio para simular, monitorear y reportar. Si trabaja con nosotros, también es suyo.
+          </p>
+          <a href="#vpsapp" class="text-[var(--color-signal)] text-sm font-medium hover:text-[var(--color-signal-hover)] transition-colors">
+            Ver VPS App <i class="ph ph-arrow-right text-xs align-middle"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Connector line -->
+      <div class="connector mt-6 mb-6" style="position:relative;">
+        <span style="position:absolute;top:-3px;left:33%;width:6px;height:6px;background:var(--color-signal);border-radius:1px;"></span>
+        <span style="position:absolute;top:-3px;left:66%;width:6px;height:6px;background:var(--color-signal);border-radius:1px;"></span>
+      </div>
+      
+      <p class="text-center text-white/55 text-sm font-medium tracking-[-0.02em]">
+        Tres capacidades. Un solo estándar de precisión.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ Proyectos ═══ -->
+  <section id="proyectos" class="w-full bg-[#081b2c] py-20 md:py-28 relative">
+    <div class="max-w-6xl mx-auto px-6 border-l border-r border-[var(--color-border-dark)] relative z-10">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span class="badge mb-4">PORTAFOLIO</span>
+          <h2 class="!text-white">Trabajo comprobado.</h2>
+        </div>
+        <a href="#proyectos" class="text-[var(--color-signal)] text-sm font-medium hover:text-[var(--color-signal-hover)] transition-colors">
+          Ver todos <i class="ph ph-arrow-right text-xs align-middle"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px">
+        <div class="project-card card-dark card-hover-3d !p-0">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa19kgRkCQS0GbvoeYpJoXYhAsZjFnKvPWrRwJYUanbfQTZuWh-Y4zh9oCMqdl7yTrTw_gLHvUnLxAo-8pNwYB6YJKrx9WfHtwPbLpRlj9l24RUGgfvXN4iftGD0-2Edlii_JNKnyQDjE8ivTSUUoO7sB75Y_TslQpiRfptcVlA7X6O0ah-7PEpyUhq4iDDE4zlTGTRb_Q3ry9cvaqImtWIKO6R_i48J9XXkN1pj7tmMaVWyVDf568ORfoYiBD6BqsUwQ_3f0x9oeL"
+               alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(15,45,68,0.9), transparent);"></div>
+          <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+            <span class="badge mb-2">Ventilación</span>
+            <h4 class="!text-white text-lg !font-medium">UM Inmaculada</h4>
+            <p class="text-white/50 text-xs mt-1">Sistema de ventilación principal</p>
+          </div>
+        </div>
+        <div class="project-card card-dark card-hover-3d !p-0">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa6IrzHTwRdkg439tQ5mBKsaGoIGXrVq4z0gChDxPDiHMKdTlVKpfJgVN-avLzRtjlqWb-_9v-J72d8D6dnNgFsMVpgMgoOxavFz4fNvQ2sxIcpw1pwwVi3UndVfrFO_NTk4HozEOrQblb3AmzhqyyRSnDvRGsA4x_ts55DZzm6aWBKkYhPsfsr0YDvDF1lMIOw1wyDY5A-0dk4u6wbKMBqpe2h3VouUVi7z002IFS973U3J5XMChT8HfE516SnXxRIx3KkpPqPo2I"
+               alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(15,45,68,0.9), transparent);"></div>
+          <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+            <span class="badge mb-2">Bombeo</span>
+            <h4 class="!text-white text-lg !font-medium">Pallancata</h4>
+            <p class="text-white/50 text-xs mt-1">Estación de rebombeo subterráneo</p>
+          </div>
+        </div>
+        <div class="project-card card-dark card-hover-3d !p-0">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQhk3cPf4ja5t3Yp2m-qJIx48suHJ-i4UdmfLLN_usv5SJk_SZsMppAs4vWDo6RJcpWWN9aS-lcjlJCDjA6pehzKvSDDUtSxtbpmVZi-aIIYE8fCH9h840fY7Eg3AGSEsuSR0Yp0ZDjEVLU1_C0k9adkJpjvC4HdOMEKOBZR4DGI6LsiR6jf36F1P1RWa4xW72mGTynmVJDQN7qCpkZmg1r9FWxCZjQOLb6fGKyxXMzlouWqcwqNEfJVH7WdOVRIQM4Cb9pp0Z976z"
+               alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(15,45,68,0.9), transparent);"></div>
+          <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+            <span class="badge mb-2">Planeamiento</span>
+            <h4 class="!text-white text-lg !font-medium">Colquisiri</h4>
+            <p class="text-white/50 text-xs mt-1">LOM Planning y optimización</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Cloud Empresas — Marquee ═══ -->
+  <section class="w-full bg-white py-14 overflow-hidden">
+    <p class="text-center text-xs font-medium text-[#194669] tracking-[0.1em] uppercase mb-10">Operaciones que nos respaldan</p>
+    
+    <div class="marquee-track">
+      <div class="marquee-inner">
+        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">UM</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">UM Inmaculada</span></span>
+        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">PL</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Pallancata</span></span>
+        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">MB</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Minera Bateas</span></span>
+        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CQ</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Colquisiri</span></span>
+        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CP</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Copemina</span></span>
+        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CN</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Contonga</span></span>
+        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">UM</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">UM Inmaculada</span></span>
+        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">PL</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Pallancata</span></span>
+        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">MB</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Minera Bateas</span></span>
+        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CQ</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Colquisiri</span></span>
+        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CP</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Copemina</span></span>
+        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CN</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Contonga</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Testimonial ═══ -->
+  <section class="w-full bg-[#F5F3F0] py-20 md:py-28 relative">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <blockquote>
+        <p class="text-2xl md:text-3xl text-[#111111] leading-relaxed mb-6" style="font-style:italic;">
+          "Desde que trabajamos con VPS, los tiempos de parada por fallas de ventilación bajaron a cero."
+        </p>
+        <footer class="text-sm text-[#545350] font-medium">
+          Ingeniero Jefe de Operaciones, UM Inmaculada
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ═══ VPS App ═══ -->
+  <section id="vpsapp" class="w-full bg-[#0F2D44] py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="card-dark card-hover-3d border-[var(--color-signal)]/20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-7">
+            <span class="badge mb-4">03 VPS APP</span>
+            <h3 class="!text-white mb-4">Los datos mandan.</h3>
+            <p class="text-white/65 text-sm leading-relaxed mb-6 max-w-lg">
+              Software propio para simular, monitorear y reportar. La herramienta que construimos para ser más precisos. Si trabaja con nosotros, también es suya.
+            </p>
+            <a href="#contacto" class="btn-primary text-sm">Solicitar demo <i class="ph ph-arrow-right"></i></a>
+          </div>
+           <div class="lg:col-span-5 relative lg:min-h-[320px]" id="app-mockup" style="overflow:visible;">
+            
+            <!-- ═══ MOBILE: flow normal, centrado ═══ -->
+            <div class="flex flex-col items-center lg:hidden">
+              <div class="w-4/5 max-w-[300px]">
+                <div class="rounded-[8px] border border-[var(--color-border-dark)] shadow-[0_4px_20px_rgba(0,0,0,0.25)] overflow-hidden">
+                  <img src="assets/app-vps.avif" alt="VPS App" class="w-full h-auto" loading="lazy" />
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-3 w-full max-w-xs mt-6">
+                <!-- Caudal -->
+                <div class="bg-[#081b2c]/95 backdrop-blur-md border border-[var(--color-border-dark)] rounded-[6px] px-3 py-2">
+                  <span class="text-white/40 text-[9px] uppercase tracking-wider">Caudal</span>
+                  <div class="flex items-end gap-1 h-6 mb-0.5 mt-1">
+                    <span class="w-2 h-[35%] bg-[var(--color-border-dark)] rounded-sm"></span>
+                    <span class="w-2 h-[50%] bg-[var(--color-border-dark)] rounded-sm"></span>
+                    <span class="w-2 h-[65%] bg-[var(--color-border-dark)] rounded-sm"></span>
+                    <span class="w-2 h-[85%] bg-[var(--color-signal)] rounded-sm"></span>
+                  </div>
+                  <p class="text-white text-sm font-medium">1.2 m³/s</p>
+                </div>
+                <!-- Ventilador -->
+                <div class="bg-[#081b2c]/95 backdrop-blur-md border border-[var(--color-border-dark)] rounded-[6px] px-3 py-2">
+                  <div class="flex items-center gap-1.5 mb-1">
+                    <span class="text-[var(--color-signal)] text-[10px] font-medium">AX-4500</span>
+                    <span class="bg-[var(--color-signal)]/20 text-[var(--color-signal)] text-[8px] px-1 py-0.5 rounded-sm">Óptimo</span>
+                  </div>
+                  <p class="text-white/40 text-[9px]">Selección ventilador</p>
+                </div>
+                <!-- Presión -->
+                <div class="bg-[#081b2c]/95 backdrop-blur-md border border-[var(--color-border-dark)] rounded-[6px] px-3 py-2">
+                  <div class="flex items-center gap-1.5 mb-0.5">
+                    <i class="ph ph-arrow-up text-green-400 text-sm"></i>
+                    <span class="text-white text-sm font-medium">2.8 kPa</span>
+                  </div>
+                  <p class="text-white/40 text-[9px]">Presión estática</p>
+                </div>
+                <!-- Eficiencia -->
+                <div class="bg-[#081b2c]/95 backdrop-blur-md border border-[var(--color-border-dark)] rounded-[6px] px-3 py-2">
+                  <span class="text-white/40 text-[9px] uppercase tracking-wider">Eficiencia</span>
+                  <div class="flex items-center gap-2 mt-1">
+                    <div class="relative w-7 h-7">
+                      <div class="absolute inset-0 rounded-full" style="background: conic-gradient(#EFB24A 82%, #1a3f5c 82%); mask: radial-gradient(transparent 57%, black 60%); -webkit-mask: radial-gradient(transparent 57%, black 60%);"></div>
+                    </div>
+                    <p class="text-white text-sm font-medium">82%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ═══ DESKTOP: absolute positioning ═══ -->
+            <div class="hidden lg:block">
+              <!-- Imagen -->
+              <div class="floating-ui absolute z-[5] overflow-visible" style="width:60%; right:5.29%; top:6.88%;" data-speed="0.02">
+                <div class="rounded-[8px] border border-[var(--color-border-dark)] shadow-[0_4px_20px_rgba(0,0,0,0.25)] overflow-hidden">
+                  <img src="assets/app-vps.avif" alt="VPS App — Dashboard de ventilación" class="w-full h-auto" loading="lazy" />
+                </div>
+              </div>
+
+              <!-- 1. Caudal -->
+              <div class="floating-ui absolute z-[15] bg-[#081b2c]/95 backdrop-blur-md border border-[var(--color-border-dark)] rounded-[6px] px-3 py-2 shadow-[0_4px_16px_rgba(0,0,0,0.3)]" 
+                   style="left:20.26%; top:75.13%;" data-speed="0.04">
+                <span class="text-white/40 text-[9px] uppercase tracking-wider mb-2 block">Caudal de aire</span>
+                <div class="flex items-end gap-1 h-7 mb-1">
+                  <span class="w-2 h-[35%] bg-[var(--color-border-dark)] rounded-sm"></span>
+                  <span class="w-2 h-[50%] bg-[var(--color-border-dark)] rounded-sm"></span>
+                  <span class="w-2 h-[45%] bg-[var(--color-border-dark)] rounded-sm"></span>
+                  <span class="w-2 h-[65%] bg-[var(--color-border-dark)] rounded-sm"></span>
+                  <span class="w-2 h-[85%] bg-[var(--color-signal)] rounded-sm"></span>
+                </div>
+                <p class="text-white text-sm font-medium">1.2 m³/s</p>
+              </div>
+
+              <!-- 2. Ventilador -->
+              <div class="floating-ui absolute z-[15] bg-[#081b2c]/95 backdrop-blur-md border border-[var(--color-border-dark)] rounded-[6px] px-3 py-2 shadow-[0_4px_16px_rgba(0,0,0,0.3)]" 
+                   style="right:-15%; top:26.06%;" data-speed="0.05">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-[var(--color-signal)] text-[10px] font-medium">AX-4500</span>
+                  <span class="bg-[var(--color-signal)]/20 text-[var(--color-signal)] text-[9px] px-1.5 py-0.5 rounded-sm font-medium">Óptimo</span>
+                </div>
+                <p class="text-white/40 text-[9px]">Selección de ventilador</p>
+              </div>
+
+              <!-- 3. Presión -->
+              <div class="floating-ui absolute z-[16] bg-[#081b2c]/95 backdrop-blur-md border border-[var(--color-border-dark)] rounded-[6px] px-3 py-2 shadow-[0_6px_22px_rgba(0,0,0,0.35)]" 
+                   style="left:3.01%; top:44.63%;" data-speed="0.06">
+                <div class="flex items-center gap-2 mb-1">
+                  <i class="ph ph-arrow-up text-green-400 text-sm"></i>
+                  <span class="text-white text-sm font-medium">2.8 kPa</span>
+                </div>
+                <p class="text-white/40 text-[9px]">Presión estática</p>
+              </div>
+
+              <!-- 4. Eficiencia -->
+              <div class="floating-ui absolute z-20 bg-[#081b2c]/95 backdrop-blur-md border border-[var(--color-border-dark)] rounded-[6px] px-3 py-2 shadow-[0_10px_32px_rgba(0,0,0,0.4)]" 
+                   style="right:6.04%; top:57.81%;" data-speed="0.08">
+                <span class="text-white/40 text-[9px] uppercase tracking-wider mb-2 block">Eficiencia</span>
+                <div class="flex items-center gap-2.5">
+                  <div class="relative w-8 h-8">
+                    <div class="absolute inset-0 rounded-full" style="background: conic-gradient(#EFB24A 82%, #1a3f5c 82%); mask: radial-gradient(transparent 60%, black 63%); -webkit-mask: radial-gradient(transparent 60%, black 63%);"></div>
+                  </div>
+                  <div>
+                    <p class="text-white text-sm font-medium">82%</p>
+                    <p class="text-white/30 text-[9px]">Rendimiento</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Contacto ═══ -->
+  <section id="contacto" class="w-full flex flex-col lg:flex-row min-h-[540px]">
+    <div class="lg:w-1/2 bg-[#0F2D44] flex items-center justify-center p-12 relative overflow-hidden">
+      <!-- Imagen de fondo -->
+      <img src="assets/contact-bg.avif" alt="" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="lazy" />
+      <!-- Overlay cinematográfico -->
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(8,27,44,0.95) 0%, rgba(8,27,44,0.7) 35%, rgba(8,27,44,0.3) 65%, rgba(8,27,44,0.6) 100%), radial-gradient(ellipse at 50% 60%, transparent 25%, rgba(8,27,44,0.55) 100%);"></div>
+      <div class="max-w-lg relative z-10">
+        <h2 class="!text-white mb-6">¿Cuál es el desafío de su mina?</h2>
+        <p class="text-white/60 text-sm leading-relaxed mb-10">
+          Solicite una evaluación técnica sin compromiso. Nuestro equipo analizará su operación y le propondrá una solución a medida.
+        </p>
+        <div class="space-y-5">
+          <div class="flex items-center gap-4">
+            <i class="ph ph-phone text-[var(--color-signal)] text-lg"></i>
+            <div><p class="text-white/40 text-xs uppercase tracking-wider font-medium">Llámenos</p><p class="text-white text-sm font-medium">+51 (01) 445-6789</p></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <i class="ph ph-envelope text-[var(--color-signal)] text-lg"></i>
+            <div><p class="text-white/40 text-xs uppercase tracking-wider font-medium">Escríbanos</p><p class="text-white text-sm font-medium">info&#64;vpsconsulting.pe</p></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <i class="ph ph-map-pin text-[var(--color-signal)] text-lg"></i>
+            <div><p class="text-white/40 text-xs uppercase tracking-wider font-medium">Oficina</p><p class="text-white text-sm font-medium">Av. Industrial 450, San Isidro, Lima</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lg:w-1/2 bg-white p-12 lg:p-20">
+      <form class="max-w-lg space-y-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="space-y-1.5">
+            <label class="text-xs text-[#194669] font-medium uppercase tracking-[0.06em]">Nombre</label>
+            <input type="text" class="bg-white border border-[var(--color-border-light)] rounded-[4px] w-full px-4 py-3 text-sm text-[#111111] placeholder:text-[#787774] outline-none focus:border-[#194669] transition-colors" placeholder="Ej. Juan Pérez" required />
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-xs text-[#194669] font-medium uppercase tracking-[0.06em]">Empresa</label>
+            <input type="text" class="bg-white border border-[var(--color-border-light)] rounded-[4px] w-full px-4 py-3 text-sm text-[#111111] placeholder:text-[#787774] outline-none focus:border-[#194669] transition-colors" placeholder="Nombre de su compañía" />
+          </div>
+        </div>
+        <div class="space-y-1.5">
+          <label class="text-xs text-[#194669] font-medium uppercase tracking-[0.06em]">Correo</label>
+          <input type="email" class="bg-white border border-[var(--color-border-light)] rounded-[4px] w-full px-4 py-3 text-sm text-[#111111] placeholder:text-[#787774] outline-none focus:border-[#194669] transition-colors" placeholder="correo@ejemplo.com" required />
+        </div>
+        <div class="space-y-1.5">
+          <label class="text-xs text-[#194669] font-medium uppercase tracking-[0.06em]">Requerimiento</label>
+          <textarea rows="4" class="bg-white border border-[var(--color-border-light)] rounded-[4px] w-full px-4 py-3 text-sm text-[#111111] placeholder:text-[#787774] outline-none focus:border-[#194669] transition-colors resize-none" placeholder="Describa brevemente su necesidad técnica..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full py-3.5">Solicitar evaluación técnica</button>
+      </form>
+    </div>
+  </section>
+</main>

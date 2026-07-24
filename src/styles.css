@@ -350,9 +350,17 @@ h4 { font-size: var(--text-body); }
 }
 
 .badge-outline {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-caption);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   background: transparent;
   color: var(--color-signal);
   border: 1px solid var(--color-signal);
+  border-radius: var(--radius-global);
+  padding: 6px 10px;
 }
 
 /* ═══ Connector line — entre cards ═══ */
@@ -583,12 +591,29 @@ h4 { font-size: var(--text-body); }
   100% { background-position: 200% 0; }
 }
 
+/* ═══ ISO badge animated glow ═══ */
+@keyframes iso-glow {
+  0%, 100% { color: rgba(255,255,255,0.4); }
+  50%      { color: #EFB24A; }
+}
+
+.iso-badge { animation: iso-glow 3s ease-in-out infinite; }
+.iso-badge:nth-child(2) { animation-delay: 0.5s; }
+.iso-badge:nth-child(3) { animation-delay: 1s; }
+
 @keyframes aurora-drift {
   0%   { transform: translate(-5vw, 0) scale(1); }
   25%  { transform: translate(5vw, -8vh) scale(1.05); }
   50%  { transform: translate(10vw, 2vh) scale(0.98); }
   75%  { transform: translate(-3vw, 8vh) scale(1.03); }
   100% { transform: translate(-5vw, 0) scale(1); }
+}
+
+@keyframes fog-float {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(6vw, -5vh) scale(1.08); }
+  66%  { transform: translate(-4vw, 6vh) scale(0.94); }
+  100% { transform: translate(2vw, -3vh) scale(1.04); }
 }
 
 /* ═══ Floating UI parallax ═══ */

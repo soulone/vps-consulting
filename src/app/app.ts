@@ -60,12 +60,10 @@ export class App {
     const mockup = document.getElementById('app-mockup');
     if (!mockup) return;
 
-    // Use the card container as parent for bounds (it has actual height)
-    const container = mockup.closest('.card-dark') as HTMLElement || mockup;
-    const cards = container.querySelectorAll('.floating-ui') as NodeListOf<HTMLElement>;
+    const cards = mockup.querySelectorAll('.hidden.lg\\:block .floating-ui') as NodeListOf<HTMLElement>;
 
-    container.addEventListener('mousemove', (e) => {
-      const rect = container.getBoundingClientRect();
+    mockup.addEventListener('mousemove', (e) => {
+      const rect = mockup.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
 
@@ -78,13 +76,12 @@ export class App {
       });
     });
 
-    container.addEventListener('mouseleave', () => {
+    mockup.addEventListener('mouseleave', () => {
       cards.forEach((card) => {
         card.style.transform = 'translate(0, 0)';
       });
     });
 
-    // ✏️ Edit mode: click pencil button to toggle draggable UI cards
     let editMode = false;
     let dragTarget: HTMLElement | null = null;
     let startX = 0, startY = 0, startLeft = 0, startTop = 0;
@@ -100,11 +97,11 @@ export class App {
         });
         toggleBtn.style.color = editMode ? 'var(--color-signal)' : '';
         toggleBtn.style.borderColor = editMode ? 'var(--color-signal)' : '';
-        console.log(editMode ? '✏️ Edit mode ON — drag cards to reposition' : '✏️ Edit mode OFF');
+        console.log(editMode ? '✏️ Edit mode ON' : '✏️ Edit mode OFF');
       });
     }
 
-    container.addEventListener('mousedown', (e) => {
+    mockup.addEventListener('mousedown', (e) => {
       if (!editMode) return;
       const target = (e.target as HTMLElement).closest('.floating-ui') as HTMLElement;
       if (!target) return;
@@ -112,13 +109,26 @@ export class App {
       dragTarget = target;
       startX = e.clientX;
       startY = e.clientY;
-      // Read initial position based on which property the element uses
+
+      // Read initial percentage from inline style or convert computed px to %
       if (target.style.left) {
-        startLeft = parseFloat(target.style.left) || 0;
+        startLeft = parseFloat(target.style.left); // already %
+      } else if (target.style.right) {
+        startLeft = -parseFloat(target.style.right); // already %, negate
       } else {
-        startLeft = -(parseFloat(target.style.right) || 0);
+        const cs = getComputedStyle(target);
+        if (cs.left !== 'auto') {
+          startLeft = parseFloat(cs.left) / mockup.offsetWidth * 100;
+        } else {
+          startLeft = -(parseFloat(cs.right) / mockup.offsetWidth * 100);
+        }
       }
-      startTop = parseFloat(target.style.top) || 0;
+      
+      if (target.style.top) {
+        startTop = parseFloat(target.style.top); // already %
+      } else {
+        startTop = parseFloat(getComputedStyle(target).top) / mockup.offsetHeight * 100 || 0;
+      }
       target.style.cursor = 'grabbing';
     });
 
@@ -126,27 +136,25 @@ export class App {
       if (!editMode || !dragTarget) return;
       const dx = e.clientX - startX;
       const dy = e.clientY - startY;
-      const rect = container.getBoundingClientRect();
-      
-      // If element uses 'left', move left. If 'right', move inversely.
+      const rect = mockup.getBoundingClientRect();
+
       if (dragTarget.style.left) {
-        const newLeft = Math.max(-5, Math.min(95, startLeft + dx / rect.width * 100));
+        const newLeft = Math.max(-15, Math.min(95, startLeft + dx / rect.width * 100));
         dragTarget.style.left = newLeft + '%';
         dragTarget.style.right = '';
       } else {
-        const newRight = Math.max(-5, Math.min(95, -startLeft - dx / rect.width * 100));
+        const newRight = Math.max(-15, Math.min(95, -startLeft - dx / rect.width * 100));
         dragTarget.style.right = newRight + '%';
         dragTarget.style.left = '';
       }
-      const newTop = Math.max(-5, Math.min(95, startTop + dy / rect.height * 100));
-      dragTarget.style.top = newTop + '%';
+      dragTarget.style.top = Math.max(-15, Math.min(95, startTop + dy / rect.height * 100)) + '%';
     });
 
     window.addEventListener('mouseup', () => {
       if (dragTarget) {
         dragTarget.style.cursor = 'grab';
         const xProp = dragTarget.style.left ? `left: ${dragTarget.style.left}` : `right: ${dragTarget.style.right}`;
-        console.log(`📍 Position: ${xProp}; top: ${dragTarget.style.top};`);
+        console.log(`📍 ${xProp}; top: ${dragTarget.style.top};`);
         dragTarget = null;
       }
     });

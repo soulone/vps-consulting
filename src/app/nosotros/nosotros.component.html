@@ -1,0 +1,177 @@
+<!-- VPS Consulting — Nosotros -->
+<div class="scroll-progress"></div>
+
+<main>
+  <!-- ═══ Hero ═══ -->
+  <section class="relative w-full min-h-[70dvh] flex items-center justify-center overflow-hidden" style="background-color: #081b2c;">
+    
+    <!-- Aurora (same as home) -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div style="position:absolute; width:80vw; height:60vh; top:-20%; left:5%;
+                  background: radial-gradient(ellipse at 40% 50%, rgba(0,120,255,0.6) 0%, rgba(25,70,105,0.4) 35%, transparent 70%);
+                  filter: blur(30px); animation: aurora-drift 10s ease-in-out infinite alternate;"></div>
+      <div style="position:absolute; width:55vw; height:50vh; top:30%; right:-15%;
+                  background: radial-gradient(ellipse at 30% 40%, rgba(239,178,74,0.4) 0%, transparent 70%);
+                  filter: blur(40px); animation: aurora-drift 12s ease-in-out infinite alternate-reverse;"></div>
+      <div style="position:absolute; width:45vw; height:40vh; bottom:-15%; left:20%;
+                  background: radial-gradient(ellipse at 50% 30%, rgba(64,150,255,0.5) 0%, rgba(0,180,255,0.3) 50%, transparent 75%);
+                  filter: blur(25px); animation: aurora-drift 8s ease-in-out infinite alternate;"></div>
+    </div>
+
+    <!-- Fog blobs -->
+    <div class="absolute inset-0 pointer-events-none z-[2]" aria-hidden="true">
+      <div class="fog-blob" style="position:absolute; width:65vw; height:55vh; top:-15%; left:-5%;
+                  background: radial-gradient(ellipse at 35% 50%, rgba(190,215,255,0.14) 0%, rgba(160,195,240,0.06) 50%, transparent 75%);
+                  filter: blur(55px); mix-blend-mode: screen; animation: fog-float 20s ease-in-out infinite alternate;"></div>
+      <div class="fog-blob" style="position:absolute; width:55vw; height:45vh; bottom:-10%; right:-8%;
+                  background: radial-gradient(ellipse at 60% 40%, rgba(170,200,235,0.12) 0%, rgba(140,180,225,0.05) 50%, transparent 75%);
+                  filter: blur(65px); mix-blend-mode: screen; animation: fog-float 24s ease-in-out infinite alternate-reverse;"></div>
+    </div>
+
+    <!-- Fog texture -->
+    <div class="absolute inset-0 pointer-events-none z-[3]" aria-hidden="true"
+         style="filter: url(#fog-noise); mix-blend-mode: screen; opacity: 0.5;"></div>
+
+    <!-- Grain -->
+    <div class="absolute inset-0 pointer-events-none z-[4]" aria-hidden="true"
+         style="background: transparent; filter: url(#grain); opacity: 0.18;
+                mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0) 100%);
+                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0) 100%);">
+    </div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center py-24">
+      <span class="badge mb-6">NOSOTROS</span>
+      <h1 class="text-white leading-[0.92] tracking-[-0.06em] mb-4" style="font-size: clamp(2.5rem, 5vw, 3.5rem);">
+        Expertos en ventilación minera
+      </h1>
+      <p class="text-white/45 text-base max-w-lg mx-auto leading-relaxed">
+        Brindamos servicios de consultoría especializada integrando tecnología de punta, criterios de sostenibilidad y soluciones personalizadas que optimizan la seguridad y eficiencia de las operaciones mineras.
+      </p>
+    </div>
+
+    <!-- Sentinel for nav -->
+    <div id="nav-sentinel" class="absolute top-0 left-0 w-full h-px pointer-events-none"></div>
+  </section>
+
+  <!-- ═══ Misión & Visión ═══ -->
+  <section class="w-full bg-[#0F2D44] py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="card-dark card-hover-3d">
+          <span class="badge mb-6">MISIÓN</span>
+          <p class="text-white/75 text-sm leading-relaxed">
+            Brindar servicios de consultoría especializada en ventilación minera subterránea, integrando tecnología de punta, criterios de sostenibilidad ambiental y soluciones personalizadas que optimicen la seguridad y eficiencia de las operaciones mineras, siendo un referente confiable y estratégico para el sector minero.
+          </p>
+        </div>
+        <div class="card-dark card-hover-3d card-corner">
+          <span class="badge mb-6">VISIÓN</span>
+          <p class="text-white/75 text-sm leading-relaxed">
+            Para el año 2030, ser la consultora minera referente en soluciones de ventilación subterránea en el norte del Perú, incrementando nuestra participación en proyectos regionales, desarrollando software especializado, y ofreciendo capacitaciones técnicas que impulsen la eficiencia y seguridad de las operaciones mineras.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Etapas de Trabajo ═══ -->
+  <section class="w-full bg-[#081b2c] py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <span class="badge mb-8">METODOLOGÍA</span>
+      <h2 class="!text-white text-3xl md:text-4xl mb-12">Etapas de la ventilación minera</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="card-dark card-hover-3d">
+          <span class="badge mb-5">FASE 1</span>
+          <h4 class="!text-white text-lg !font-medium mb-3">Preliminar y Diagnóstico</h4>
+          <p class="text-white/55 text-sm leading-relaxed">Visita técnica, diagnóstico preliminar y levantamiento de información en campo.</p>
+        </div>
+        <div class="card-dark card-hover-3d card-double">
+          <span class="badge mb-5">FASE 2</span>
+          <h4 class="!text-white text-lg !font-medium mb-3">Modelamiento y Simulación</h4>
+          <p class="text-white/55 text-sm leading-relaxed">Modelamiento, simulación y calibración del modelo digital. Diagnóstico final y propuesta de escenarios para el LOM.</p>
+        </div>
+        <div class="card-dark card-hover-3d">
+          <span class="badge mb-5">FASE 3</span>
+          <h4 class="!text-white text-lg !font-medium mb-3">Diseño</h4>
+          <p class="text-white/55 text-sm leading-relaxed">Elaboración de planos y especificaciones técnicas del sistema de ventilación.</p>
+        </div>
+        <div class="card-dark card-hover-3d card-corner">
+          <span class="badge mb-5">FASE 4</span>
+          <h4 class="!text-white text-lg !font-medium mb-3">Evaluación</h4>
+          <p class="text-white/55 text-sm leading-relaxed">Monitoreo continuo y optimización del rendimiento del sistema implementado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Software y Tecnología ═══ -->
+  <section class="w-full bg-[#0F2D44] py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <span class="badge mb-8">TECNOLOGÍA</span>
+      <h2 class="!text-white text-3xl md:text-4xl mb-12">Desarrollo de Software</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="card-dark card-hover-3d">
+          <i class="ph ph-cube text-[var(--color-signal)] text-2xl mb-4 block"></i>
+          <h4 class="!text-white text-lg !font-medium mb-3">Modelado y Simulación</h4>
+          <p class="text-white/55 text-sm leading-relaxed">Implementación de software de modelado y simulación de circuitos de ventilación.</p>
+        </div>
+        <div class="card-dark card-hover-3d card-double">
+          <i class="ph ph-chart-bar text-[var(--color-signal)] text-2xl mb-4 block"></i>
+          <h4 class="!text-white text-lg !font-medium mb-3">Análisis de Datos</h4>
+          <p class="text-white/55 text-sm leading-relaxed">Desarrollo de herramientas para el análisis de datos mineros y generación de reportes automáticos.</p>
+        </div>
+        <div class="card-dark card-hover-3d card-corner">
+          <i class="ph ph-device-mobile text-[var(--color-signal)] text-2xl mb-4 block"></i>
+          <h4 class="!text-white text-lg !font-medium mb-3">Apps Web y Móviles</h4>
+          <p class="text-white/55 text-sm leading-relaxed">Creación de aplicaciones web y móviles para gestión minera.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <span class="badge">CALIDAD Y CONFIANZA CON TECNOLOGÍA MINERA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Reconocimientos ═══ -->
+  <section class="w-full bg-[#081b2c] py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <span class="badge mb-8">RECONOCIMIENTOS</span>
+      <h2 class="!text-white text-3xl md:text-4xl mb-12">Nuestros Reconocimientos</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card-dark card-hover-3d flex flex-col items-center text-center">
+          <img src="assets/perumin-logo.png" alt="PERUMIN 37" class="h-12 w-auto mb-6 opacity-80" />
+          <h4 class="!text-white text-base !font-medium mb-3">PERUMIN 37</h4>
+          <p class="text-white/45 text-sm leading-relaxed">Participación en PERUMIN 37 Convención Minera, el evento minero más importante del Perú.</p>
+        </div>
+        <div class="card-dark card-hover-3d card-double flex flex-col items-center text-center">
+          <div class="w-14 h-14 bg-[#0F2D44] rounded-[4px] flex items-center justify-center mb-6">
+            <i class="ph ph-globe text-[var(--color-signal)] text-2xl"></i>
+          </div>
+          <h4 class="!text-white text-base !font-medium mb-3">PERÚ EXPORTA SERVICIOS</h4>
+          <p class="text-white/45 text-sm leading-relaxed">Reconocimiento en PERÚ EXPORTA SERVICIOS de PERÚ SERVICE SUMMIT.</p>
+        </div>
+        <div class="card-dark card-hover-3d card-corner flex flex-col items-center text-center">
+          <div class="w-14 h-14 bg-[#0F2D44] rounded-[4px] flex items-center justify-center mb-6">
+            <i class="ph ph-medal text-[var(--color-signal)] text-2xl"></i>
+          </div>
+          <h4 class="!text-white text-base !font-medium mb-3">ISO 9001 · 14001 · 45001</h4>
+          <p class="text-white/45 text-sm leading-relaxed">Certificaciones internacionales en gestión de calidad, ambiental y seguridad ocupacional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="w-full bg-[#0F2D44] py-16 text-center">
+    <div class="max-w-xl mx-auto px-6">
+      <h3 class="!text-white text-2xl md:text-3xl mb-4">¿Listo para optimizar su operación?</h3>
+      <p class="text-white/50 text-sm mb-8">Solicite una evaluación técnica sin compromiso.</p>
+      <a href="/#contacto" class="btn-primary text-sm inline-flex items-center gap-2">
+        Solicitar evaluación <i class="ph ph-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+</main>
