@@ -162,26 +162,30 @@ export class App {
 
   private initMega() {
     const trigger = document.getElementById('mega-link');
-    const panel = document.querySelector('.mega-panel') as HTMLElement;
-    const backdrop = document.getElementById('mega-backdrop');
-    if (!trigger || !panel || !backdrop) return;
+    const overlay = document.getElementById('mega-overlay');
+    const closeBtn = document.getElementById('mega-close');
+    if (!trigger || !overlay || !closeBtn) return;
 
     const toggleMega = (open: boolean) => {
       this.megaOpen = open;
-      panel.classList.toggle('mega-open', open);
-      backdrop.classList.toggle('hidden', !open);
+      overlay.classList.toggle('opacity-0', !open);
+      overlay.classList.toggle('pointer-events-none', !open);
+      overlay.setAttribute('aria-hidden', String(!open));
     };
 
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
-      toggleMega(!this.megaOpen);
+      toggleMega(true);
     });
 
-    backdrop.addEventListener('click', () => toggleMega(false));
-    document.addEventListener('click', (e) => {
-      if (this.megaOpen && !trigger.parentElement!.contains(e.target as Node) && !panel.contains(e.target as Node)) {
-        toggleMega(false);
-      }
+    closeBtn.addEventListener('click', () => toggleMega(false));
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) toggleMega(false);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.megaOpen) toggleMega(false);
     });
   }
 

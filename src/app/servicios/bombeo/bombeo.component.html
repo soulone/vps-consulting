@@ -11,8 +11,7 @@
       <div class="fog-blob" style="position:absolute; width:55vw; height:45vh; bottom:-10%; right:-8%; background:radial-gradient(ellipse at 60% 40%, rgba(170,200,235,0.12) 0%, rgba(140,180,225,0.05) 50%, transparent 75%); filter:blur(65px); mix-blend-mode:screen; animation:fog-float 24s ease-in-out infinite alternate-reverse;"></div>
     </div>
     <div class="absolute inset-0 pointer-events-none z-[3]" aria-hidden="true" style="filter:url(#fog-noise); mix-blend-mode:screen; opacity:0.5;"></div>
-    <div class="absolute inset-0 pointer-events-none z-[4]" aria-hidden="true" style="background:transparent; filter:url(#grain); opacity:0.18; mask-image:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0) 100%); -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0) 100%);"></div>
-
+    <div class="absolute inset-0 pointer-events-none z-[4]" aria-hidden="true" style="background:transparent; filter:url(#grain); opacity:0.15; mask-image:linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%); -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);"></div>
     <div class="relative z-10 max-w-3xl mx-auto px-6 text-center py-24">
       <span class="badge mb-6">SERVICIOS</span>
       <h1 class="text-white leading-[0.92] tracking-[-0.06em] mb-4" style="font-size: clamp(2.5rem, 5vw, 3.5rem);">Cada litro de agua bajo control</h1>
@@ -25,34 +24,62 @@
     <div class="max-w-6xl mx-auto px-6">
       <span class="badge mb-8">QUÉ INCLUYE</span>
       <h2 class="!text-white text-3xl md:text-4xl mb-12">Servicios de sistemas de bombeo</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div class="card-dark card-hover-3d"><i class="ph ph-gauge text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Dimensionamiento de bombas</h4><p class="text-white/55 text-sm leading-relaxed">Selección y dimensionamiento de bombas sumergibles de alto rendimiento para operaciones mineras.</p></div>
-        <div class="card-dark card-hover-3d card-double"><i class="ph ph-drop text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Control de aguas ácidas</h4><p class="text-white/55 text-sm leading-relaxed">Sistemas de tratamiento y monitoreo de aguas ácidas en minería subterránea y superficial.</p></div>
-        <div class="card-dark card-hover-3d card-corner"><i class="ph ph-factory text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Estaciones de rebombeo</h4><p class="text-white/55 text-sm leading-relaxed">Diseño e implementación de estaciones intermedias para optimizar el desaguado minero.</p></div>
+      <div class="flex flex-col gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="card-dark card-hover-3d"><i class="ph ph-gauge text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Dimensionamiento de bombas</h4><p class="text-white/55 text-sm leading-relaxed">Selección y especificación de bombas sumergibles de alto rendimiento.</p></div>
+        <div class="card-dark card-hover-3d card-double"><i class="ph ph-drop text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Control de aguas ácidas</h4><p class="text-white/55 text-sm leading-relaxed">Sistemas de tratamiento y monitoreo de aguas ácidas en operaciones mineras.</p></div>
+        <div class="card-dark card-hover-3d card-corner"><i class="ph ph-factory text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Estaciones de rebombeo</h4><p class="text-white/55 text-sm leading-relaxed">Diseño e implementación de estaciones intermedias de desaguado.</p></div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="card-dark card-hover-3d card-corner"><i class="ph ph-wrench text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Mantenimiento predictivo</h4><p class="text-white/55 text-sm leading-relaxed">Monitoreo de vibraciones, temperatura y desgaste. Planificación de intervenciones antes de la falla.</p></div>
-        <div class="card-dark card-hover-3d card-double"><i class="ph ph-chart-line text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Curvas de rendimiento</h4><p class="text-white/55 text-sm leading-relaxed">Análisis de eficiencia hidráulica y consumo energético. Optimización del punto de operación.</p></div>
+        <div class="card-dark card-hover-3d card-corner"><i class="ph ph-wrench text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Mantenimiento predictivo</h4><p class="text-white/55 text-sm leading-relaxed">Monitoreo de vibraciones, temperatura y desgaste. Planificación preventiva.</p></div>
+        <div class="card-dark card-hover-3d card-double"><i class="ph ph-lightning text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Eficiencia energética</h4>          <p class="text-white/55 text-sm leading-relaxed">Reducción del consumo mediante variadores de frecuencia y dimensionamiento óptimo.</p></div>
       </div>
-      <div class="card-dark card-hover-3d mt-4">
-        <div class="flex flex-col md:flex-row gap-6 items-start">
-          <div class="flex-1"><i class="ph ph-activity text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Monitoreo de caudales</h4><p class="text-white/55 text-sm leading-relaxed">Instrumentación y telemetría para monitoreo en tiempo real de caudales en puntos críticos.</p></div>
-          <div class="flex-1"><i class="ph ph-lightning text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Eficiencia energética</h4><p class="text-white/55 text-sm leading-relaxed">Reducción de consumo eléctrico mediante dimensionamiento óptimo y variadores de frecuencia.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full bg-[#081b2c] py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7">
+          <div class="rounded-[8px] border border-[var(--color-border-dark)] overflow-hidden bg-[#0F2D44] aspect-[16/10] flex items-center justify-center">
+            <i class="ph ph-image text-[var(--color-signal)] text-6xl opacity-20"></i>
+          </div>
+        </div>
+        <div class="lg:col-span-5 space-y-6">
+          <div class="card-dark card-hover-3d card-double" style="border-left:2px solid var(--color-signal);"><p class="text-white/40 text-[10px] uppercase tracking-[0.08em] mb-1">Caudal típico</p><p class="text-white text-2xl font-medium">320 L/min</p><p class="text-white/30 text-xs mt-1">por estación de bombeo</p></div>
+          <div class="card-dark card-hover-3d card-double" style="border-left:2px solid var(--color-signal);"><p class="text-white/40 text-[10px] uppercase tracking-[0.08em] mb-1">Profundidad</p><p class="text-white text-2xl font-medium">450 m</p><p class="text-white/30 text-xs mt-1">altura típica de columna</p></div>
+          <div class="card-dark card-hover-3d card-double" style="border-left:2px solid var(--color-signal);"><p class="text-white/40 text-[10px] uppercase tracking-[0.08em] mb-1">Ahorro energético</p><p class="text-white text-2xl font-medium">~30%</p><p class="text-white/30 text-xs mt-1">con variadores de frecuencia</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full bg-[#0F2D44] py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <span class="badge mb-8">METODOLOGÍA</span>
+      <h2 class="!text-white text-3xl md:text-4xl mb-12">Etapas de trabajo</h2>
+      <div class="service-timeline relative">
+        <div class="hidden md:block absolute top-4 left-[10%] right-[10%] h-px bg-[var(--color-border-dark)]"></div>
+        <div class="grid grid-cols-5 gap-4 relative z-10">
+          <div class="text-center"><div class="inline-flex items-center justify-center w-8 h-8 bg-[var(--color-signal)] text-[var(--color-ink)] font-bold text-xs rounded-[4px] mb-3">1</div><p class="text-white text-xs font-medium mb-0.5">Preliminar</p><p class="text-white/30 text-[10px]">Visita técnica</p></div>
+          <div class="text-center"><div class="inline-flex items-center justify-center w-8 h-8 bg-[var(--color-signal)] text-[var(--color-ink)] font-bold text-xs rounded-[4px] mb-3">2</div><p class="text-white text-xs font-medium mb-0.5">Modelado</p><p class="text-white/30 text-[10px]">Simulación</p></div>
+          <div class="text-center"><div class="inline-flex items-center justify-center w-8 h-8 bg-[var(--color-signal)] text-[var(--color-ink)] font-bold text-xs rounded-[4px] mb-3">3</div><p class="text-white text-xs font-medium mb-0.5">Diseño</p><p class="text-white/30 text-[10px]">Especificaciones</p></div>
+          <div class="text-center"><div class="inline-flex items-center justify-center w-8 h-8 bg-[var(--color-signal)] text-[var(--color-ink)] font-bold text-xs rounded-[4px] mb-3">4</div><p class="text-white text-xs font-medium mb-0.5">Ejecución</p><p class="text-white/30 text-[10px]">Puesta en marcha</p></div>
+          <div class="text-center"><div class="inline-flex items-center justify-center w-8 h-8 bg-[var(--color-signal)] text-[var(--color-ink)] font-bold text-xs rounded-[4px] mb-3">5</div><p class="text-white text-xs font-medium mb-0.5">Evaluación</p><p class="text-white/30 text-[10px]">Optimización</p></div>
         </div>
       </div>
     </div>
   </section>
 
   <section class="w-full bg-[#081b2c] py-20 md:py-28">
-    <div class="max-w-6xl mx-auto px-6">
-      <span class="badge mb-8">METODOLOGÍA</span>
-      <h2 class="!text-white text-3xl md:text-4xl mb-12">Etapas de trabajo</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-        <div class="card-dark card-hover-3d text-center"><span class="badge mb-3">01</span><h4 class="!text-white text-sm !font-medium mb-1">Preliminar</h4><p class="text-white/40 text-xs">Visita técnica y diagnóstico de la operación</p></div>
-        <div class="card-dark card-hover-3d card-double text-center"><span class="badge mb-3">02</span><h4 class="!text-white text-sm !font-medium mb-1">Modelado</h4><p class="text-white/40 text-xs">Simulación hidráulica del sistema de bombeo</p></div>
-        <div class="card-dark card-hover-3d text-center"><span class="badge mb-3">03</span><h4 class="!text-white text-sm !font-medium mb-1">Diseño</h4><p class="text-white/40 text-xs">Planos y especificaciones de equipos</p></div>
-        <div class="card-dark card-hover-3d card-corner text-center"><span class="badge mb-3">04</span><h4 class="!text-white text-sm !font-medium mb-1">Ejecución</h4><p class="text-white/40 text-xs">Implementación y puesta en marcha</p></div>
-        <div class="card-dark card-hover-3d text-center"><span class="badge mb-3">05</span><h4 class="!text-white text-sm !font-medium mb-1">Evaluación</h4><p class="text-white/40 text-xs">Monitoreo y optimización continua</p></div>
+    <div class="max-w-4xl mx-auto px-6">
+      <span class="badge mb-8">¿POR QUÉ VPS?</span>
+      <h2 class="!text-white text-3xl md:text-4xl mb-12">Ingeniería que se construye</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="text-center"><i class="ph ph-hard-hat text-[var(--color-signal)] text-2xl mb-4 block mx-auto"></i><p class="text-white text-sm font-medium mb-1">Ingeniería + campo</p><p class="text-white/40 text-xs">Diseñamos y ejecutamos. Sin subcontratas, sin pérdida de precisión.</p></div>
+        <div class="text-center"><i class="ph ph-cpu text-[var(--color-signal)] text-2xl mb-4 block mx-auto"></i><p class="text-white text-sm font-medium mb-1">Software propio</p><p class="text-white/40 text-xs">VPS App para simular, monitorear y reportar con datos reales.</p></div>
+        <div class="text-center"><i class="ph ph-buildings text-[var(--color-signal)] text-2xl mb-4 block mx-auto"></i><p class="text-white text-sm font-medium mb-1">Minas de gran escala</p><p class="text-white/40 text-xs">Experiencia comprobada en las operaciones más exigentes del Perú.</p></div>
       </div>
     </div>
   </section>
@@ -61,7 +88,7 @@
     <div class="max-w-xl mx-auto px-6">
       <h3 class="!text-white text-2xl md:text-3xl mb-4">¿Necesita optimizar el bombeo de su mina?</h3>
       <p class="text-white/50 text-sm mb-8">Solicite una evaluación técnica sin compromiso.</p>
-      <a href="/#contacto" class="btn-primary text-sm inline-flex items-center gap-2">Solicitar evaluación <i class="ph ph-arrow-right"></i></a>
+      <a href="/#contacto" class="btn-primary text-sm inline-flex items-center gap-4">Solicitar evaluación <i class="ph ph-arrow-right"></i></a>
     </div>
   </section>
 </main>

@@ -1,5 +1,19 @@
-<!-- VPS Consulting · Andercore × VPS · Tunnel system + glass overlay -->
+<!-- VPS Consulting · Andercore × VPS -->
 <div class="scroll-progress"></div>
+
+<!-- SVG Filters — global for all pages -->
+<svg class="absolute w-0 h-0" aria-hidden="true" style="position:fixed; top:0; left:0;">
+  <filter id="grain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+  <filter id="fog-noise">
+    <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="5" seed="7">
+      <animate attributeName="baseFrequency" values="0.015;0.019;0.013;0.017;0.015" dur="30s" repeatCount="indefinite"/>
+    </feTurbulence>
+    <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.1 0"/>
+  </filter>
+</svg>
 
 <!-- ═══ Nav — Transparente → isla + Mega Menu ═══ -->
 <header id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -14,55 +28,6 @@
           Servicios
           <i class="ph ph-caret-down text-[10px] group-hover:rotate-180 transition-transform duration-200"></i>
         </a>
-        <!-- Mega backdrop -->
-        <div id="mega-backdrop" class="mega-backdrop hidden fixed inset-0 z-[55]" aria-hidden="true"></div>
-        <!-- Mega panel -->
-        <div class="mega-panel absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible transition-all duration-200 z-[60] w-[520px] max-md:fixed max-md:left-4 max-md:right-4 max-md:top-16 max-md:w-auto max-md:translate-x-0 max-md:max-h-[60vh] max-md:overflow-y-auto">
-          <div class="bg-[#0F2D44] border border-[var(--color-border-dark)] rounded-[6px] p-6 shadow-lg">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-              <div>
-                <div class="flex items-center gap-2 mb-3">
-                  <i class="ph ph-wind text-[var(--color-signal)] text-sm"></i>
-                  <p class="text-white text-xs font-semibold">Ventilación Minera</p>
-                </div>
-                <ul class="space-y-2">
-                  <li><a href="/servicios/ventilacion" class="text-[11px] text-white/50 hover:text-[var(--color-signal)] transition-colors block py-0.5">Estudios de gases y polvo</a></li>
-                  <li><a href="/servicios/ventilacion" class="text-[11px] text-white/50 hover:text-[var(--color-signal)] transition-colors block py-0.5">Balance térmico subterráneo</a></li>
-                  <li><a href="/servicios/ventilacion" class="text-[11px] text-white/50 hover:text-[var(--color-signal)] transition-colors block py-0.5">Simulaciones VNETPC/Ventsim</a></li>
-                  <li><a href="/servicios/ventilacion" class="text-[11px] text-white/50 hover:text-[var(--color-signal)] transition-colors block py-0.5">Auditorías de ventilación</a></li>
-                </ul>
-              </div>
-              <div>
-                <div class="flex items-center gap-2 mb-3">
-                  <i class="ph ph-drop text-[var(--color-signal)] text-sm"></i>
-                  <p class="text-white text-xs font-semibold">Sistemas de Bombeo</p>
-                </div>
-                <ul class="space-y-2">
-                  <li><a href="/servicios/bombeo" class="text-[11px] text-white/50 hover:text-[var(--color-signal)] transition-colors block py-0.5">Control de aguas ácidas</a></li>
-                  <li><a href="/servicios/bombeo" class="text-[11px] text-white/50 hover:text-[var(--color-signal)] transition-colors block py-0.5">Mantenimiento predictivo</a></li>
-                  <li><a href="/servicios/bombeo" class="text-[11px] text-white/50 hover:text-[var(--color-signal)] transition-colors block py-0.5">Dimensionamiento de bombas</a></li>
-                  <li><a href="/servicios/bombeo" class="text-[11px] text-white/50 hover:text-[var(--color-signal)] transition-colors block py-0.5">Estaciones de rebombeo</a></li>
-                </ul>
-              </div>
-              <div>
-                <div class="flex items-center gap-2 mb-3">
-                  <i class="ph ph-compass text-[var(--color-signal)] text-sm"></i>
-                  <p class="text-white text-xs font-semibold">Planeamiento</p>
-                </div>
-                <ul class="space-y-2">
-                  <li><a href="/servicios/planeamiento" class="text-[11px] text-white/50 hover:text-[var(--color-signal)] transition-colors block py-0.5">LOM Planning</a></li>
-                  <li><a href="/servicios/planeamiento" class="text-[11px] text-white/50 hover:text-[var(--color-signal)] transition-colors block py-0.5">Evaluación de proyectos</a></li>
-                  <li><a href="/servicios/planeamiento" class="text-[11px] text-white/50 hover:text-[var(--color-signal)] transition-colors block py-0.5">Optimización Capex/Opex</a></li>
-                  <li><a href="/servicios/planeamiento" class="text-[11px] text-white/50 hover:text-[var(--color-signal)] transition-colors block py-0.5">Supervisión en campo</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="mt-4 pt-4 flex items-center justify-between">
-              <p class="text-[11px] text-white/30">Soluciones integrales de ingeniería minera</p>
-              <a href="/servicios/ventilacion" class="text-[var(--color-signal)] text-[11px] font-medium hover:text-[var(--color-signal-hover)] transition-colors">Ver todos <i class="ph ph-arrow-right text-[10px] align-middle"></i></a>
-            </div>
-          </div>
-        </div>
       </div>
       <a href="/contratistas" class="text-xs text-white/70 hover:text-white transition-colors font-medium py-2">Contratistas</a>
       <a href="/nosotros" class="text-xs text-white/70 hover:text-white transition-colors font-medium py-2">Nosotros</a>
@@ -76,6 +41,84 @@
   </div>
 </header>
 
+<!-- ═══ Fullscreen Mega Menu — VPS Brand ═══ -->
+<div id="mega-overlay" class="fixed inset-0 z-[70] bg-[#0F2D44]/98 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true">
+  <!-- Grid dots background -->
+  <div class="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden="true"
+       style="background-image: radial-gradient(circle, #1e547a 1px, transparent 1px); background-size: 26px 26px;"></div>
+
+  <div class="max-w-6xl mx-auto px-6 pt-24 pb-16 h-full overflow-y-auto relative z-10">
+    
+    <!-- Header row -->
+    <div class="flex items-center justify-between mb-14">
+      <div class="flex items-center gap-6">
+        <img src="assets/vps-logo.png" alt="VPS Consulting" class="h-8 w-auto opacity-80" />
+        <span class="badge">EXPLORAR</span>
+      </div>
+      <button id="mega-close" class="w-10 h-10 flex items-center justify-center rounded-[4px] border border-white/10 text-white/40 hover:text-white hover:border-white/30 transition-all duration-200" aria-label="Cerrar menú">
+        <i class="ph ph-x text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Columns grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <p class="text-[var(--color-signal)] text-[10px] font-medium uppercase tracking-[0.08em] mb-4">Ventilación Minera</p>
+        <ul class="space-y-2.5">
+          <li><a href="/servicios/ventilacion" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Mapeo y diagnóstico</a></li>
+          <li><a href="/servicios/ventilacion" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Balance térmico</a></li>
+          <li><a href="/servicios/ventilacion" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Curvas de ventiladores</a></li>
+          <li><a href="/servicios/ventilacion" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Simulaciones VNETPC/Ventsim</a></li>
+          <li><a href="/servicios/ventilacion" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Propuestas de mejora</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-[var(--color-signal)] text-[10px] font-medium uppercase tracking-[0.08em] mb-4">Sistemas de Bombeo</p>
+        <ul class="space-y-2.5">
+          <li><a href="/servicios/bombeo" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Dimensionamiento</a></li>
+          <li><a href="/servicios/bombeo" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Control de aguas ácidas</a></li>
+          <li><a href="/servicios/bombeo" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Estaciones de rebombeo</a></li>
+          <li><a href="/servicios/bombeo" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Mantenimiento predictivo</a></li>
+          <li><a href="/servicios/bombeo" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Eficiencia energética</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-[var(--color-signal)] text-[10px] font-medium uppercase tracking-[0.08em] mb-4">Planeamiento</p>
+        <ul class="space-y-2.5">
+          <li><a href="/servicios/planeamiento" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">LOM Planning</a></li>
+          <li><a href="/servicios/planeamiento" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Evaluación de proyectos</a></li>
+          <li><a href="/servicios/planeamiento" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Optimización Capex/Opex</a></li>
+          <li><a href="/servicios/planeamiento" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Estudios de factibilidad</a></li>
+          <li><a href="/servicios/planeamiento" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Reportes automatizados</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-[var(--color-signal)] text-[10px] font-medium uppercase tracking-[0.08em] mb-4">Contratistas</p>
+        <ul class="space-y-2.5 mb-6">
+          <li><a href="/contratistas" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Instalación de ventiladores</a></li>
+          <li><a href="/contratistas" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Sistemas auxiliares</a></li>
+          <li><a href="/contratistas" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Mejoras de infraestructura</a></li>
+          <li><a href="/contratistas" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Soporte en campo</a></li>
+        </ul>
+        <p class="text-[var(--color-signal)] text-[10px] font-medium uppercase tracking-[0.08em] mb-4">VPS App</p>
+        <ul class="space-y-2.5">
+          <li><a href="#vpsapp" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Simulación 3D</a></li>
+          <li><a href="#vpsapp" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Monitoreo en tiempo real</a></li>
+          <li><a href="#vpsapp" class="text-white/50 text-sm hover:text-[var(--color-signal)] transition-colors">Reportes automáticos</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer row -->
+    <div class="pt-8 border-t border-white/[0.06] flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div class="flex items-center gap-3">
+        <img src="assets/vps-logo.png" alt="VPS Consulting" class="h-6 w-auto opacity-40" />
+        <p class="text-white/15 text-xs">Ingeniería que se construye.</p>
+      </div>
+      <a href="/#contacto" class="btn-primary text-sm">Solicitar evaluación <i class="ph ph-arrow-right"></i></a>
+    </div>
+  </div>
+</div>
 
 <router-outlet />
 

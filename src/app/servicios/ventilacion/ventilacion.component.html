@@ -11,7 +11,7 @@
       <div class="fog-blob" style="position:absolute; width:55vw; height:45vh; bottom:-10%; right:-8%; background:radial-gradient(ellipse at 60% 40%, rgba(170,200,235,0.12) 0%, rgba(140,180,225,0.05) 50%, transparent 75%); filter:blur(65px); mix-blend-mode:screen; animation:fog-float 24s ease-in-out infinite alternate-reverse;"></div>
     </div>
     <div class="absolute inset-0 pointer-events-none z-[3]" aria-hidden="true" style="filter:url(#fog-noise); mix-blend-mode:screen; opacity:0.5;"></div>
-    <div class="absolute inset-0 pointer-events-none z-[4]" aria-hidden="true" style="background:transparent; filter:url(#grain); opacity:0.18; mask-image:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0) 100%); -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0) 100%);"></div>
+    <div class="absolute inset-0 pointer-events-none z-[4]" aria-hidden="true" style="background:transparent; filter:url(#grain); opacity:0.15; mask-image:linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%); -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);"></div>
 
     <div class="relative z-10 max-w-3xl mx-auto px-6 text-center py-24">
       <span class="badge mb-6">SERVICIOS</span>
@@ -21,38 +21,82 @@
     <div id="nav-sentinel" class="absolute top-0 left-0 w-full h-px pointer-events-none"></div>
   </section>
 
+  <!-- ═══ Servicios incluidos — 5 cards ligeras ═══ -->
   <section class="w-full bg-[#0F2D44] py-20 md:py-28">
     <div class="max-w-6xl mx-auto px-6">
       <span class="badge mb-8">QUÉ INCLUYE</span>
       <h2 class="!text-white text-3xl md:text-4xl mb-12">Servicios de ventilación minera</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div class="card-dark card-hover-3d"><i class="ph ph-thermometer text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Mapeo de parámetros</h4><p class="text-white/55 text-sm leading-relaxed">Registro de presiones estáticas, totales y temperatura en labores mineras. Mapas de zonificación.</p></div>
-        <div class="card-dark card-hover-3d card-double"><i class="ph ph-wind text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Estudio de gases y polvo</h4><p class="text-white/55 text-sm leading-relaxed">Medición de contaminantes, monóxido de carbono y material particulado en frentes de trabajo.</p></div>
-        <div class="card-dark card-hover-3d card-corner"><i class="ph ph-fire text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Balance térmico</h4><p class="text-white/55 text-sm leading-relaxed">Análisis de temperatura en profundidad. Estrategias de refrigeración para minería subterránea.</p></div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="card-dark card-hover-3d card-corner"><i class="ph ph-fan text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Curvas de ventiladores</h4><p class="text-white/55 text-sm leading-relaxed">Medición de presiones totales, curvas de rendimiento y dimensionamiento para ventiladores principales y secundarios.</p></div>
-        <div class="card-dark card-hover-3d card-double"><i class="ph ph-engine text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Requerimiento de aire diésel</h4><p class="text-white/55 text-sm leading-relaxed">Análisis detallado del aire necesario para equipos diésel en función a factores operativos y normativa DS-024.</p></div>
-      </div>
-      <div class="card-dark card-hover-3d mt-4">
-        <div class="flex flex-col md:flex-row gap-6 items-start">
-          <div class="flex-1"><i class="ph ph-cube text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Simulaciones VNETPC / Ventsim</h4><p class="text-white/55 text-sm leading-relaxed">Modelado digital, calibración y simulación de circuitos de ventilación. Diagnóstico final y propuesta de escenarios para el LOM.</p></div>
-          <div class="flex-1"><i class="ph ph-tree text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Propuestas de mejora ambiental</h4><p class="text-white/55 text-sm leading-relaxed">Soluciones para problemas de temperatura, polvo y calidad del aire. Planos isométricos y unifilares.</p></div>
+      <div class="flex flex-col gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="card-dark card-hover-3d"><i class="ph ph-thermometer text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Mapeo y diagnóstico</h4><p class="text-white/55 text-sm leading-relaxed">Registro de presiones, temperatura y contaminantes. Mapas de zonificación atmosférica.</p></div>
+          <div class="card-dark card-hover-3d card-double"><i class="ph ph-fire text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Balance térmico</h4><p class="text-white/55 text-sm leading-relaxed">Análisis de temperatura en profundidad y estrategias de refrigeración.</p></div>
+          <div class="card-dark card-hover-3d card-corner"><i class="ph ph-fan text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Curvas de ventiladores</h4><p class="text-white/55 text-sm leading-relaxed">Medición de presiones totales, curvas de rendimiento y dimensionamiento.</p></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="card-dark card-hover-3d card-corner"><i class="ph ph-cube text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Simulaciones VNETPC / Ventsim</h4><p class="text-white/55 text-sm leading-relaxed">Modelado digital, calibración y diagnóstico final. Escenarios LOM.</p></div>
+          <div class="card-dark card-hover-3d card-double"><i class="ph ph-tree text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Propuestas de mejora ambiental</h4><p class="text-white/55 text-sm leading-relaxed">Soluciones para temperatura, polvo y calidad del aire. Planos isométricos.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="w-full bg-[#081b2c] py-20 md:py-28">
+  <!-- ═══ Visual break — imagen + stats ═══ -->
+  <section class="w-full bg-[#081b2c] py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7">
+          <div class="rounded-[8px] border border-[var(--color-border-dark)] overflow-hidden bg-[#0F2D44] aspect-[16/10] flex items-center justify-center">
+            <i class="ph ph-image text-[var(--color-signal)] text-6xl opacity-20"></i>
+          </div>
+        </div>
+        <div class="lg:col-span-5 space-y-6">
+          <div class="card-dark card-hover-3d card-double" style="border-left:2px solid var(--color-signal);">
+            <p class="text-white/40 text-[10px] uppercase tracking-[0.08em] mb-1">Caudal típico</p>
+            <p class="text-white text-2xl font-medium">1.2 m³/s</p>
+            <p class="text-white/30 text-xs mt-1">por frente de trabajo</p>
+          </div>
+          <div class="card-dark card-hover-3d card-double" style="border-left:2px solid var(--color-signal);">
+            <p class="text-white/40 text-[10px] uppercase tracking-[0.08em] mb-1">Temperatura objetivo</p>
+            <p class="text-white text-2xl font-medium">28°C</p>
+            <p class="text-white/30 text-xs mt-1">según normativa DS-024</p>
+          </div>
+          <div class="card-dark card-hover-3d card-double" style="border-left:2px solid var(--color-signal);">
+            <p class="text-white/40 text-[10px] uppercase tracking-[0.08em] mb-1">Ventiladores</p>
+            <p class="text-white text-2xl font-medium">AX-4500</p>
+            <p class="text-white/30 text-xs mt-1">selección óptima estándar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Metodología — timeline ═══ -->
+  <section class="w-full bg-[#0F2D44] py-20 md:py-28">
     <div class="max-w-6xl mx-auto px-6">
       <span class="badge mb-8">METODOLOGÍA</span>
       <h2 class="!text-white text-3xl md:text-4xl mb-12">Etapas de trabajo</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-        <div class="card-dark card-hover-3d text-center"><span class="badge mb-3">01</span><h4 class="!text-white text-sm !font-medium mb-1">Preliminar</h4><p class="text-white/40 text-xs">Visita técnica y levantamiento de información</p></div>
-        <div class="card-dark card-hover-3d card-double text-center"><span class="badge mb-3">02</span><h4 class="!text-white text-sm !font-medium mb-1">Modelado</h4><p class="text-white/40 text-xs">Simulación y calibración del modelo digital</p></div>
-        <div class="card-dark card-hover-3d text-center"><span class="badge mb-3">03</span><h4 class="!text-white text-sm !font-medium mb-1">Diseño</h4><p class="text-white/40 text-xs">Planos y especificaciones técnicas</p></div>
-        <div class="card-dark card-hover-3d card-corner text-center"><span class="badge mb-3">04</span><h4 class="!text-white text-sm !font-medium mb-1">Ejecución</h4><p class="text-white/40 text-xs">Implementación y supervisión en campo</p></div>
-        <div class="card-dark card-hover-3d text-center"><span class="badge mb-3">05</span><h4 class="!text-white text-sm !font-medium mb-1">Evaluación</h4><p class="text-white/40 text-xs">Monitoreo y optimización continua</p></div>
+      <div class="service-timeline relative">
+        <div class="hidden md:block absolute top-4 left-[10%] right-[10%] h-px bg-[var(--color-border-dark)]"></div>
+        <div class="grid grid-cols-5 gap-4 relative z-10">
+          <div class="text-center"><div class="inline-flex items-center justify-center w-8 h-8 bg-[var(--color-signal)] text-[var(--color-ink)] font-bold text-xs rounded-[4px] mb-3">1</div><p class="text-white text-xs font-medium mb-0.5">Preliminar</p><p class="text-white/30 text-[10px]">Visita técnica</p></div>
+          <div class="text-center"><div class="inline-flex items-center justify-center w-8 h-8 bg-[var(--color-signal)] text-[var(--color-ink)] font-bold text-xs rounded-[4px] mb-3">2</div><p class="text-white text-xs font-medium mb-0.5">Modelado</p><p class="text-white/30 text-[10px]">Simulación digital</p></div>
+          <div class="text-center"><div class="inline-flex items-center justify-center w-8 h-8 bg-[var(--color-signal)] text-[var(--color-ink)] font-bold text-xs rounded-[4px] mb-3">3</div><p class="text-white text-xs font-medium mb-0.5">Diseño</p><p class="text-white/30 text-[10px]">Planos y specs</p></div>
+          <div class="text-center"><div class="inline-flex items-center justify-center w-8 h-8 bg-[var(--color-signal)] text-[var(--color-ink)] font-bold text-xs rounded-[4px] mb-3">4</div><p class="text-white text-xs font-medium mb-0.5">Ejecución</p><p class="text-white/30 text-[10px]">Supervisión campo</p></div>
+          <div class="text-center"><div class="inline-flex items-center justify-center w-8 h-8 bg-[var(--color-signal)] text-[var(--color-ink)] font-bold text-xs rounded-[4px] mb-3">5</div><p class="text-white text-xs font-medium mb-0.5">Evaluación</p><p class="text-white/30 text-[10px]">Optimización</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ¿Por qué VPS? ═══ -->
+  <section class="w-full bg-[#081b2c] py-20 md:py-28">
+    <div class="max-w-4xl mx-auto px-6">
+      <span class="badge mb-8">¿POR QUÉ VPS?</span>
+      <h2 class="!text-white text-3xl md:text-4xl mb-12">Ingeniería que se construye</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="text-center"><i class="ph ph-hard-hat text-[var(--color-signal)] text-2xl mb-4 block mx-auto"></i><p class="text-white text-sm font-medium mb-1">Ingeniería + campo</p><p class="text-white/40 text-xs">Diseñamos y ejecutamos. Sin subcontratas, sin pérdida de precisión.</p></div>
+        <div class="text-center"><i class="ph ph-cpu text-[var(--color-signal)] text-2xl mb-4 block mx-auto"></i><p class="text-white text-sm font-medium mb-1">Software propio</p><p class="text-white/40 text-xs">VPS App para simular, monitorear y reportar con datos reales.</p></div>
+        <div class="text-center"><i class="ph ph-buildings text-[var(--color-signal)] text-2xl mb-4 block mx-auto"></i><p class="text-white text-sm font-medium mb-1">Minas de gran escala</p><p class="text-white/40 text-xs">Experiencia comprobada en las operaciones más exigentes del Perú.</p></div>
       </div>
     </div>
   </section>
@@ -61,7 +105,7 @@
     <div class="max-w-xl mx-auto px-6">
       <h3 class="!text-white text-2xl md:text-3xl mb-4">¿Necesita optimizar la ventilación de su mina?</h3>
       <p class="text-white/50 text-sm mb-8">Solicite una evaluación técnica sin compromiso.</p>
-      <a href="/#contacto" class="btn-primary text-sm inline-flex items-center gap-2">Solicitar evaluación <i class="ph ph-arrow-right"></i></a>
+      <a href="/#contacto" class="btn-primary text-sm inline-flex items-center gap-4">Solicitar evaluación <i class="ph ph-arrow-right"></i></a>
     </div>
   </section>
 </main>

@@ -11,7 +11,7 @@
       <div class="fog-blob" style="position:absolute; width:55vw; height:45vh; bottom:-10%; right:-8%; background:radial-gradient(ellipse at 60% 40%, rgba(170,200,235,0.12) 0%, rgba(140,180,225,0.05) 50%, transparent 75%); filter:blur(65px); mix-blend-mode:screen; animation:fog-float 24s ease-in-out infinite alternate-reverse;"></div>
     </div>
     <div class="absolute inset-0 pointer-events-none z-[3]" aria-hidden="true" style="filter:url(#fog-noise); mix-blend-mode:screen; opacity:0.5;"></div>
-    <div class="absolute inset-0 pointer-events-none z-[4]" aria-hidden="true" style="background:transparent; filter:url(#grain); opacity:0.18; mask-image:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0) 100%); -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0) 100%);"></div>
+    <div class="absolute inset-0 pointer-events-none z-[4]" aria-hidden="true" style="background:transparent; filter:url(#grain); opacity:0.15; mask-image:linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%); -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);"></div>
 
     <div class="relative z-10 max-w-3xl mx-auto px-6 text-center py-24">
       <span class="badge mb-6">CONTRATISTAS</span>
@@ -23,19 +23,52 @@
 
   <section class="w-full bg-[#0F2D44] py-20 md:py-28">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
         <div class="card-dark card-hover-3d card-corner">
           <span class="badge mb-6">¿QUÉ ES?</span>
           <p class="text-white/75 text-sm leading-relaxed mb-4">Servicio de contrata especializada en ventilación minera subterránea. Integración vertical completa: diseño, ejecución y mantenimiento, respaldados por criterios de ingeniería.</p>
-          <div class="flex items-center gap-2 text-white/40 text-xs"><i class="ph ph-check-circle text-[var(--color-signal)]"></i>Para minas en desarrollo o producción</div>
+          <div class="flex items-center gap-4 text-white/40 text-xs"><i class="ph ph-check-circle text-[var(--color-signal)]"></i>Para minas en desarrollo o producción</div>
         </div>
         <div class="card-dark card-hover-3d card-double">
           <span class="badge mb-6">¿A QUIÉN ESTÁ DIRIGIDO?</span>
           <ul class="space-y-3 text-white/60 text-sm">
-            <li class="flex items-start gap-2"><i class="ph ph-check-circle text-[var(--color-signal)] text-sm mt-0.5 flex-shrink-0"></i>Proyectos en etapa de desarrollo o producción</li>
-            <li class="flex items-start gap-2"><i class="ph ph-check-circle text-[var(--color-signal)] text-sm mt-0.5 flex-shrink-0"></i>Áreas de ventilación, seguridad y servicios</li>
-            <li class="flex items-start gap-2"><i class="ph ph-check-circle text-[var(--color-signal)] text-sm mt-0.5 flex-shrink-0"></i>Empresas que requieren soporte técnico-operativo en campo</li>
+            <li class="flex items-start gap-4"><i class="ph ph-check-circle text-[var(--color-signal)] text-sm mt-0.5 flex-shrink-0"></i>Proyectos en etapa de desarrollo o producción</li>
+            <li class="flex items-start gap-4"><i class="ph ph-check-circle text-[var(--color-signal)] text-sm mt-0.5 flex-shrink-0"></i>Áreas de ventilación, seguridad y servicios</li>
+            <li class="flex items-start gap-4"><i class="ph ph-check-circle text-[var(--color-signal)] text-sm mt-0.5 flex-shrink-0"></i>Empresas que requieren soporte técnico-operativo en campo</li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full bg-[#081b2c] py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7">
+          <div class="rounded-[8px] border border-[var(--color-border-dark)] overflow-hidden bg-[#0F2D44] aspect-[16/10] flex items-center justify-center">
+            <i class="ph ph-image text-[var(--color-signal)] text-6xl opacity-20"></i>
+          </div>
+        </div>
+        <div class="lg:col-span-5 space-y-6">
+          <div class="card-dark card-hover-3d card-double" style="border-left:2px solid var(--color-signal);"><p class="text-white/40 text-[10px] uppercase tracking-[0.08em] mb-1">Tiempo típico</p><p class="text-white text-2xl font-medium">14 días</p><p class="text-white/30 text-xs mt-1">levantamiento de campo</p></div>
+          <div class="card-dark card-hover-3d card-double" style="border-left:2px solid var(--color-signal);"><p class="text-white/40 text-[10px] uppercase tracking-[0.08em] mb-1">Equipo</p><p class="text-white text-2xl font-medium">4-6</p><p class="text-white/30 text-xs mt-1">especialistas en campo</p></div>
+          <div class="card-dark card-hover-3d card-double" style="border-left:2px solid var(--color-signal);"><p class="text-white/40 text-[10px] uppercase tracking-[0.08em] mb-1">Ejecución</p><p class="text-white text-2xl font-medium">100%</p><p class="text-white/30 text-xs mt-1">bajo estándares de seguridad</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full bg-[#0F2D44] py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <span class="badge mb-8">CÓMO TRABAJAMOS</span>
+      <h2 class="!text-white text-3xl md:text-4xl mb-12">Nuestro proceso</h2>
+      <div class="service-timeline relative">
+        <div class="hidden md:block absolute top-4 left-[12%] right-[12%] h-px bg-[var(--color-border-dark)]"></div>
+        <div class="grid grid-cols-4 gap-4 relative z-10">
+          <div class="text-center"><div class="inline-flex items-center justify-center w-8 h-8 bg-[var(--color-signal)] text-[var(--color-ink)] font-bold text-xs rounded-[4px] mb-3">1</div><p class="text-white text-xs font-medium mb-0.5">Definición</p><p class="text-white/30 text-[10px]">Técnica del trabajo</p></div>
+          <div class="text-center"><div class="inline-flex items-center justify-center w-8 h-8 bg-[var(--color-signal)] text-[var(--color-ink)] font-bold text-xs rounded-[4px] mb-3">2</div><p class="text-white text-xs font-medium mb-0.5">Ejecución</p><p class="text-white/30 text-[10px]">Bajo estándares</p></div>
+          <div class="text-center"><div class="inline-flex items-center justify-center w-8 h-8 bg-[var(--color-signal)] text-[var(--color-ink)] font-bold text-xs rounded-[4px] mb-3">3</div><p class="text-white text-xs font-medium mb-0.5">Verificación</p><p class="text-white/30 text-[10px]">Resultados</p></div>
+          <div class="text-center"><div class="inline-flex items-center justify-center w-8 h-8 bg-[var(--color-signal)] text-[var(--color-ink)] font-bold text-xs rounded-[4px] mb-3">4</div><p class="text-white text-xs font-medium mb-0.5">Acompañamiento</p><p class="text-white/30 text-[10px]">Soporte continuo</p></div>
         </div>
       </div>
     </div>
@@ -45,44 +78,11 @@
     <div class="max-w-6xl mx-auto px-6">
       <span class="badge mb-8">QUÉ INCLUYE</span>
       <h2 class="!text-white text-3xl md:text-4xl mb-12">Servicios operativos en ventilación</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div class="card-dark card-hover-3d"><i class="ph ph-fan text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Instalación de ventiladores</h4><p class="text-white/55 text-sm leading-relaxed">Montaje y puesta en marcha de ventiladores principales y secundarios en minería subterránea.</p></div>
-        <div class="card-dark card-hover-3d card-double"><i class="ph ph-arrows-out text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Sistemas auxiliares</h4><p class="text-white/55 text-sm leading-relaxed">Instalación de ductos, compuertas, reguladores y sistemas de control de flujo de aire.</p></div>
-      </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="card-dark card-hover-3d card-corner"><i class="ph ph-arrow-up text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Implementación de mejoras</h4><p class="text-white/55 text-sm leading-relaxed">Ejecución de proyectos de optimización de ventilación. Mejoras en infraestructura existente.</p></div>
-        <div class="card-dark card-hover-3d card-double"><i class="ph ph-hard-hat text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Soporte técnico en campo</h4><p class="text-white/55 text-sm leading-relaxed">Acompañamiento especializado durante la ejecución. Verificación de resultados con criterios de ingeniería.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="w-full bg-[#0F2D44] py-20 md:py-28">
-    <div class="max-w-6xl mx-auto px-6">
-      <span class="badge mb-8">CÓMO TRABAJAMOS</span>
-      <h2 class="!text-white text-3xl md:text-4xl mb-12">Nuestro proceso</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-        <div class="card-dark card-hover-3d text-center"><span class="badge mb-3">01</span><h4 class="!text-white text-sm !font-medium mb-1">Definición</h4><p class="text-white/40 text-xs">Definición técnica del trabajo a ejecutar</p></div>
-        <div class="card-dark card-hover-3d card-double text-center"><span class="badge mb-3">02</span><h4 class="!text-white text-sm !font-medium mb-1">Ejecución</h4><p class="text-white/40 text-xs">Ejecución operativa bajo estándares de seguridad</p></div>
-        <div class="card-dark card-hover-3d card-corner text-center"><span class="badge mb-3">03</span><h4 class="!text-white text-sm !font-medium mb-1">Verificación</h4><p class="text-white/40 text-xs">Verificación de resultados con criterios de ingeniería</p></div>
-        <div class="card-dark card-hover-3d text-center"><span class="badge mb-3">04</span><h4 class="!text-white text-sm !font-medium mb-1">Acompañamiento</h4><p class="text-white/40 text-xs">Soporte técnico continuo al cliente</p></div>
-      </div>
-
-      <span class="badge mb-8">BENEFICIOS</span>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
-        <div class="card-dark card-hover-3d card-corner"><div class="flex items-start gap-3"><i class="ph ph-shield-check text-[var(--color-signal)] text-xl mt-0.5"></i><div><h4 class="!text-white text-sm !font-medium mb-1">Ejecución segura y eficiente</h4><p class="text-white/45 text-xs">Reducción de tiempos de implementación con altos estándares de seguridad.</p></div></div></div>
-        <div class="card-dark card-hover-3d card-double"><div class="flex items-start gap-3"><i class="ph ph-trend-down text-[var(--color-signal)] text-xl mt-0.5"></i><div><h4 class="!text-white text-sm !font-medium mb-1">Menor riesgo operativo</h4><p class="text-white/45 text-xs">Trabajos respaldados por criterios de ingeniería, no solo ejecución.</p></div></div></div>
-        <div class="card-dark card-hover-3d"><div class="flex items-start gap-3"><i class="ph ph-clock text-[var(--color-signal)] text-xl mt-0.5"></i><div><h4 class="!text-white text-sm !font-medium mb-1">Soporte especializado</h4><p class="text-white/45 text-xs">Equipo técnico con experiencia en ventilación minera subterránea.</p></div></div></div>
-        <div class="card-dark card-hover-3d card-corner"><div class="flex items-start gap-3"><i class="ph ph-toolbox text-[var(--color-signal)] text-xl mt-0.5"></i><div><h4 class="!text-white text-sm !font-medium mb-1">Herramientas digitales</h4><p class="text-white/45 text-xs">Respaldados por VPS App y software de simulación para cada proyecto.</p></div></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="w-full bg-[#081b2c] py-20 md:py-28">
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="card-dark card-hover-3d card-corner border-[var(--color-signal)]/20">
-        <blockquote class="text-center">
-          <p class="text-white text-xl md:text-2xl leading-relaxed mb-4">"A diferencia de una contrata tradicional, nuestros trabajos están respaldados por ingeniería de ventilación, experiencia en campo y herramientas digitales. No solo ejecutamos: entendemos el sistema de ventilación."</p>
-        </blockquote>
+        <div class="card-dark card-hover-3d"><i class="ph ph-fan text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Instalación de ventiladores</h4><p class="text-white/55 text-sm leading-relaxed">Montaje y puesta en marcha de ventiladores principales y secundarios.</p></div>
+        <div class="card-dark card-hover-3d card-double"><i class="ph ph-arrows-out text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Sistemas auxiliares</h4><p class="text-white/55 text-sm leading-relaxed">Instalación de ductos, compuertas y sistemas de control de flujo de aire.</p></div>
+        <div class="card-dark card-hover-3d card-corner"><i class="ph ph-arrow-up text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Implementación de mejoras</h4><p class="text-white/55 text-sm leading-relaxed">Ejecución de proyectos de optimización de ventilación en infraestructura existente.</p></div>
+        <div class="card-dark card-hover-3d card-double"><i class="ph ph-hard-hat text-[var(--color-signal)] text-xl mb-3 block"></i><h4 class="!text-white text-base !font-medium mb-2">Soporte técnico en campo</h4><p class="text-white/55 text-sm leading-relaxed">Acompañamiento especializado con verificación de resultados bajo criterios de ingeniería.</p></div>
       </div>
     </div>
   </section>
@@ -91,7 +91,7 @@
     <div class="max-w-xl mx-auto px-6">
       <h3 class="!text-white text-2xl md:text-3xl mb-4">¿Necesita ejecutar trabajos de ventilación en su mina?</h3>
       <p class="text-white/50 text-sm mb-8">Solicite una cotización sin compromiso.</p>
-      <a href="/#contacto" class="btn-primary text-sm inline-flex items-center gap-2">Solicitar cotización <i class="ph ph-arrow-right"></i></a>
+      <a href="/#contacto" class="btn-primary text-sm inline-flex items-center gap-4">Solicitar cotización <i class="ph ph-arrow-right"></i></a>
     </div>
   </section>
 </main>

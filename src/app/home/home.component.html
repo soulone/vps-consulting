@@ -33,25 +33,9 @@
                   filter: blur(65px); mix-blend-mode: screen; animation: fog-float 24s ease-in-out infinite alternate-reverse;"></div>
     </div>
 
-    <!-- Fog texture: SVG feTurbulence fotorealista -->
-    <svg class="absolute inset-0 w-0 h-0" aria-hidden="true">
-      <filter id="fog-noise">
-        <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="5" seed="7">
-          <animate attributeName="baseFrequency" values="0.015;0.019;0.013;0.017;0.015" dur="30s" repeatCount="indefinite"/>
-        </feTurbulence>
-        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.1 0"/>
-      </filter>
-    </svg>
     <div class="absolute inset-0 pointer-events-none z-[3]" aria-hidden="true"
          style="filter: url(#fog-noise); mix-blend-mode: screen; opacity: 0.5;"></div>
 
-    <!-- Grain texture — sólido arriba, se desvanece abajo -->
-    <svg class="absolute inset-0 w-0 h-0" aria-hidden="true">
-      <filter id="grain">
-        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
-        <feColorMatrix type="saturate" values="0"/>
-      </filter>
-    </svg>
     <div class="absolute inset-0 pointer-events-none z-[5]" aria-hidden="true"
          style="background: transparent; filter: url(#grain); opacity: 0.18;
                 mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0) 100%);
@@ -122,6 +106,41 @@
 
   </section>
 
+  <!-- ═══ Cloud Empresas — Fullwidth ═══ -->
+  <section class="w-full bg-[#FBFBFA] py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="text-center text-xs font-medium text-[#194669] tracking-[0.1em] uppercase mb-6">Empresas que confían</p>
+      
+      <div class="marquee-track">
+        <div class="marquee-inner">
+          <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">UM</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">UM Inmaculada</span></span>
+          <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">PL</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Pallancata</span></span>
+          <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">MB</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Minera Bateas</span></span>
+          <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CQ</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Colquisiri</span></span>
+          <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CP</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Copemina</span></span>
+          <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CN</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Contonga</span></span>
+          <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">UM</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">UM Inmaculada</span></span>
+          <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">PL</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Pallancata</span></span>
+          <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">MB</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Minera Bateas</span></span>
+          <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CQ</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Colquisiri</span></span>
+          <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CP</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Copemina</span></span>
+          <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CN</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Contonga</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Intro VPS — puente al bento ═══ -->
+  <section class="w-full bg-[#0F2D44] py-16 md:py-20">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <p class="text-[var(--color-signal)] text-xs font-medium tracking-[0.1em] uppercase mb-4">SOLUCIONES INTEGRALES</p>
+      <h2 class="!text-white mb-4" style="font-size: clamp(1.75rem, 4vw, 2.5rem);">Ingeniería que baja a la mina.</h2>
+      <p class="text-white/55 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+        Diseñamos, simulamos e instalamos sistemas de ventilación, bombeo y planeamiento para operaciones mineras subterráneas. Tres capacidades integradas, un solo estándar de precisión.
+      </p>
+    </div>
+  </section>
+
   <!-- ═══ 3 Marcas — Bento Grid ═══ -->
   <section id="servicios" class="w-full bg-[#0F2D44] py-20 md:py-28 relative">
     <div class="max-w-6xl mx-auto px-6 border-l border-r border-[var(--color-border-dark)] relative z-10">
@@ -135,18 +154,8 @@
           <span class="badge mb-6">01 CONSULTING</span>
           <h3 class="!text-white mb-4">Ingeniería que se construye.</h3>
           <p class="text-white/75 text-sm leading-relaxed mb-8 max-w-lg">
-            Diseñamos sistemas de ventilación y bombeo para las minas más exigentes del Perú. Simulaciones, diagnósticos y planos de ingeniería de precisión.
+            Ventilación, bombeo y planeamiento para las minas más exigentes del Perú.
           </p>
-          <div class="grid grid-cols-2 gap-4 mb-8">
-            <div>
-              <p class="text-white text-xs font-medium mb-1">Ventilación Minera</p>
-              <p class="text-white/55 text-[11px] leading-relaxed">Modelado VNETPC/Ventsim, balance térmico, estudios de gases.</p>
-            </div>
-            <div>
-              <p class="text-white text-xs font-medium mb-1">Sistemas de Bombeo</p>
-              <p class="text-white/55 text-[11px] leading-relaxed">Dimensionamiento, control de aguas ácidas, mantenimiento predictivo.</p>
-            </div>
-          </div>
           <a href="/servicios/ventilacion" class="text-[var(--color-signal)] text-sm font-medium hover:text-[var(--color-signal-hover)] transition-colors">
             Conocer servicios <i class="ph ph-arrow-right text-xs align-middle"></i>
           </a>
@@ -235,42 +244,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ═══ Cloud Empresas — Marquee ═══ -->
-  <section class="w-full bg-white py-14 overflow-hidden">
-    <p class="text-center text-xs font-medium text-[#194669] tracking-[0.1em] uppercase mb-10">Operaciones que nos respaldan</p>
-    
-    <div class="marquee-track">
-      <div class="marquee-inner">
-        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">UM</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">UM Inmaculada</span></span>
-        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">PL</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Pallancata</span></span>
-        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">MB</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Minera Bateas</span></span>
-        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CQ</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Colquisiri</span></span>
-        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CP</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Copemina</span></span>
-        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CN</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Contonga</span></span>
-        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">UM</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">UM Inmaculada</span></span>
-        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">PL</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Pallancata</span></span>
-        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">MB</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Minera Bateas</span></span>
-        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CQ</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Colquisiri</span></span>
-        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CP</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Copemina</span></span>
-        <span class="marquee-item"><span class="w-9 h-9 bg-[#111111] flex items-center justify-center rounded-sm mr-3"><span class="text-white font-extrabold text-xs">CN</span></span><span class="text-[#111111] font-extrabold uppercase tracking-[-0.04em] text-base">Contonga</span></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ Testimonial ═══ -->
-  <section class="w-full bg-[#F5F3F0] py-20 md:py-28 relative">
-    <div class="max-w-3xl mx-auto px-6 text-center">
-      <blockquote>
-        <p class="text-2xl md:text-3xl text-[#111111] leading-relaxed mb-6" style="font-style:italic;">
-          "Desde que trabajamos con VPS, los tiempos de parada por fallas de ventilación bajaron a cero."
-        </p>
-        <footer class="text-sm text-[#545350] font-medium">
-          Ingeniero Jefe de Operaciones, UM Inmaculada
-        </footer>
-      </blockquote>
     </div>
   </section>
 
