@@ -5,7 +5,7 @@
 <header id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="nav-inner max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
     <a href="#inicio" class="flex items-center gap-2.5 text-white text-sm font-medium tracking-tight">
-      <img src="assets/vps-logo.png" alt="VPS Consulting" class="h-8 w-auto brightness-0 invert" />
+      <img src="assets/vps-logo.png" alt="VPS Consulting" class="h-8 w-auto" />
     </a>
     <nav class="hidden md:flex items-center gap-6" aria-label="Navegación principal">
       <!-- Mega Menu trigger — Servicios -->
@@ -15,8 +15,8 @@
           <i class="ph ph-caret-down text-[10px] group-hover:rotate-180 transition-transform duration-200"></i>
         </a>
         <!-- Mega panel -->
-        <div class="mega-panel absolute top-full left-0 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 -translate-x-1/4">
-          <div class="bg-[#0F2D44] border border-[var(--color-border-dark)] rounded-[6px] p-6 w-[520px] shadow-lg">
+        <div class="mega-panel fixed md:absolute top-14 md:top-full left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 w-[calc(100vw-32px)] md:w-[520px]">
+          <div class="bg-[#0F2D44] border border-[var(--color-border-dark)] rounded-[6px] p-6 shadow-lg">
             <div class="grid grid-cols-3 gap-5">
               <div>
                 <div class="flex items-center gap-2 mb-3">
@@ -64,7 +64,7 @@
       </div>
       <a href="#proyectos" class="text-xs text-white/70 hover:text-white transition-colors font-medium py-2">Proyectos</a>
       <a href="#vpsapp" class="text-xs text-white/70 hover:text-white transition-colors font-medium py-2">VPS App</a>
-      <a href="#contacto" class="bg-[var(--color-signal)] text-[var(--color-ink)] font-medium text-xs py-2 px-5 rounded-[4px] hover:bg-[var(--color-signal-hover)] transition-colors">Cotizar</a>
+      <a href="#contacto" class="bg-[var(--color-signal)] text-[var(--color-ink)] font-medium text-xs py-2 px-5 rounded-full hover:bg-[var(--color-signal-hover)] transition-colors">Cotizar</a>
     </nav>
     <button class="md:hidden text-white/70" aria-label="Menú">
       <i class="ph ph-list text-xl"></i>
@@ -110,11 +110,11 @@
         Diseñamos sistemas de ventilación y bombeo para operaciones de gran escala. Ingeniería de precisión, ejecución en campo y software propio.
       </p>
       <div class="flex flex-wrap justify-center items-center gap-3 mb-5">
-        <a href="#contacto" class="bg-[var(--color-signal)] text-[var(--color-ink)] inline-flex items-center gap-2 px-6 py-3.5 text-sm font-medium rounded-[4px] hover:bg-[var(--color-signal-hover)] transition-colors">
+        <a href="#contacto" class="bg-[var(--color-signal)] text-[var(--color-ink)] inline-flex items-center gap-2 px-6 py-3.5 text-sm font-medium rounded-full hover:bg-[var(--color-signal-hover)] transition-colors">
           Solicitar evaluación
           <i class="ph ph-arrow-right text-sm"></i>
         </a>
-        <a href="#servicios" class="inline-flex items-center gap-2 px-5 py-3.5 text-sm font-medium rounded-[4px] border border-white/12 text-white/50 hover:text-white hover:bg-white/5 transition-colors">
+        <a href="#servicios" class="inline-flex items-center gap-2 px-5 py-3.5 text-sm font-medium rounded-full border border-white/12 text-white/50 hover:text-white hover:bg-white/5 transition-colors">
           Ver servicios
         </a>
       </div>
@@ -123,41 +123,47 @@
 
   </section>
 
-  <!-- ═══ DIVIDER ═══ -->
-  <div class="h-px bg-[var(--color-border-dark)]"></div>
+  <!-- ═══ DIVIDER — aurora ═══ -->
+  <div class="divider-aurora"></div>
 
   <!-- ═══ 3 Marcas — Bento Grid ═══ -->
-  <section id="servicios" class="w-full bg-[var(--color-canvas-dark)] py-20 md:py-28">
-    <div class="max-w-6xl mx-auto px-6 border-l border-r border-[var(--color-border-dark)]">
+  <section id="servicios" class="w-full bg-[var(--color-canvas-dark)] py-20 md:py-28 relative">
+    <!-- Glow sutil top-left -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: radial-gradient(ellipse at 15% 20%, rgba(0,120,255,0.1) 0%, transparent 60%);"></div>
+    <div class="max-w-6xl mx-auto px-6 border-l border-r border-[var(--color-border-dark)] relative z-10">
       
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
         <!-- VPS Consulting — tile grande 8 cols × 2 rows -->
-        <div class="md:col-span-8 md:row-span-2 card-dark card-corner">
+        <div class="md:col-span-8 md:row-span-2 card-dark card-corner card-bg-img">
+          <img src="assets/mining-hero.jpg" alt="" loading="lazy" />
+          <div class="card-bg-overlay"></div>
+          <div class="relative z-10">
           <span class="badge mb-6">01 CONSULTING</span>
           <h3 class="!text-white mb-4">Ingeniería que se construye.</h3>
-          <p class="text-[var(--color-slate)] text-sm leading-relaxed mb-8 max-w-lg">
+          <p class="text-white/75 text-sm leading-relaxed mb-8 max-w-lg">
             Diseñamos sistemas de ventilación y bombeo para las minas más exigentes del Perú. Simulaciones, diagnósticos y planos de ingeniería de precisión.
           </p>
           <div class="grid grid-cols-2 gap-4 mb-8">
             <div>
               <p class="text-white text-xs font-medium mb-1">Ventilación Minera</p>
-              <p class="text-[var(--color-slate)] text-[11px] leading-relaxed">Modelado VNETPC/Ventsim, balance térmico, estudios de gases.</p>
+              <p class="text-white/55 text-[11px] leading-relaxed">Modelado VNETPC/Ventsim, balance térmico, estudios de gases.</p>
             </div>
             <div>
               <p class="text-white text-xs font-medium mb-1">Sistemas de Bombeo</p>
-              <p class="text-[var(--color-slate)] text-[11px] leading-relaxed">Dimensionamiento, control de aguas ácidas, mantenimiento predictivo.</p>
+              <p class="text-white/55 text-[11px] leading-relaxed">Dimensionamiento, control de aguas ácidas, mantenimiento predictivo.</p>
             </div>
           </div>
           <a href="#contacto" class="text-[var(--color-signal)] text-sm font-medium hover:text-[var(--color-signal-hover)] transition-colors">
             Conocer servicios <i class="ph ph-arrow-right text-xs align-middle"></i>
           </a>
+          </div>
         </div>
 
         <!-- VPS Contratistas — tile 4 cols × 1 row -->
         <div class="md:col-span-4 card-dark card-double">
           <span class="badge mb-6">02 CONTRATISTAS</span>
           <h3 class="!text-white mb-3">Del plano a la mina.</h3>
-          <p class="text-[var(--color-slate)] text-sm leading-relaxed mb-6">
+          <p class="text-white/75 text-sm leading-relaxed mb-6">
             Ejecución directa en campo. Sin subcontratas. Instalamos, supervisamos y ponemos en marcha cada sistema.
           </p>
           <a href="#proyectos" class="text-[var(--color-signal)] text-sm font-medium hover:text-[var(--color-signal-hover)] transition-colors">
@@ -169,7 +175,7 @@
         <div class="md:col-span-4 card-dark card-gradient">
           <span class="badge badge-active mb-6">03 VPS APP</span>
           <h3 class="!text-white mb-3">Los datos mandan.</h3>
-          <p class="text-[var(--color-slate)] text-sm leading-relaxed mb-6">
+          <p class="text-white/75 text-sm leading-relaxed mb-6">
             Software propio para simular, monitorear y reportar. Si trabaja con nosotros, también es suyo.
           </p>
           <a href="#vpsapp" class="text-[var(--color-signal)] text-sm font-medium hover:text-[var(--color-signal-hover)] transition-colors">
@@ -184,18 +190,18 @@
         <span style="position:absolute;top:-3px;left:66%;width:6px;height:6px;background:var(--color-signal);border-radius:1px;"></span>
       </div>
       
-      <p class="text-center text-[var(--color-slate)] text-sm font-medium tracking-[-0.02em]">
+      <p class="text-center text-white/55 text-sm font-medium tracking-[-0.02em]">
         Tres capacidades. Un solo estándar de precisión.
       </p>
     </div>
   </section>
 
-  <!-- ═══ DIVIDER ═══ -->
   <div class="h-px bg-[var(--color-border-dark)]"></div>
-
   <!-- ═══ Proyectos ═══ -->
-  <section id="proyectos" class="w-full bg-[var(--color-canvas-dark)] py-20 md:py-28">
-    <div class="max-w-6xl mx-auto px-6 border-l border-r border-[var(--color-border-dark)]">
+  <section id="proyectos" class="w-full bg-[var(--color-canvas-dark)] py-20 md:py-28 relative">
+    <!-- Glow sutil centro-derecha gold -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: radial-gradient(ellipse at 70% 40%, rgba(239,178,74,0.08) 0%, transparent 60%);"></div>
+    <div class="max-w-6xl mx-auto px-6 border-l border-r border-[var(--color-border-dark)] relative z-10">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div>
           <span class="badge mb-4">PORTAFOLIO</span>
@@ -214,7 +220,7 @@
           <div class="relative z-10 p-8 h-full flex flex-col justify-end">
             <span class="badge mb-2">Ventilación</span>
             <h4 class="!text-white text-lg !font-medium">UM Inmaculada</h4>
-            <p class="text-[var(--color-slate)] text-xs mt-1">Sistema de ventilación principal</p>
+            <p class="text-white/50 text-xs mt-1">Sistema de ventilación principal</p>
           </div>
         </div>
         <div class="project-card card-dark !p-0 !border-0">
@@ -224,7 +230,7 @@
           <div class="relative z-10 p-8 h-full flex flex-col justify-end">
             <span class="badge mb-2">Bombeo</span>
             <h4 class="!text-white text-lg !font-medium">Pallancata</h4>
-            <p class="text-[var(--color-slate)] text-xs mt-1">Estación de rebombeo subterráneo</p>
+            <p class="text-white/50 text-xs mt-1">Estación de rebombeo subterráneo</p>
           </div>
         </div>
         <div class="project-card card-dark !p-0 !border-0">
@@ -234,49 +240,54 @@
           <div class="relative z-10 p-8 h-full flex flex-col justify-end">
             <span class="badge mb-2">Planeamiento</span>
             <h4 class="!text-white text-lg !font-medium">Colquisiri</h4>
-            <p class="text-[var(--color-slate)] text-xs mt-1">LOM Planning y optimización</p>
+            <p class="text-white/50 text-xs mt-1">LOM Planning y optimización</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ DIVIDER ═══ -->
-  <div class="h-px bg-[var(--color-border-dark)]"></div>
+  <!-- ═══ DIVIDER — aurora ═══ -->
+  <div class="divider-aurora"></div>
 
-  <!-- ═══ Cloud Empresas ═══ -->
-  <section class="w-full bg-[var(--color-canvas-dark)] py-16">
-    <div class="max-w-6xl mx-auto px-6 border-l border-r border-[var(--color-border-dark)]">
-      <p class="text-center text-xs font-medium text-[var(--color-slate)] tracking-[0.08em] uppercase mb-10" style="font-family:var(--font-mono);">Operaciones que nos respaldan</p>
-      <div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
-        <span class="text-white/50 hover:text-white/80 transition-colors text-sm font-medium tracking-tight">UM Inmaculada</span>
-        <span class="hidden sm:inline text-[var(--color-border-dark)]">|</span>
-        <span class="text-white/50 hover:text-white/80 transition-colors text-sm font-medium tracking-tight">Pallancata</span>
-        <span class="hidden sm:inline text-[var(--color-border-dark)]">|</span>
-        <span class="text-white/50 hover:text-white/80 transition-colors text-sm font-medium tracking-tight">Minera Bateas</span>
-        <span class="hidden sm:inline text-[var(--color-border-dark)]">|</span>
-        <span class="text-white/50 hover:text-white/80 transition-colors text-sm font-medium tracking-tight">Colquisiri</span>
-        <span class="hidden sm:inline text-[var(--color-border-dark)]">|</span>
-        <span class="text-white/50 hover:text-white/80 transition-colors text-sm font-medium tracking-tight">Copemina</span>
-        <span class="hidden sm:inline text-[var(--color-border-dark)]">|</span>
-        <span class="text-white/50 hover:text-white/80 transition-colors text-sm font-medium tracking-tight">Contonga</span>
+  <!-- ═══ Cloud Empresas — Marquee ═══ -->
+  <section class="w-full bg-[var(--color-canvas-dark)] py-14 overflow-hidden">
+    <p class="text-center text-xs font-medium text-[var(--color-slate)] tracking-[0.08em] uppercase mb-10" style="font-family:var(--font-mono);">Operaciones que nos respaldan</p>
+    
+    <div class="marquee-track">
+      <div class="marquee-inner">
+        <span class="marquee-item"><span class="w-8 h-8 rounded-[4px] bg-[#194669]/60 flex items-center justify-center text-[10px] text-white/50 font-bold mr-3">UM</span>UM Inmaculada</span>
+        <span class="marquee-item"><span class="w-8 h-8 rounded-[4px] bg-[#1a3f5c]/60 flex items-center justify-center text-[10px] text-white/50 font-bold mr-3">PL</span>Pallancata</span>
+        <span class="marquee-item"><span class="w-8 h-8 rounded-[4px] bg-[#194669]/60 flex items-center justify-center text-[10px] text-white/50 font-bold mr-3">MB</span>Minera Bateas</span>
+        <span class="marquee-item"><span class="w-8 h-8 rounded-[4px] bg-[#1a3f5c]/60 flex items-center justify-center text-[10px] text-white/50 font-bold mr-3">CQ</span>Colquisiri</span>
+        <span class="marquee-item"><span class="w-8 h-8 rounded-[4px] bg-[#194669]/60 flex items-center justify-center text-[10px] text-white/50 font-bold mr-3">CP</span>Copemina</span>
+        <span class="marquee-item"><span class="w-8 h-8 rounded-[4px] bg-[#1a3f5c]/60 flex items-center justify-center text-[10px] text-white/50 font-bold mr-3">CN</span>Contonga</span>
+        <!-- Duplicados para loop infinito -->
+        <span class="marquee-item"><span class="w-8 h-8 rounded-[4px] bg-[#194669]/60 flex items-center justify-center text-[10px] text-white/50 font-bold mr-3">UM</span>UM Inmaculada</span>
+        <span class="marquee-item"><span class="w-8 h-8 rounded-[4px] bg-[#1a3f5c]/60 flex items-center justify-center text-[10px] text-white/50 font-bold mr-3">PL</span>Pallancata</span>
+        <span class="marquee-item"><span class="w-8 h-8 rounded-[4px] bg-[#194669]/60 flex items-center justify-center text-[10px] text-white/50 font-bold mr-3">MB</span>Minera Bateas</span>
+        <span class="marquee-item"><span class="w-8 h-8 rounded-[4px] bg-[#1a3f5c]/60 flex items-center justify-center text-[10px] text-white/50 font-bold mr-3">CQ</span>Colquisiri</span>
+        <span class="marquee-item"><span class="w-8 h-8 rounded-[4px] bg-[#194669]/60 flex items-center justify-center text-[10px] text-white/50 font-bold mr-3">CP</span>Copemina</span>
+        <span class="marquee-item"><span class="w-8 h-8 rounded-[4px] bg-[#1a3f5c]/60 flex items-center justify-center text-[10px] text-white/50 font-bold mr-3">CN</span>Contonga</span>
       </div>
     </div>
   </section>
 
-  <!-- ═══ DIVIDER ═══ -->
-  <div class="h-px bg-[var(--color-border-dark)]"></div>
+  <!-- ═══ DIVIDER — aurora ═══ -->
+  <div class="divider-aurora"></div>
 
   <!-- ═══ Testimonial ═══ -->
-  <section class="w-full bg-[var(--color-canvas-dark)] py-20 md:py-28">
-    <div class="max-w-6xl mx-auto px-6 border-l border-r border-[var(--color-border-dark)]">
+  <section class="w-full bg-[var(--color-canvas-dark)] py-20 md:py-28 relative">
+    <!-- Glow sutil bottom-right cyan -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: radial-gradient(ellipse at 85% 70%, rgba(0,180,255,0.1) 0%, transparent 60%);"></div>
+    <div class="max-w-6xl mx-auto px-6 border-l border-r border-[var(--color-border-dark)] relative z-10">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
         <div class="md:col-span-7">
           <blockquote>
             <p class="text-2xl md:text-3xl text-white leading-relaxed mb-6" style="font-style:italic;">
               "Desde que trabajamos con VPS, los tiempos de parada por fallas de ventilación bajaron a cero."
             </p>
-            <footer class="text-sm text-[var(--color-slate)]" style="font-family:var(--font-mono);">
+            <footer class="text-sm text-white/45" style="font-family:var(--font-mono);">
               Ingeniero Jefe de Operaciones, UM Inmaculada
             </footer>
           </blockquote>
@@ -286,14 +297,14 @@
             <i class="ph ph-certificate text-[var(--color-signal)] text-xl"></i>
             <div>
               <p class="text-white text-sm font-medium">Certificaciones ISO</p>
-              <p class="text-[var(--color-slate)] text-xs">9001 / 14001 / OHSAS 18001</p>
+              <p class="text-white/55 text-xs">9001 / 14001 / OHSAS 18001</p>
             </div>
           </div>
           <div class="card-dark flex items-center gap-4" style="border-left:2px solid var(--color-signal);">
             <i class="ph ph-users-three text-[var(--color-signal)] text-xl"></i>
             <div>
               <p class="text-white text-sm font-medium">Equipo Especializado</p>
-              <p class="text-[var(--color-slate)] text-xs">Ingenieros con décadas de experiencia</p>
+              <p class="text-white/55 text-xs">Ingenieros con décadas de experiencia</p>
             </div>
           </div>
         </div>
@@ -301,8 +312,8 @@
     </div>
   </section>
 
-  <!-- ═══ DIVIDER ═══ -->
-  <div class="h-px bg-[var(--color-border-dark)]"></div>
+  <!-- ═══ DIVIDER — aurora ═══ -->
+  <div class="divider-aurora"></div>
 
   <!-- ═══ VPS App ═══ -->
   <section id="vpsapp" class="w-full bg-[var(--color-canvas-dark)] py-20 md:py-28">
@@ -312,30 +323,30 @@
           <div class="lg:col-span-7">
             <span class="badge mb-4">03 VPS APP</span>
             <h3 class="!text-white mb-4">Los datos mandan.</h3>
-            <p class="text-[var(--color-slate)] text-sm leading-relaxed mb-6 max-w-lg">
+            <p class="text-white/65 text-sm leading-relaxed mb-6 max-w-lg">
               Software propio para simular, monitorear y reportar. La herramienta que construimos para ser más precisos. Si trabaja con nosotros, también es suya.
             </p>
             <div class="grid grid-cols-3 gap-4 mb-8">
               <div>
                 <i class="ph ph-cube text-[var(--color-signal)] text-xl mb-3 block"></i>
                 <p class="text-white text-xs font-medium mb-1">Simulación</p>
-                <p class="text-[var(--color-slate)] text-[11px]">VNETPC y Ventsim</p>
+                <p class="text-white/45 text-[11px]">VNETPC y Ventsim</p>
               </div>
               <div>
                 <i class="ph ph-activity text-[var(--color-signal)] text-xl mb-3 block"></i>
                 <p class="text-white text-xs font-medium mb-1">Monitoreo</p>
-                <p class="text-[var(--color-slate)] text-[11px]">Tiempo real</p>
+                <p class="text-white/45 text-[11px]">Tiempo real</p>
               </div>
               <div>
                 <i class="ph ph-file-text text-[var(--color-signal)] text-xl mb-3 block"></i>
                 <p class="text-white text-xs font-medium mb-1">Reportes</p>
-                <p class="text-[var(--color-slate)] text-[11px]">Automatizados</p>
+                <p class="text-white/45 text-[11px]">Automatizados</p>
               </div>
             </div>
             <a href="#contacto" class="btn-primary text-sm">Solicitar demo <i class="ph ph-arrow-right"></i></a>
           </div>
           <div class="lg:col-span-5">
-            <div class="aspect-[4/3] bg-[var(--color-card-dark)] border border-[var(--color-border-dark)] rounded-[4px] flex items-center justify-center">
+            <div class="aspect-[4/3] bg-[var(--color-card-dark)] border border-[var(--color-border-dark)] rounded-full flex items-center justify-center">
               <i class="ph ph-desktop text-[var(--color-signal)] text-5xl opacity-25"></i>
             </div>
           </div>
@@ -349,7 +360,7 @@
     <div class="lg:w-1/2 bg-[var(--color-card-dark)] flex items-center justify-center p-12">
       <div class="max-w-lg">
         <h2 class="!text-white mb-6">¿Cuál es el desafío de su mina?</h2>
-        <p class="text-[var(--color-slate)] text-sm leading-relaxed mb-10">
+        <p class="text-white/65 text-sm leading-relaxed mb-10">
           Solicite una evaluación técnica sin compromiso. Nuestro equipo analizará su operación y le propondrá una solución a medida.
         </p>
         <div class="space-y-5">
@@ -427,7 +438,7 @@
 
 <!-- ═══ WhatsApp FAB ═══ -->
 <a href="https://wa.me/51014456789" target="_blank" rel="noopener noreferrer" 
-   class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] text-white flex items-center justify-center rounded-[4px] shadow-lg hover:bg-[#1ebe5b] transition-all duration-200 group" style="animation: fab-pulse 2s ease-in-out infinite;"
+   class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] text-white flex items-center justify-center rounded-full shadow-lg hover:bg-[#1ebe5b] transition-all duration-200 group" style="animation: fab-pulse 2s ease-in-out infinite;"
    aria-label="Contactar por WhatsApp">
   <i class="ph ph-chat-circle-dots text-2xl"></i>
 </a>

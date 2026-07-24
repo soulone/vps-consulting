@@ -1,4 +1,4 @@
-import { Component, signal, afterNextRender, DestroyRef, inject } from '@angular/core';
+import { Component, signal, afterNextRender, DestroyRef, inject, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -11,30 +11,19 @@ import { RouterOutlet } from '@angular/router';
 export class App {
   protected readonly title = signal('VPS Consulting');
   private readonly destroyRef = inject(DestroyRef);
-  private rafId = 0;
+
+  @HostListener('window:scroll')
+  onScroll() {
+    const nav = document.getElementById('main-nav');
+    if (nav) {
+      nav.classList.toggle('is-scrolled', window.scrollY > 10);
+    }
+  }
 
   constructor() {
     afterNextRender(() => {
-      this.initNavScroll();
       this.initReveals();
     });
-  }
-
-  private initNavScroll() {
-    const check = () => {
-      const nav = document.getElementById('main-nav');
-      if (!nav) { setTimeout(check, 100); return; }
-
-      const onScroll = () => {
-        nav.classList.toggle('is-scrolled', window.scrollY > 10);
-      };
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll(); // ejecutar al inicio
-      this.destroyRef.onDestroy(() => window.removeEventListener('scroll', onScroll));
-    };
-
-    setTimeout(check, 50);
   }
 
   private initReveals() {
